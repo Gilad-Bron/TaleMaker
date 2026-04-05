@@ -1,0 +1,371 @@
+{
+  "id": "39acd5b5-0009-44f9-96b5-35cf28015eb8",
+  "title": "The Lost Kingdom",
+  "description": "A Tale of Blood and Honor",
+  "createdAt": "2026-04-04T20:57:11.747Z",
+  "updatedAt": "2026-04-05T00:00:00.000Z",
+  "chapters": [
+    {
+      "id": "3f1447cf-05cd-447e-89e1-6fdc17f74838",
+      "title": "Awakening",
+      "description": "You wake up....",
+      "episodes": [
+        {
+          "id": "2b12e9b7-183d-464f-a220-56acdc144f38",
+          "title": "A new beginning",
+          "description": "",
+          "interactions": [
+            {
+              "id": "0430dee8-1625-4632-9936-317fdf7444d3",
+              "type": "area",
+              "name": "The deserted wastelands",
+              "dialogs": [
+                {
+                  "id": "d7238fe0-bd7c-46c9-8f51-d784eb1cd65d",
+                  "text": "You wake up in an arid wasteland devoid of life....",
+                  "options": [
+                    { "id": "d53e3f4a-8182-44e7-80d8-3ae76e22236e", "label": "Continue" }
+                  ]
+                },
+                {
+                  "id": "2ae88f14-6715-4e03-9a3d-89b42ca9fa68",
+                  "text": "You feel tired and famished, what do you do?",
+                  "options": [
+                    { "id": "07923b1d-6cdf-4cde-8437-c26a75d71db0", "label": "Look around" },
+                    { "id": "0f41ff0d-d5a6-4745-af6d-7c6376bdaebf", "label": "Check my belongings" },
+                    { "id": "86dd2977-b3d3-4a03-8ee1-9894a8e85329", "label": "Scream" }
+                  ]
+                },
+                {
+                  "id": "e001-0001-0001-0001-000000000001",
+                  "text": "The sun hangs low and swollen, the color of a wound. Cracked earth stretches in every direction, broken only by the stumps of what were once great pillars — carved stone, toppled and half-buried. Whatever stood here was torn down with purpose, not by time.\n\nA faint wind carries the smell of sulfur and something older. Something sweet and wrong, like flowers rotting in a sealed room.",
+                  "options": [
+                    { "id": "o001-0001", "label": "Examine the broken pillars" },
+                    { "id": "o001-0002", "label": "Follow the wind's scent" },
+                    { "id": "o001-0003", "label": "Press forward" }
+                  ]
+                },
+                {
+                  "id": "e001-0001-0001-0001-000000000002",
+                  "text": "The nearest pillar bears the remnants of an inscription. Most of the letters have been gouged away — not eroded, gouged, as if someone took a chisel to them in a fury. But one fragment remains, etched deep enough to survive whatever rage came for it:\n\n\"...the blood remembers what the throne forgets...\"\n\nYou trace the letters with your finger. The stone is warm to the touch, far warmer than it should be under this pale sun. Somewhere beneath your feet, something shifts — a low, grinding sound, like a great mechanism turning in its sleep.",
+                  "options": [
+                    { "id": "o002-0001", "label": "Step back from the pillar" },
+                    { "id": "o002-0002", "label": "Press your hand flat against the stone" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i001-0002",
+              "type": "area",
+              "name": "The Bone Road",
+              "dialogs": [
+                {
+                  "id": "d001-0002-0001",
+                  "text": "Beyond the pillars, you find it — a road. Not dirt, not cobblestone. Bone. Thousands of fragments pressed and fused into a smooth, pale surface that stretches north toward a dark smudge on the horizon. The bones are old beyond reckoning, polished by wind into something almost beautiful.\n\nEvery few paces, an iron stake has been driven into the road's edge. From each stake hangs a small cage, empty now, though dark stains suggest they weren't always.",
+                  "options": [
+                    { "id": "o003-0001", "label": "Walk the road northward" },
+                    { "id": "o003-0002", "label": "Examine one of the iron cages" }
+                  ]
+                },
+                {
+                  "id": "d001-0002-0002",
+                  "text": "The cage you examine is no larger than a lantern. Inside, scratched into the rusted iron with a fingernail or a shard of bone, are tally marks. Hundreds of them. And at the bottom, three words in a language you shouldn't understand but somehow do:\n\n\"We kept count.\"\n\nThe road hums faintly beneath your boots. Not vibration — sound. A low, droning note that seems to rise from the bones themselves, as though the dead are holding a single, endless breath.",
+                  "options": [
+                    { "id": "o004-0001", "label": "Continue along the road" },
+                    { "id": "o004-0002", "label": "Listen more carefully to the sound" }
+                  ]
+                },
+                {
+                  "id": "d001-0002-0003",
+                  "text": "You press on. The dark smudge on the horizon sharpens into structures — low walls, a watchtower listing badly to one side, the skeletal frame of what might have been a gate. Smoke rises from somewhere within.\n\nBut before you reach it, a figure steps out from behind one of the iron stakes. They've been waiting. Watching. A long coat stitched from mismatched hides, a face like carved driftwood, and eyes that don't blink nearly often enough.",
+                  "options": [
+                    { "id": "o005-0001", "label": "\"Who are you?\"" },
+                    { "id": "o005-0002", "label": "Reach for something to defend yourself" },
+                    { "id": "o005-0003", "label": "Stand your ground and wait" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i001-0003",
+              "type": "character",
+              "name": "Maren, the Dust Walker",
+              "dialogs": [
+                {
+                  "id": "d001-0003-0001",
+                  "text": "\"Don't,\" the figure says, voice like gravel dragged over glass. \"I've been walking this road since before you were whatever you were before this. I'm not here to hurt you. Wouldn't be worth the effort.\"\n\nShe tilts her head, studying you the way a butcher studies a carcass — not with cruelty, but with professional interest.\n\n\"You came from the pillars. From the old court grounds. Nobody comes from there. That place has been dead longer than the kingdom itself.\"",
+                  "options": [
+                    { "id": "o006-0001", "label": "\"What kingdom?\"" },
+                    { "id": "o006-0002", "label": "\"I woke up there. I don't remember how.\"" },
+                    { "id": "o006-0003", "label": "\"What do you mean, 'dead'?\"" }
+                  ]
+                },
+                {
+                  "id": "d001-0003-0002",
+                  "text": "Maren's expression doesn't change, but something behind her eyes does. A flicker. Recognition, maybe. Or fear.\n\n\"The Kingdom of Ashrael. Ring any bells? No?\" She spits into the dust. \"It ruled everything from the Pale Coast to the Thornwall for three hundred years. Then one night — one single night — it just stopped. Every city, every village, every outpost. Silent. Like someone blew out a candle the size of a country.\"\n\nShe pauses, watching your face.\n\n\"That was forty years ago. What's left is what you see. Dust and bones and people too stubborn to leave.\"",
+                  "options": [
+                    { "id": "o007-0001", "label": "\"What happened that night?\"" },
+                    { "id": "o007-0002", "label": "\"And the pillars? The court grounds?\"" }
+                  ]
+                },
+                {
+                  "id": "d001-0003-0003",
+                  "text": "\"What happened?\" She laughs — a dry, ugly sound. \"Everyone's got a theory. Plague. Divine punishment. The Hollowing.\" She says that last word differently. Quieter. Like saying it too loud might draw attention.\n\n\"The old scholars — the ones who survived — they said the royal bloodline carried something. Not a crown. Not a title. A binding. Something in their blood kept the Deep Vaults sealed. And when the last of the line died...\" She makes a gesture with her hand. An opening. An unraveling.\n\n\"But that's campfire talk. Probably.\"",
+                  "options": [
+                    { "id": "o008-0001", "label": "\"The Deep Vaults?\"" },
+                    { "id": "o008-0002", "label": "\"You don't believe it's just campfire talk.\"" },
+                    { "id": "o008-0003", "label": "\"Where can I find these scholars?\"" }
+                  ]
+                },
+                {
+                  "id": "d001-0003-0004",
+                  "text": "Maren stares at you for a long time. Then she reaches into her coat and pulls out something small — a coin, black with age, bearing a crest you can't quite make out.\n\n\"I found this on the Bone Road six years ago. It's a royal seal. House of Valdren, the last dynasty.\" She turns it in her fingers. \"The face on it — the jaw, the brow line — it's yours. Not close. Yours.\"\n\nShe drops the coin into your hand. It's heavier than it should be.\n\n\"Head to the Outpost. Ask for Commander Vael. And if Old Kael is still alive, find him too. He remembers things the rest of us have been trying to forget.\"\n\nShe turns and walks south without another word, coat flapping in the dead wind.",
+                  "options": [
+                    { "id": "o009-0001", "label": "Examine the coin" },
+                    { "id": "o009-0002", "label": "Head toward the Outpost" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ep002",
+          "title": "The Outpost",
+          "description": "A fortified settlement at the edge of what remains.",
+          "interactions": [
+            {
+              "id": "i002-0001",
+              "type": "area",
+              "name": "The Rusted Gate",
+              "dialogs": [
+                {
+                  "id": "d002-0001-0001",
+                  "text": "The Outpost is less a town and more a wound that learned to scar over. Walls of salvaged stone and hammered metal rise unevenly from the dust, patched and re-patched so many times that no two sections match. The gate itself is a massive slab of rust-eaten iron, propped open with chains as thick as your arm.\n\nGuards watch from above — gaunt figures in mismatched armor, crossbows resting on the parapet. One of them tracks you with the bolt. Not hostile. Just careful. Everyone here is careful.",
+                  "options": [
+                    { "id": "o010-0001", "label": "Approach the gate with hands visible" },
+                    { "id": "o010-0002", "label": "Call out to the guards" }
+                  ]
+                },
+                {
+                  "id": "d002-0001-0002",
+                  "text": "A guard descends — a young woman with a shaved head and a scar that runs from her temple to her chin. She looks you over without warmth or malice.\n\n\"Trader? Scavenger? Lost?\"\n\nBefore you can answer, her eyes catch the coin in your hand — Maren's coin, the royal seal. The color drains from her face. She takes a step back and her hand drifts to her weapon.\n\n\"Where did you get that,\" she says. It isn't a question.",
+                  "options": [
+                    { "id": "o011-0001", "label": "\"A woman on the Bone Road gave it to me.\"" },
+                    { "id": "o011-0002", "label": "\"I need to see Commander Vael.\"" },
+                    { "id": "o011-0003", "label": "Pocket the coin quickly" }
+                  ]
+                },
+                {
+                  "id": "d002-0001-0003",
+                  "text": "The guard's jaw tightens. She whistles sharply — two short notes — and another guard appears on the wall above.\n\n\"Escort. Commander's quarters. Now.\"\n\nShe turns back to you. \"You'll get your audience with Vael. Keep that coin hidden and keep your mouth shut until you're in front of her. There are people in this outpost who would cut your throat for what that seal represents. And there are others who would do far worse.\"\n\nShe leads you through the gate into the Outpost proper.",
+                  "options": [
+                    { "id": "o012-0001", "label": "Follow in silence" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i002-0002",
+              "type": "character",
+              "name": "Commander Thessa Vael",
+              "dialogs": [
+                {
+                  "id": "d002-0002-0001",
+                  "text": "The Commander's quarters occupy the only intact stone building in the Outpost — an old granary, repurposed with brutal efficiency. Maps cover every wall, pinned with nails and annotated in red ink. Some of the locations marked have been crossed out. Many of them.\n\nThessa Vael sits behind a desk made from a door laid over two barrels. She's perhaps fifty, broad-shouldered, with close-cropped silver hair and the kind of stillness that comes from having survived things that killed everyone else. She doesn't stand when you enter.\n\n\"Show me,\" she says.",
+                  "options": [
+                    { "id": "o013-0001", "label": "Place the coin on the desk" },
+                    { "id": "o013-0002", "label": "\"Show you what?\"" }
+                  ]
+                },
+                {
+                  "id": "d002-0002-0002",
+                  "text": "You set the coin on the desk. Vael picks it up and holds it to the lamplight, turning it slowly. Her expression doesn't change, but her breathing does — a slight hitch, quickly controlled.\n\n\"House of Valdren. Third era. This is a Keeper's seal — not a royal one. Different mark on the reverse, see?\" She flips it. You hadn't noticed the second symbol: a closed eye, wreathed in thorns. \"The Keepers served the bloodline. Guarded the Vaults. Seven of them, originally. By the end, just one remained.\"\n\nShe sets the coin down and looks at you — really looks at you — for the first time.\n\n\"Maren sent you. She wouldn't have parted with this unless she thought you were important. So. Who are you?\"",
+                  "options": [
+                    { "id": "o014-0001", "label": "\"I don't know. I woke up in the wastes with no memory.\"" },
+                    { "id": "o014-0002", "label": "\"She said I looked like the face on the coin.\"" },
+                    { "id": "o014-0003", "label": "\"Tell me about the Keepers first.\"" }
+                  ]
+                },
+                {
+                  "id": "d002-0002-0003",
+                  "text": "Vael is quiet for a long moment. Then she opens a drawer and pulls out a folded piece of cloth — old, stained, but carefully preserved. She unfolds it to reveal a painted portrait, no larger than her palm. A face stares up from the cloth. Young. Regal. Unmistakably similar to your own.\n\n\"Prince Aldric Valdren. Heir to the throne. Disappeared the night of the Hollowing, along with every other soul in the capital.\" She folds the cloth again. \"That was forty years ago. You look twenty-five. So either you're a very convincing fraud, or something happened to you that we don't have a word for yet.\"\n\nShe stands and walks to the map wall.\n\n\"The last Keeper — a man called Sorath — was stationed in the capital when it fell. We found his journal in the ruins two years ago. Most of it was burned. But one passage survived.\"",
+                  "options": [
+                    { "id": "o015-0001", "label": "\"What did it say?\"" },
+                    { "id": "o015-0002", "label": "\"Where are these ruins?\"" }
+                  ]
+                },
+                {
+                  "id": "d002-0002-0004",
+                  "text": "Vael recites from memory, her voice flat:\n\n\"'I have done what was asked of me. The seal is broken. The blood is spent. What rises from the Vaults will remake this kingdom in a form more honest than the lie we built above it. Forgive me. There was never any other way.'\"\n\nShe lets that hang in the air.\n\n\"Sorath broke the seal. Intentionally. The Hollowing wasn't a catastrophe — it was a betrayal. One man opened the door and let the dark in.\" She turns from the map. \"Whatever the Vaults contained, it consumed Ashrael in a single night. And it's still down there. The ground tremors have been getting worse. The dead things in the deep places have been getting braver.\"\n\nShe fixes you with a stare that could pin steel to stone.\n\n\"If you are who Maren thinks you are, then the binding might not be entirely broken. Find Old Kael in the Market Hollow. He'll know more. He always does.\"",
+                  "options": [
+                    { "id": "o016-0001", "label": "\"I'll find him.\"" },
+                    { "id": "o016-0002", "label": "\"Why should I trust any of this?\"" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i002-0003",
+              "type": "area",
+              "name": "The Market Hollow",
+              "dialogs": [
+                {
+                  "id": "d002-0003-0001",
+                  "text": "The Market Hollow is exactly what it sounds like — a natural depression in the earth, roofed over with canvas and sheet metal, where the Outpost conducts its trade. Lanterns hang from crooked poles, casting pools of amber light that don't quite reach the edges.\n\nThe smell hits you first: dried meat, lamp oil, and something herbal and sharp. Vendors sit behind low tables piled with salvage — bent tools, tarnished jewelry, bundles of dried roots. Everything here has been used before. Nothing is new. Nothing has been new for forty years.\n\nConversation dies as you pass. They've heard about the coin. Word travels fast in a place with nothing else to do.",
+                  "options": [
+                    { "id": "o017-0001", "label": "Ask a vendor where to find Old Kael" },
+                    { "id": "o017-0002", "label": "Browse the salvage tables" },
+                    { "id": "o017-0003", "label": "Listen to the conversations around you" }
+                  ]
+                },
+                {
+                  "id": "d002-0003-0002",
+                  "text": "A vendor — a heavy-set man with ink-stained fingers — jerks his thumb toward the far end of the Hollow without looking up.\n\n\"Kael's in the back. Where he always is. Follow the smell of old paper.\"\n\nYou make your way deeper into the Hollow. The crowd thins. The lanterns grow fewer. At the very back, where the natural stone curves into a shallow alcove, you find a space that is less a shop and more a nest — thousands of pages, scrolls, and bound volumes stacked in precarious towers around a low chair. And in the chair, wrapped in a blanket despite the warmth, sits a man so old he seems to be made of paper himself.",
+                  "options": [
+                    { "id": "o018-0001", "label": "Approach Old Kael" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i002-0004",
+              "type": "character",
+              "name": "Old Kael",
+              "dialogs": [
+                {
+                  "id": "d002-0004-0001",
+                  "text": "\"I can't see you,\" Kael says before you speak. His eyes are white — not clouded with age, but white, as if the color was drained from them deliberately. \"But I can hear your blood.\"\n\nHe tilts his head, nostrils flaring. \"It sings. Faintly. Like a tuning fork struck and then muffled. I haven't heard that sound in forty years.\" A thin smile crosses his lips. \"Sit. You have questions. I have answers that will make you wish you hadn't asked.\"",
+                  "options": [
+                    { "id": "o019-0001", "label": "\"What do you mean, you can hear my blood?\"" },
+                    { "id": "o019-0002", "label": "\"Tell me about the Hollowing.\"" },
+                    { "id": "o019-0003", "label": "\"Vael sent me. She said you know about the Vaults.\"" }
+                  ]
+                },
+                {
+                  "id": "d002-0004-0002",
+                  "text": "\"The Valdren blood carries a resonance,\" Kael says, running a finger along the spine of a book so old its title has worn away. \"It's not magic — or rather, it's not what fools call magic. It's a frequency. A vibration that the things in the Vaults cannot abide. The founding king, Edric Valdren, didn't conquer the kingdom. He silenced something beneath it. His bloodline was the lock. As long as one heir lived, the Vaults stayed sealed.\"\n\nHe reaches into the pile beside him and produces a scroll, unrolling it with practiced fingers. A diagram — concentric circles, seven points marked along the outer ring, a single point at the center.\n\n\"Seven Keepers maintained the resonance. Amplified it. The heir was the source; the Keepers were the chorus. When Sorath broke his oath, he didn't just open a door. He silenced the chorus. And without the chorus, the source alone wasn't enough.\"",
+                  "options": [
+                    { "id": "o020-0001", "label": "\"So Prince Aldric — the source — what happened to him?\"" },
+                    { "id": "o020-0002", "label": "\"What is actually in the Vaults?\"" }
+                  ]
+                },
+                {
+                  "id": "d002-0004-0003",
+                  "text": "Kael's white eyes drift, as if looking at something you can't see.\n\n\"The Vaults hold the Hollow Court. That's what the old texts call them. Not demons. Not spirits. Something that existed here before humans, before the sun looked the way it does now. They don't have bodies — they have absence. They consume. Identity, memory, warmth, light. The Hollowing wasn't a metaphor. Every soul in Ashrael was emptied. Taken. Pulled into the Vaults like water down a drain.\"\n\nHe folds the scroll carefully.\n\n\"But the prince — Aldric — was different. The binding in his blood would have resisted the pull. He wouldn't have been consumed. He would have been... suspended. Held between the seal and the Hollow, like a fly in amber. Neither dead nor alive. Preserved, but lost.\"\n\nHe turns his blank gaze toward you.\n\n\"Until something shook him loose. Something cracked the amber. And here you are, forty years later, with no memory and a face that belongs to a dead prince. Curious, isn't it.\"",
+                  "options": [
+                    { "id": "o021-0001", "label": "\"You think I'm Aldric.\"" },
+                    { "id": "o021-0002", "label": "\"How do I stop it? The Hollow Court — how do I seal the Vaults again?\"" }
+                  ]
+                },
+                {
+                  "id": "d002-0004-0004",
+                  "text": "\"What I think doesn't matter. What your blood does — that matters.\" Kael leans forward, and his voice drops.\n\n\"The Vaults can be resealed. The binding can be restored. But you'll need what Sorath destroyed. The seven Keeper stones — each one carried a fragment of the resonance. Sorath shattered his, but the other six may still exist. Scattered when their bearers fled the capital.\"\n\nHe grips your wrist with surprising strength. His skin is cold as river stone.\n\n\"Find the stones. Restore the chorus. Then go to the capital — to the Throne of Echoes — and sing the seal shut. But know this: the Hollow Court knows you're awake. They felt you the moment your blood began to sing again. They will send what they can to the surface. Hollow things. Echoes wearing the faces of the dead.\"\n\nHe releases you and settles back into his chair.\n\n\"Start beneath this outpost. There are tunnels — old ones, from before the kingdom. One of the Keepers fled south through them the night of the Hollowing. She may have left her stone behind. Or she may still be down there, in one form or another.\"\n\nThe lantern beside him gutters, and for a moment, the shadows in the alcove seem to lean inward.",
+                  "options": [
+                    { "id": "o022-0001", "label": "\"How do I reach the tunnels?\"" },
+                    { "id": "o022-0002", "label": "\"Thank you, Kael.\"" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ep003",
+          "title": "Beneath the Sand",
+          "description": "The tunnels below the Outpost hold more than dust.",
+          "interactions": [
+            {
+              "id": "i003-0001",
+              "type": "area",
+              "name": "The Sealed Passage",
+              "dialogs": [
+                {
+                  "id": "d003-0001-0001",
+                  "text": "The entrance is behind the granary, hidden beneath a stone slab that takes three guards to move. A staircase descends into the dark — not carved, but worn, as if a million feet have smoothed these steps over an age longer than memory.\n\nThe air changes immediately. Above, the wasteland is dry and dead. Down here, the air is damp, heavy, and carries a faint metallic taste — like pressing your tongue to old iron. The walls are slick with condensation, and strange pale lichens cling to the stone, pulsing faintly with a bioluminescence that provides just enough light to see your own hands.\n\nThe passage leads down, then levels out, then splits into three corridors. Two have collapsed. The third stands open — barely.",
+                  "options": [
+                    { "id": "o023-0001", "label": "Enter the open corridor" },
+                    { "id": "o023-0002", "label": "Examine the collapsed passages first" }
+                  ]
+                },
+                {
+                  "id": "d003-0001-0002",
+                  "text": "You squeeze through the narrow gap. Beyond it, the passage widens into something grander — a corridor built for ceremony, not utility. The walls here are smooth and covered in carved reliefs, barely visible beneath the lichen. You can make out figures in procession, carrying objects toward a central point. Seven figures, each holding something aloft — the Keeper stones, perhaps.\n\nAt the corridor's midpoint, the carvings change. The figures are no longer walking. They're falling. The things behind them have no faces — just openings, like mouths without heads, drawn in a style so unsettling it makes your skin crawl.\n\nThe droning sound from the Bone Road is here too, but louder. Closer. Coming from ahead.",
+                  "options": [
+                    { "id": "o024-0001", "label": "Press deeper into the corridor" },
+                    { "id": "o024-0002", "label": "Study the faceless figures in the carvings" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i003-0002",
+              "type": "area",
+              "name": "The Whispering Hall",
+              "dialogs": [
+                {
+                  "id": "d003-0002-0001",
+                  "text": "The corridor opens into a vast chamber. The ceiling vanishes into darkness above you. The lichen here grows thick and bright, casting the hall in a pale green glow that makes everything look drowned.\n\nPillars line the hall — dozens of them — and each one hums at a different pitch, creating a dissonant chord that vibrates in your chest. It's not unpleasant, but it's not meant for you. This is infrastructure. A machine built from stone and sound, older than the kingdom that inherited it.\n\nAt the center of the hall, a circle has been carved into the floor. Seven slots ring its edge, each the size and shape of a fist. One of them is cracked — shattered from within, the stone around it blackened and warped. Sorath's slot, you realize. The place where he broke his stone and his oath.",
+                  "options": [
+                    { "id": "o025-0001", "label": "Examine the shattered slot" },
+                    { "id": "o025-0002", "label": "Look at the other six slots" },
+                    { "id": "o025-0003", "label": "Listen to the pillars" }
+                  ]
+                },
+                {
+                  "id": "d003-0002-0002",
+                  "text": "The six intact slots are empty but undamaged. Smooth, waiting. You press your hand against one and feel it — a pull, gentle but undeniable, as if the stone recognizes something in you and is reaching for it. The droning shifts, just slightly, when you touch it. One note in the chord bends toward harmony.\n\nThen you hear it. Not from the pillars. From deeper. From below the floor.\n\nA voice. Not words — not exactly — but the shape of words, the pressure of meaning without language. It pushes against your thoughts like someone leaning on a locked door.\n\nAnd then, from the far end of the hall, footsteps. Slow. Deliberate. Wrong, somehow — too even, too precise, like something that learned to walk by watching but never understood why.",
+                  "options": [
+                    { "id": "o026-0001", "label": "Face whatever is approaching" },
+                    { "id": "o026-0002", "label": "Hide behind a pillar" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "i003-0003",
+              "type": "character",
+              "name": "The Hollow Prince",
+              "dialogs": [
+                {
+                  "id": "d003-0003-0001",
+                  "text": "It wears a face you know. Your face — or nearly. The same jaw, the same brow, but wrong in ways that take a moment to catalogue. The eyes are too still. The skin has no pores, no imperfections, like a painting of a person rather than a person. It wears the remnants of court clothing, rotted to threads, and it moves with a grace that has nothing behind it.\n\nIt stops ten paces away. Tilts its head at an angle no living neck would choose.\n\n\"Brother,\" it says. The word comes from its mouth, but the sound comes from everywhere — from the pillars, from the walls, from the space behind your own eyes. \"You found your way back.\"",
+                  "options": [
+                    { "id": "o027-0001", "label": "\"I'm not your brother.\"" },
+                    { "id": "o027-0002", "label": "\"What are you?\"" },
+                    { "id": "o027-0003", "label": "Say nothing. Watch." }
+                  ]
+                },
+                {
+                  "id": "d003-0003-0002",
+                  "text": "\"I am what was made when you were unmade,\" it says, and something that might be a smile crosses its borrowed face. \"When the seal cracked, the Hollow Court needed a voice. A shape. Something to wear when speaking to the things above. They reached for the nearest royal blood and found... us. You were pulled one way. I was pulled the other.\"\n\nIt takes a step closer. The air around it dims — not darkens, dims, as if light itself loses confidence in its presence.\n\n\"You are the echo that kept its shape. I am the hollow that was left behind. We are the same coin, prince. Two faces. And the Court is very, very tired of being sealed beneath stone by the likes of our blood.\"",
+                  "options": [
+                    { "id": "o028-0001", "label": "\"The Court sent you to stop me.\"" },
+                    { "id": "o028-0002", "label": "\"Then help me. If we share the same blood—\"" },
+                    { "id": "o028-0003", "label": "\"Where is the Keeper's stone?\"" }
+                  ]
+                },
+                {
+                  "id": "d003-0003-0003",
+                  "text": "The thing that wears your face goes very still. Then it laughs — a sound like glass breaking underwater.\n\n\"Stop you? No. They sent me to offer you a choice.\" It extends one hand, palm up. In it rests a stone — smooth, dark, veined with light like a dying ember. A Keeper's stone. The one that was carried into these tunnels forty years ago.\n\n\"Take it and play the hero. Gather the stones, restore the chorus, seal the Vaults again. Condemn the Hollow Court to another age of silence. Condemn me with them.\" It pauses. \"Or leave it. Walk away. Let what's coming come. The kingdom is already dead. All you'd be sealing away is the truth of what it was built on — a prison, maintained by blood sacrifice, dressed up as a crown.\"\n\nThe stone pulses faintly in its palm, and you feel your own blood answer — a warmth in your chest, a vibration in your bones, the frequency Kael described. The binding. Reaching for the stone like a limb reaching for its phantom.",
+                  "options": [
+                    { "id": "o029-0001", "label": "Take the stone" },
+                    { "id": "o029-0002", "label": "\"What do you mean, blood sacrifice?\"" }
+                  ]
+                },
+                {
+                  "id": "d003-0003-0004",
+                  "text": "\"Every generation, one of the Valdren line died young. Always quietly. Always explained away — fever, accident, heartbreak. But the truth is in the old records, if you know where to look. The binding required renewal. Fresh blood. A life freely given — or taken and called willing after the fact.\"\n\nThe Hollow Prince's stolen eyes search your face.\n\n\"Our grandfather gave his youngest daughter. Our father gave his brother. And you, prince? What would you give? What will you sacrifice to lock us back in the dark?\"\n\nIt holds the stone out further. Waiting.\n\nThe pillars hum. The ground trembles. Somewhere above, in the world of dust and daylight, something shifts. You feel it in the marrow. The Vaults are restless. The door is open, and what's behind it is patient — but not infinitely so.\n\nYou reach out and take the stone.\n\nIt burns. It sings. And the Hollow Prince smiles with your face as it dissolves into shadow, leaving nothing behind but the echo of glass breaking and a whisper you'll carry for a long time:\n\n\"See you at the Throne, brother.\"",
+                  "options": [
+                    { "id": "o030-0001", "label": "Clutch the stone and return to the surface" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
