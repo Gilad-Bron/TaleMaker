@@ -6,7 +6,11 @@
       "Bash(mkdir:*)",
       "Bash(find /c/Users/HomePC/Code/TaleMaker -maxdepth 2 -type f -name *.json -o -name *.tsx -o -name *.ts -o -name *.jsx -o -name *.js)",
       "Bash(find /c/Users/HomePC/Code/TaleMaker/src -type f \\\\\\(-name *.tsx -o -name *.ts -o -name *.jsx -o -name *.js \\\\\\))",
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)"
     ]
   }
 }
