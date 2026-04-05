@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #1a1a2e;
+  --color-foreground: #e8d5b7;
+  --color-card: #16213e;
+  --color-card-foreground: #e8d5b7;
+  --color-popover: #16213e;
+  --color-popover-foreground: #e8d5b7;
+  --color-primary: #c9a84c;
+  --color-primary-foreground: #1a1a2e;
+  --color-secondary: #2a2a4a;
+  --color-secondary-foreground: #e8d5b7;
+  --color-muted: #2a2a4a;
+  --color-muted-foreground: #8b7e6a;
+  --color-accent: #7b2d3f;
+  --color-accent-foreground: #e8d5b7;
+  --color-destructive: #9b2c2c;
+  --color-destructive-foreground: #e8d5b7;
+  --color-border: #3a3a5c;
+  --color-input: #3a3a5c;
+  --color-ring: #c9a84c;
+  --color-sidebar: #12182e;
+  --color-sidebar-foreground: #e8d5b7;
+  --color-sidebar-border: #2a2a4a;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --font-heading: "MedievalSharp", cursive;
+  --font-body: "Crimson Text", serif;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
