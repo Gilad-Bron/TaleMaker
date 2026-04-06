@@ -1,6 +1,7 @@
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Plus, Trash2 } from "lucide-react";
 import type { Tale } from "@/types/tale";
 import { createOption } from "@/lib/factory";
@@ -18,7 +19,9 @@ export default function DialogEditor({
   tale, chapterIndex, episodeIndex, interactionIndex, dialogIndex, updateTale,
 }: DialogEditorProps) {
   const dialog = tale.chapters[chapterIndex].episodes[episodeIndex].interactions[interactionIndex].dialogs[dialogIndex];
-  const isLastDialog = dialogIndex === tale.chapters[chapterIndex].episodes[episodeIndex].interactions[interactionIndex].dialogs.length - 1;
+  const dialogs = tale.chapters[chapterIndex].episodes[episodeIndex].interactions[interactionIndex].dialogs;
+  const isLastDialog = dialogIndex === dialogs.length - 1;
+  const nextDialogText = !isLastDialog ? dialogs[dialogIndex + 1].text : null;
 
   const updateDialog = (updater: (d: typeof dialog) => typeof dialog) => {
     updateTale((t) => ({
@@ -135,12 +138,16 @@ export default function DialogEditor({
           </p>
           <div className="space-y-2">
             {dialog.options.map((option, oi) => (
-              <div
-                key={option.id}
-                className="px-4 py-2 rounded border border-primary/30 text-primary text-sm hover:bg-primary/10 transition-colors cursor-default"
-              >
-                {option.label || `(option ${oi + 1})`}
-              </div>
+              <Tooltip key={option.id}>
+                <TooltipTrigger asChild>
+                  <div className="px-4 py-2 rounded border border-primary/30 text-primary text-sm hover:bg-primary/10 transition-colors cursor-default">
+                    {option.label || `(option ${oi + 1})`}
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent side="right" className="max-w-xs p-3 text-xs leading-relaxed whitespace-pre-wrap">
+                  {nextDialogText ?? "(end of interaction)"}
+                </TooltipContent>
+              </Tooltip>
             ))}
           </div>
         </div>

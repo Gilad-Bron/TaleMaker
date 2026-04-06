@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import type { Tale, Dialog } from "@/types/tale";
 
 interface PlayPosition {
@@ -8,6 +8,11 @@ interface PlayPosition {
   dialogIndex: number;
 }
 
+export interface HistoryEntry {
+  text: string;
+  choiceLabel: string;
+}
+
 interface PlayState {
   currentDialog: Dialog | null;
   interactionName: string;
@@ -15,7 +20,8 @@ interface PlayState {
   chapterTitle: string;
   episodeTitle: string;
   isComplete: boolean;
-  advance: () => void;
+  advance: (choiceLabel: string) => void;
+  history: HistoryEntry[];
   position: PlayPosition;
 }
 
@@ -27,6 +33,9 @@ export function usePlayState(tale: Tale | null): PlayState {
     dialogIndex: 0,
   });
   const [isComplete, setIsComplete] = useState(false);
+  const [history, setHistory] = useState<HistoryEntry[]>([]);
+
+  const currentRef = useRef<{ dialog: Dialog | null }>({ dialog: null });
 
   const current = useMemo(() => {
     if (!tale || isComplete) {
@@ -48,8 +57,12 @@ export function usePlayState(tale: Tale | null): PlayState {
     };
   }, [tale, position, isComplete]);
 
-  const advance = useCallback(() => {
+  currentRef.current = current;
+
+  const advance = useCallback((choiceLabel: string) => {
     if (!tale || isComplete) return;
+
+    setHistory((h) => [...h, { text: currentRef.current.dialog?.text ?? "", choiceLabel }]);
 
     setPosition((pos) => {
       const chapter = tale.chapters[pos.chapterIndex];
@@ -89,6 +102,7 @@ export function usePlayState(tale: Tale | null): PlayState {
     episodeTitle: current.episodeTitle,
     isComplete,
     advance,
+    history,
     position,
   };
 }

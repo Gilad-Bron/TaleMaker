@@ -39,8 +39,10 @@ export default function PlayPage() {
         </div>
 
         {/* Play area */}
-        <div className="flex-1 flex items-center justify-center overflow-y-auto py-8">
-          <PlayView tale={tale} onBackToEditor={() => navigate(`/tale/${id}`)} />
+        <div className="flex-1 overflow-y-auto py-8">
+          <div className="flex min-h-full items-center justify-center">
+            <PlayView tale={tale} onBackToEditor={() => navigate(`/tale/${id}`)} />
+          </div>
         </div>
       </div>
     </AppShell>

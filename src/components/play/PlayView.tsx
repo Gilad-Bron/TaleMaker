@@ -17,6 +17,7 @@ export default function PlayView({ tale, onBackToEditor }: PlayViewProps) {
     episodeTitle,
     isComplete,
     advance,
+    history,
   } = usePlayState(tale);
 
   if (isComplete || !currentDialog) {
@@ -31,6 +32,7 @@ export default function PlayView({ tale, onBackToEditor }: PlayViewProps) {
       chapterTitle={chapterTitle}
       episodeTitle={episodeTitle}
       onOptionSelect={advance}
+      history={history}
     />
   );
 }

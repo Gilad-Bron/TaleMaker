@@ -22,14 +22,14 @@
               "dialogs": [
                 {
                   "id": "d7238fe0-bd7c-46c9-8f51-d784eb1cd65d",
-                  "text": "You wake up in an arid wasteland devoid of life....",
+                  "text": "Consciousness arrives before your eyes open — a slow, grinding return, like a millstone turning after a long stillness. There is no warmth. No sound. Only the press of cracked earth against your cheek and the faint, sour taste of dust on your tongue.\n\nYou open your eyes.\n\nThe sky above you is the color of a bruise — deep amber at the edges, fading to a sickly pale where the sun hangs without conviction. The land stretches in every direction without mercy: flat, fractured, the color of old bone. Nothing grows here. Nothing moves. The silence is so complete it has a texture to it, a pressure behind the ears, as though the world is holding its breath and has been for a very long time.\n\nYou do not know how you came to be here. You do not know your name.",
                   "options": [
                     { "id": "d53e3f4a-8182-44e7-80d8-3ae76e22236e", "label": "Continue" }
                   ]
                 },
                 {
                   "id": "2ae88f14-6715-4e03-9a3d-89b42ca9fa68",
-                  "text": "You feel tired and famished, what do you do?",
+                  "text": "You push yourself upright. Every joint protests. Your mouth is parched to the point of pain, your stomach a hollow, contracting thing. Hunger and thirst announce themselves together, insistent, primal — the body reasserting itself before the mind has finished waking.\n\nYour hands are empty. Your clothes — rough fabric, unfamiliar cut — are coated in the same pale dust that covers everything else. There is no pack beside you, no weapon, no canteen. Whatever you were before this moment, you arrived here with nothing.\n\nA thin wind moves across the flats, stirring small eddies of grit. Somewhere in the far distance, a structure breaks the horizon — impossible to identify at this range. It could be ruins. It could be nothing.\n\nWhat do you do?",
                   "options": [
                     { "id": "07923b1d-6cdf-4cde-8437-c26a75d71db0", "label": "Look around" },
                     { "id": "0f41ff0d-d5a6-4745-af6d-7c6376bdaebf", "label": "Check my belongings" },

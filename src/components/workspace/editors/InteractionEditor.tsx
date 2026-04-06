@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Trash2, User, MapPin, ArrowRight } from "lucide-react";
+import { Plus, Trash2, User, MapPin, ArrowDown } from "lucide-react";
 import type { Tale, SelectedNode } from "@/types/tale";
 import { createDialog } from "@/lib/factory";
 import DialogCard from "./DialogCard";
@@ -158,9 +158,9 @@ export default function InteractionEditor({
           </Button>
         </div>
 
-        <div className="flex items-start gap-2 overflow-x-auto pb-4">
+        <div className="flex flex-col gap-2">
           {interaction.dialogs.map((dialog, di) => (
-            <div key={dialog.id} className="flex items-center gap-2 shrink-0">
+            <div key={dialog.id} className="flex flex-col items-start gap-2">
               <div className="relative">
                 <DialogCard
                   index={di}
@@ -190,7 +190,7 @@ export default function InteractionEditor({
                 )}
               </div>
               {di < interaction.dialogs.length - 1 && (
-                <ArrowRight className="h-4 w-4 text-muted-foreground shrink-0" />
+                <ArrowDown className="h-4 w-4 text-muted-foreground ml-4" />
               )}
             </div>
           ))}
