@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+
+const PRESET_SKILLS = ["Diplomacy", "Fortitude", "Agility", "Stealth", "Wisdom"] as const;
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +33,8 @@ export default function DialogEditor({
   onSelect, onActivatePicker, onDeactivatePicker, pickerOptionIndex,
 }: DialogEditorProps) {
   const dialog = tale.chapters[chapterIndex].episodes[episodeIndex].interactions[interactionIndex].dialogs[dialogIndex];
+  // tracks which option indices are in free-text skill mode (not using a preset)
+  const [customSkillOptions, setCustomSkillOptions] = useState<Set<number>>(new Set());
 
   const updateDialog = (updater: (d: typeof dialog) => typeof dialog) => {
     updateTale((t) => ({
@@ -358,16 +363,55 @@ export default function DialogEditor({
                 </div>
 
                 {option.skillCheck ? (
-                  /* Skill check header: skill name + DC + remove */
+                  <>
+                  {/* Skill check header: skill dropdown + DC + remove */}
                   <div className="flex items-center gap-2">
                     <Dices className="h-3 w-3 text-primary/50 shrink-0" />
-                    <Input
-                      value={option.skillCheck.skill}
-                      onChange={(e) => updateSkillCheckField(oi, { skill: e.target.value })}
-                      placeholder="Skill name…"
-                      className="bg-background border-border/60 h-7 text-xs flex-1"
-                      style={{ borderRadius: "2px" }}
-                    />
+                    {customSkillOptions.has(oi) || (option.skillCheck.skill !== "" && !(PRESET_SKILLS as readonly string[]).includes(option.skillCheck.skill)) ? (
+                      /* Custom text input mode */
+                      <Input
+                        value={option.skillCheck.skill}
+                        onChange={(e) => updateSkillCheckField(oi, { skill: e.target.value })}
+                        placeholder="Skill name…"
+                        autoFocus
+                        className="bg-background border-border/60 h-7 text-xs flex-1"
+                        style={{ borderRadius: "2px" }}
+                      />
+                    ) : (
+                      /* Preset dropdown */
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <button
+                            className="flex items-center gap-1.5 text-xs text-foreground/70 hover:text-foreground transition-colors border border-border/50 bg-background/50 px-2 h-7 flex-1 text-left"
+                            style={{ borderRadius: "2px" }}
+                          >
+                            <span className="flex-1">{option.skillCheck.skill || "Select skill…"}</span>
+                            <ChevronDown className="h-3 w-3 opacity-50 shrink-0" />
+                          </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="start" className="w-40 bg-card border-border" style={{ borderRadius: "2px" }}>
+                          {PRESET_SKILLS.map((s) => (
+                            <DropdownMenuItem
+                              key={s}
+                              className={`text-xs cursor-pointer ${option.skillCheck!.skill === s ? "text-primary" : ""}`}
+                              onClick={() => updateSkillCheckField(oi, { skill: s })}
+                            >
+                              {s}
+                            </DropdownMenuItem>
+                          ))}
+                          <DropdownMenuSeparator className="bg-border/60" />
+                          <DropdownMenuItem
+                            className="text-xs text-muted-foreground cursor-pointer"
+                            onClick={() => {
+                              setCustomSkillOptions((prev) => new Set(prev).add(oi));
+                              updateSkillCheckField(oi, { skill: "" });
+                            }}
+                          >
+                            Add new…
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    )}
                     <span className="text-xs text-muted-foreground/40 shrink-0">DC</span>
                     <input
                       type="number"
@@ -384,6 +428,14 @@ export default function DialogEditor({
                       <X className="h-3 w-3" />
                     </button>
                   </div>
+                  {/* Description */}
+                  <input
+                    value={option.skillCheck.description ?? ""}
+                    onChange={(e) => updateSkillCheckField(oi, { description: e.target.value || undefined })}
+                    placeholder="Describe the challenge…"
+                    className="w-full bg-transparent text-xs text-muted-foreground/50 italic border-b border-transparent hover:border-border/40 focus:border-border/60 outline-none transition-colors placeholder:text-muted-foreground/25 pb-0.5"
+                  />
+                  </>
                 ) : (
                   <button
                     className="flex items-center gap-1 text-xs text-muted-foreground/25 hover:text-muted-foreground/50 transition-colors"

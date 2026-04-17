@@ -175,6 +175,7 @@ export default function DialogDisplay({
                     skill={sc.skill}
                     dc={sc.dc}
                     dieFaces={skillDice[sc.skill] ?? 20}
+                    description={sc.description}
                     onComplete={({ success, roll }) => {
                       setRollingId(null);
                       if (success) {

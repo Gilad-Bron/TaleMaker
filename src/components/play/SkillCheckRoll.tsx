@@ -5,10 +5,11 @@ interface SkillCheckRollProps {
   skill: string;
   dc: number;
   dieFaces: number;
+  description?: string;
   onComplete: (result: { success: boolean; roll: number }) => void;
 }
 
-export default function SkillCheckRoll({ skill, dc, dieFaces, onComplete }: SkillCheckRollProps) {
+export default function SkillCheckRoll({ skill, dc, dieFaces, description, onComplete }: SkillCheckRollProps) {
   const [display, setDisplay] = useState(() => Math.floor(Math.random() * dieFaces) + 1);
   const [phase, setPhase] = useState<"rolling" | "settling" | "revealed">("rolling");
   const [roll, setRoll] = useState(0);
@@ -103,8 +104,13 @@ export default function SkillCheckRoll({ skill, dc, dieFaces, onComplete }: Skil
         >
           {skill || "skill"} check
         </p>
+        {description && (
+          <p className="text-xs italic text-muted-foreground/40 leading-snug">
+            {description}
+          </p>
+        )}
         <p
-          className="text-xs text-muted-foreground/35 tabular-nums"
+          className="text-xs text-muted-foreground/30 tabular-nums"
           style={{ fontFamily: "var(--font-display)" }}
         >
           d{dieFaces} · vs DC {dc}

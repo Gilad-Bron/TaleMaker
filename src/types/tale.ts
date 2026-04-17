@@ -1,6 +1,7 @@
 export interface SkillCheck {
   skill: string;
   dc: number;
+  description?: string;
 }
 
 export interface DialogOption {

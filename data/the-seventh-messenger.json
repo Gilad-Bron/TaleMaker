@@ -24,15 +24,29 @@
                   "id": "dl01-0001-0001-0000-000000000001",
                   "text": "The Gate of Stone is the only wound in the Encircling Mountains — a narrow passage cut through living rock by the Noldor in an age before your grandfather was born. Seven stone doors stand open before you, each one carved with the device of a different house of Gondolin. You have passed through them before, on smaller errands. You have always returned.\n\nBehind you, the city hums its ordinary life: fountains, hammers, the high, clear voices of Elven children at their lessons. Ahead, a grey slot in the mountain, and beyond it, the world as it actually is.",
                   "options": [
-                    { "id": "op01-0001-0001-0001", "label": "Step through the gate" },
-                    { "id": "op01-0001-0001-0002", "label": "Look back at the city one last time" }
+                    {
+                      "id": "op01-0001-0001-0001",
+                      "label": "Step through the gate",
+                      "skillCheck": {
+                        "skill": "Fortitude",
+                        "dc": 10,
+                        "description": "Steel yourself and step into the unknown"
+                      }
+                    },
+                    {
+                      "id": "op01-0001-0001-0002",
+                      "label": "Look back at the city one last time"
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0001-0001-0000-000000000002",
                   "text": "The seventh door closes behind you. The sound it makes is final in a way that has nothing to do with stone. The passage ahead is cold and dark, lit by phosphorescent lichen that the Noldor cultivated for exactly this purpose — they think of everything, the Noldor, which is perhaps why their thinking has so often gotten them killed.\n\nAt the passage's end, where the mountain opens onto the outer slopes, a figure waits. He is tall even by the measure of his people, silver-haired, wearing armour the colour of water at dusk. Lord Ecthelion of the Fountain. He is holding a letter sealed with the cipher of Turgon the King.",
                   "options": [
-                    { "id": "op01-0001-0002-0001", "label": "Approach Lord Ecthelion" }
+                    {
+                      "id": "op01-0001-0002-0001",
+                      "label": "Approach Lord Ecthelion"
+                    }
                   ]
                 }
               ]
@@ -46,16 +60,38 @@
                   "id": "dl01-0001-0002-0000-000000000001",
                   "text": "\"Six have gone before you,\" he says, without preamble. Noldor lords do not soften things. \"Three were taken in the Anfauglith. Two vanished in the forests west of the Teiglin. One reached Menegroth and was returned with no memory of having been there.\" He holds out the letter. \"You are not Noldor. The wolves and the shadows that hunt by the resonance of our blood will not find you as easily. That is your one advantage. Do not spend it on anything small.\"\n\nYou take the letter. The wax is warm.",
                   "options": [
-                    { "id": "op01-0002-0001-0001", "label": "\"What is in the letter?\"" },
-                    { "id": "op01-0002-0001-0002", "label": "\"Why not send a company? Why one man?\"" },
-                    { "id": "op01-0002-0001-0003", "label": "\"I understand. I am ready.\"" }
+                    {
+                      "id": "op01-0002-0001-0001",
+                      "label": "\"What is in the letter?\"",
+                      "skillCheck": {
+                        "skill": "Diplomacy",
+                        "dc": 10,
+                        "description": "Press a Noldor lord for secrets he chose not to share"
+                      }
+                    },
+                    {
+                      "id": "op01-0002-0001-0002",
+                      "label": "\"Why not send a company? Why one man?\"",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Read the strategic logic behind a desperate plan"
+                      }
+                    },
+                    {
+                      "id": "op01-0002-0001-0003",
+                      "label": "\"I understand. I am ready.\""
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0001-0002-0000-000000000002",
                   "text": "\"I do not know,\" he says. And the way he says it tells you that he does know, and has chosen this answer deliberately. \"I was given the letter sealed. I was told to give it to the seventh messenger and say this: do not open it under any circumstance. If you are cornered and death is certain, destroy it. And if you reach Thingol's court —\" he pauses, and something moves behind his eyes — \"do not trust the first face you recognise.\"\n\nHe looks at you for a long moment. \"You are afraid,\" he says. \"Good. Fear makes Men careful in ways that courage cannot. Go now, before the sun shifts and the watch on the northern pass changes.\"",
                   "options": [
-                    { "id": "op01-0002-0002-0001", "label": "Head down the mountain" }
+                    {
+                      "id": "op01-0002-0002-0001",
+                      "label": "Head down the mountain"
+                    }
                   ]
                 }
               ]
@@ -76,16 +112,48 @@
                   "id": "dl01-0002-0001-0000-000000000001",
                   "text": "The land north of Beleriand's forests was once called Ard-galen — the Green Region. It is not green now. Glaurung, the Father of Dragons, burned it in the year of the Dagor Bragollach, and Morgoth's armies completed what the dragon started. What remains is the Anfauglith: grey-brown, cracked, cut by the passage of armies that no longer exist.\n\nThe bones are everywhere. You learn quickly not to look at them too carefully. You learn slowly not to look at them at all.",
                   "options": [
-                    { "id": "op01-0003-0001-0001", "label": "Move quickly through the open ground" },
-                    { "id": "op01-0003-0001-0002", "label": "Skirt the edge, close to what remains of the forest" }
+                    {
+                      "id": "op01-0003-0001-0001",
+                      "label": "Move quickly through the open ground",
+                      "skillCheck": {
+                        "skill": "Agility",
+                        "dc": 10,
+                        "description": "Sprint across open ash before patrol eyes find you"
+                      }
+                    },
+                    {
+                      "id": "op01-0003-0001-0002",
+                      "label": "Skirt the edge, close to what remains of the forest",
+                      "skillCheck": {
+                        "skill": "Stealth",
+                        "dc": 10,
+                        "description": "Move through the ruins unseen, leaving no trace"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0002-0001-0000-000000000002",
                   "text": "Night finds you in the ruins of a watchtower — three walls and no roof, which is better than nothing. Someone has sheltered here recently. A fire-pit, days cold. And scratched deep into the surviving wall, at the height a seated man's hand would reach: a list of names, forty or fifty of them, in the angular script of the House of Hador. Your people.\n\nAt the bottom, in different handwriting, smaller, as if written while trying not to be heard: *They all went forward. I am still here. I do not know which of us was right.*",
                   "options": [
-                    { "id": "op01-0003-0002-0001", "label": "Rest here until dawn" },
-                    { "id": "op01-0003-0002-0002", "label": "Keep moving through the night" }
+                    {
+                      "id": "op01-0003-0002-0001",
+                      "label": "Rest here until dawn",
+                      "skillCheck": {
+                        "skill": "Fortitude",
+                        "dc": 10,
+                        "description": "Endure cold, silence, and the names of the dead"
+                      }
+                    },
+                    {
+                      "id": "op01-0003-0002-0002",
+                      "label": "Keep moving through the night",
+                      "skillCheck": {
+                        "skill": "Agility",
+                        "dc": 10,
+                        "description": "Push exhausted legs through a moonless night"
+                      }
+                    }
                   ]
                 }
               ]
@@ -99,16 +167,38 @@
                   "id": "dl01-0002-0002-0000-000000000001",
                   "text": "He steps out of a gap in the ruined wall at first light — a Man, lame in his left leg, wearing clothes assembled from several dead men's wardrobes. His face is a record of poor decisions made in principled circumstances. He looks at you, then at the slight bulge under your coat where the letter sits, and then back at your face.\n\n\"House of Hador,\" he says. It is not a question. \"I can tell by the cheekbones. And by the fact that you're here at all — only Men of Hador are stupid enough or stubborn enough to cross the Anfauglith on foot in the grey season.\" He sits down without invitation. \"I was at the Nirnaeth. I've been here since. Name's Sador. I know the safe paths south. Talk to me.\"",
                   "options": [
-                    { "id": "op01-0004-0001-0001", "label": "\"I'm going to Doriath. I need to reach the Teiglin crossing.\"" },
-                    { "id": "op01-0004-0001-0002", "label": "\"Why are you still here? Why didn't you go south years ago?\"" },
-                    { "id": "op01-0004-0001-0003", "label": "\"What do you want for guiding me?\"" }
+                    {
+                      "id": "op01-0004-0001-0001",
+                      "label": "\"I'm going to Doriath. I need to reach the Teiglin crossing.\""
+                    },
+                    {
+                      "id": "op01-0004-0001-0002",
+                      "label": "\"Why are you still here? Why didn't you go south years ago?\"",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Understand why a man stays when he could leave"
+                      }
+                    },
+                    {
+                      "id": "op01-0004-0001-0003",
+                      "label": "\"What do you want for guiding me?\"",
+                      "skillCheck": {
+                        "skill": "Diplomacy",
+                        "dc": 10,
+                        "description": "Negotiate fairly with a man who trusts no one"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0002-0002-0000-000000000002",
                   "text": "\"Want?\" He considers it. \"Nothing you have. I've been guiding stragglers south for eight years. I do it because standing still felt worse.\" He looks north, toward the permanent smear of darkness that marks Angband on the horizon. \"The patrol patterns changed a fortnight past. Something is being looked for. Not you specifically — or not yet. But something is moving west from the Iron Mountains, and it doesn't move like Orcs move. Patient. Systematic. It backtracks.\"\n\nHe stands, testing his bad leg. \"I was there when they took Húrin. Did you know he laughed? When Morgoth put him on the high seat and showed him everything — all the threads of what was coming — Húrin laughed. That's the only thing about that day I've ever found any comfort in.\"",
                   "options": [
-                    { "id": "op01-0004-0002-0001", "label": "\"Lead the way, then. I'll follow your pace.\"" }
+                    {
+                      "id": "op01-0004-0002-0001",
+                      "label": "\"Lead the way, then. I'll follow your pace.\""
+                    }
                   ]
                 }
               ]
@@ -122,16 +212,38 @@
                   "id": "dl01-0002-0003-0000-000000000001",
                   "text": "She is waiting on the far bank of the Teiglin when you wade across — a Sindarin Elf in grey, with a face that has been measuring distances for a very long time. She lets you reach the bank before she speaks.\n\n\"Six before you,\" she says. \"I watched them all.\" She looks at Sador. \"You are the first to come with a Man of the wasteland as guide. The others came alone or in pairs, wearing the purposeful expression of people on an important errand. That expression is visible from a considerable distance.\" She turns back to you. \"What you carry has been read four times already. Thingol's people open the letters and reseal them before the messengers even reach Menegroth. Whatever you think you're delivering, adjust your expectations accordingly.\"",
                   "options": [
-                    { "id": "op01-0005-0001-0001", "label": "\"Then why is the King still sending messengers?\"" },
-                    { "id": "op01-0005-0001-0002", "label": "\"You've been watching the crossing for eight years and said nothing to anyone?\"" },
-                    { "id": "op01-0005-0001-0003", "label": "\"Can you take me to the Girdle?\"" }
+                    {
+                      "id": "op01-0005-0001-0001",
+                      "label": "\"Then why is the King still sending messengers?\"",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Grasp the hidden purpose behind repeated failure"
+                      }
+                    },
+                    {
+                      "id": "op01-0005-0001-0002",
+                      "label": "\"You've been watching the crossing for eight years and said nothing?\"",
+                      "skillCheck": {
+                        "skill": "Diplomacy",
+                        "dc": 10,
+                        "description": "Call out a warden who watched six men walk to their deaths"
+                      }
+                    },
+                    {
+                      "id": "op01-0005-0001-0003",
+                      "label": "\"Can you take me to the Girdle?\""
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0002-0003-0000-000000000002",
                   "text": "She studies you in that way the Grey Elves have — not unkind, but complete, as though they are reading something written in your posture and the set of your jaw. \"I will take you to the edge of the Girdle. No further. I have my reasons, and they are older than your House and older than the Siege that is no longer a siege.\" She glances east, into the forest. \"The thing Sador described from the north — I have seen its sign too. Three days behind you. Perhaps two, now. It learns fast.\"\n\nShe sets off into the trees without ceremony. \"Come. I will explain what I know of the Girdle while we walk. What you do with that knowledge will be your own affair.\"",
                   "options": [
-                    { "id": "op01-0005-0002-0001", "label": "Follow Celebrant into the forest of Brethil" }
+                    {
+                      "id": "op01-0005-0002-0001",
+                      "label": "Follow Celebrant into the forest of Brethil"
+                    }
                   ]
                 }
               ]
@@ -152,14 +264,30 @@
                   "id": "dl01-0003-0001-0000-000000000001",
                   "text": "Celebrant leaves you at a stand of silver birches and says only: \"Walk straight. When you find yourself back where you started, sit down and wait. Do not walk again until you have decided why you came.\" Then she is gone, with the abruptness the Sindar use in place of farewell.\n\nThe forest ahead looks ordinary. You step into it.",
                   "options": [
-                    { "id": "op01-0006-0001-0001", "label": "Walk forward" }
+                    {
+                      "id": "op01-0006-0001-0001",
+                      "label": "Walk forward",
+                      "skillCheck": {
+                        "skill": "Fortitude",
+                        "dc": 10,
+                        "description": "Hold your purpose against an enchantment that erases it"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0003-0001-0000-000000000002",
                   "text": "An hour later — perhaps — you are back at the silver birches. You recognise them by a specific shape of shadow, a particular lean in the largest trunk. You turn and walk again. You return again. The forest is not hostile. It is simply indifferent to your intentions in a way that is more disorienting than any wall.\n\nThe third time, you sit down. The ground is cold. The letter is still warm against your ribs. You think about what Ecthelion said, and what Celebrant said, and what Sador said about Húrin laughing, and why a man laughs when he sees everything that is coming and cannot stop it. You think you understand, now. You stand up.",
                   "options": [
-                    { "id": "op01-0006-0002-0001", "label": "Walk forward again, knowing why" }
+                    {
+                      "id": "op01-0006-0002-0001",
+                      "label": "Walk forward again, knowing why",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Understand why you came — and let the forest hear it"
+                      }
+                    }
                   ]
                 }
               ]
@@ -173,24 +301,57 @@
                   "id": "dl01-0003-0002-0000-000000000001",
                   "text": "He is simply there, beside you, between one step and the next — tall for a Sindarin Elf, wearing grey that is the exact colour of winter forest, carrying a great bow across his back. He has the quality of someone who has been waiting and found the wait interesting rather than tedious.\n\n\"You did not turn back,\" he says. \"That is genuinely rare. Most give up at the second return. A few weep. One sat down and went to sleep, which I respected in its way.\" He falls into step beside you. \"I am Beleg, called Cúthalion. I captain Thingol's wardens. I have been watching every messenger from Gondolin pass through this edge of the world, and I have a thing to tell you before you go any further.\"",
                   "options": [
-                    { "id": "op01-0007-0001-0001", "label": "\"Tell me about the other messengers.\"" },
-                    { "id": "op01-0007-0001-0002", "label": "\"What is actually in this letter?\"" },
-                    { "id": "op01-0007-0001-0003", "label": "\"Who ordered the letters opened?\"" }
+                    {
+                      "id": "op01-0007-0001-0001",
+                      "label": "\"Tell me about the other messengers.\""
+                    },
+                    {
+                      "id": "op01-0007-0001-0002",
+                      "label": "\"What is actually in this letter?\"",
+                      "skillCheck": {
+                        "skill": "Diplomacy",
+                        "dc": 10,
+                        "description": "Earn a captain's confidence with honest need"
+                      }
+                    },
+                    {
+                      "id": "op01-0007-0001-0003",
+                      "label": "\"Who ordered the letters opened?\"",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Follow the chain of betrayal to its source"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0003-0002-0000-000000000002",
                   "text": "\"Thingol did not order it. His archivists acted on standing instruction — every sealed document entering Menegroth is reviewed.\" He walks without noise, even through fallen leaves. \"The first three letters were genuine diplomatic correspondence. The next two were Turgon testing whether the channel was compromised. When the fifth was returned resealed with the seal misaligned by a fraction, Turgon knew.\" He glances at the letter under your coat. \"The sixth letter was a trap — written to reveal who was doing the reading. The seventh — yours — is different again. I should not tell you this. I am telling you because you came through the Anfauglith in winter with a lame wasteland-man as your guide, which suggests a quality of stubbornness I find difficult not to respect.\"\n\nHe stops walking. \"Your letter was not written by Turgon.\"",
                   "options": [
-                    { "id": "op01-0007-0002-0001", "label": "\"Then who wrote it?\"" },
-                    { "id": "op01-0007-0002-0002", "label": "\"Does Ecthelion know?\"" }
+                    {
+                      "id": "op01-0007-0002-0001",
+                      "label": "\"Then who wrote it?\""
+                    },
+                    {
+                      "id": "op01-0007-0002-0002",
+                      "label": "\"Does Ecthelion know?\"",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Piece together what Ecthelion knew and did not say"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0003-0002-0000-000000000003",
                   "text": "\"Someone who knew the cipher was compromised — and knew that Thingol's archivists would therefore pass it straight through to Melian without interference, because it would appear to be another of Turgon's tests.\" He looks at you steadily. \"The letter is addressed, in its true meaning, to her. Not to the King. It is a warning about something that moves west from Angband. Something patient that backtracks.\"\n\nHe holds out his hand. \"Come. She is already waiting. She has been waiting since you sat down in the birches and understood why you came. That is, apparently, when she became interested in you.\"",
                   "options": [
-                    { "id": "op01-0007-0003-0001", "label": "Take Beleg's hand and follow" }
+                    {
+                      "id": "op01-0007-0003-0001",
+                      "label": "Take Beleg's hand and follow"
+                    }
                   ]
                 }
               ]
@@ -204,32 +365,76 @@
                   "id": "dl01-0003-0003-0000-000000000001",
                   "text": "There is no throne room. No court. She stands at the edge of a still pool deep in the forest, where starlight reflects that the sky above cannot account for. She wears no crown and needs none. Being in her presence is like standing at the edge of deep water and feeling the cold rise from below — not threatening, but vast, and ancient in a way that makes the word ancient feel inadequate.\n\n\"Child of Hador,\" she says. Her voice carries the quality of something that was old before Beleriand had a name. \"Give me the letter. You have carried it faithfully and you deserve to know what you carried.\"",
                   "options": [
-                    { "id": "op01-0008-0001-0001", "label": "Hand over the letter" },
-                    { "id": "op01-0008-0001-0002", "label": "\"Who wrote it? Before I give it.\"" }
+                    {
+                      "id": "op01-0008-0001-0001",
+                      "label": "Hand over the letter"
+                    },
+                    {
+                      "id": "op01-0008-0001-0002",
+                      "label": "\"Who wrote it? Before I give it.\"",
+                      "skillCheck": {
+                        "skill": "Diplomacy",
+                        "dc": 10,
+                        "description": "Negotiate terms with a being older than the sun"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0003-0003-0000-000000000002",
                   "text": "She opens the letter without breaking the seal — it simply opens, for her, as a door opens for the one who built it. She reads it in the time it takes you to breathe twice. Then she looks up.\n\n\"Eöl the Dark Elf wrote this. He was exiled from Nan Elmoth — the history is long and you do not need it. What matters: he learned of the thing from the north. He calls it a Seeker — one of Morgoth's servants bred for a specific patience, taught to learn the smell of loyal Men. It has been tracking the messengers not to stop the letters, but to find the road they walk. To find, through them, the path to Gondolin.\" She folds the letter. \"It is two days behind you. Perhaps less.\"",
                   "options": [
-                    { "id": "op01-0008-0002-0001", "label": "\"What can be done?\"" },
-                    { "id": "op01-0008-0002-0002", "label": "\"Does Turgon know?\"" },
-                    { "id": "op01-0008-0002-0003", "label": "\"Why would Eöl warn you? He hates the Noldor.\"" }
+                    {
+                      "id": "op01-0008-0002-0001",
+                      "label": "\"What can be done?\"",
+                      "skillCheck": {
+                        "skill": "Diplomacy",
+                        "dc": 10,
+                        "description": "Ask a Maia for help without flinching"
+                      }
+                    },
+                    {
+                      "id": "op01-0008-0002-0002",
+                      "label": "\"Does Turgon know?\"",
+                      "skillCheck": {
+                        "skill": "Wisdom",
+                        "dc": 10,
+                        "description": "Reckon whether the hidden king knows his city is hunted"
+                      }
+                    },
+                    {
+                      "id": "op01-0008-0002-0003",
+                      "label": "\"Why would Eöl warn you? He hates the Noldor.\""
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0003-0003-0000-000000000003",
                   "text": "\"Eöl hates the Noldor,\" she agrees. \"He hates Morgoth more. He has his own reasons, and they are between him and his conscience.\" She looks at you in the way she has been looking at you since you arrived — not as a queen examining a subject, but as something far older examining something briefly precious. \"I will send word to Beleg's wardens. The Seeker will not enter Doriath. And you must go back to Gondolin by a different road than the one you came — west through Brethil, then south along the Narog. It is longer. It is safer. Sador will know the way if he is still at the Teiglin ford.\"\n\nShe reaches into the air beside her and takes out a small thing: a grey flower, pressed and dried, from a species that has no name in any language you speak.",
                   "options": [
-                    { "id": "op01-0008-0003-0001", "label": "Accept the flower" },
-                    { "id": "op01-0008-0003-0002", "label": "\"I don't need a token. I need to know Gondolin will be safe.\"" }
+                    {
+                      "id": "op01-0008-0003-0001",
+                      "label": "Accept the flower"
+                    },
+                    {
+                      "id": "op01-0008-0003-0002",
+                      "label": "\"I don't need a token. I need to know Gondolin will be safe.\"",
+                      "skillCheck": {
+                        "skill": "Fortitude",
+                        "dc": 10,
+                        "description": "Refuse comfort and demand the only answer that matters"
+                      }
+                    }
                   ]
                 },
                 {
                   "id": "dl01-0003-0003-0000-000000000004",
                   "text": "\"Gondolin is still standing,\" she says. \"That is not a small thing. The Noldor persist in their beautiful, tragic folly, and the city they built in the mountains is a wonder that will outlast more than you know.\" A pause. \"For now.\"\n\nShe holds the flower out again, and this time her tone admits no refusal. \"It will not protect you. Nothing I give you would be fair — it would mark you, and that marking would draw exactly the kind of attention you cannot afford. But it will remind you, at the moments when you most wish to forget: that you crossed the Anfauglith in winter, sat down in a forest and understood yourself, and carried a message that may have saved the hidden city without ever knowing that was what you were doing. Hold that knowledge. It is yours and no one can take it.\"\n\nShe closes your hand around the flower. It is warm. Behind you, Beleg is already gone. The pool goes still. The forest is ordinary again, and the only sound is the wind moving through silver birches, and somewhere south, the long road home.",
                   "options": [
-                    { "id": "op01-0008-0004-0001", "label": "Turn south, toward the long road home" }
+                    {
+                      "id": "op01-0008-0004-0001",
+                      "label": "Turn south, toward the long road home"
+                    }
                   ]
                 }
               ]
