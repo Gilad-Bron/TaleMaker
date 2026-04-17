@@ -32,16 +32,19 @@ export default function NewTaleDialog({ onCreate }: NewTaleDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
+        <Button className="gap-2 shrink-0" style={{ borderRadius: "2px" }}>
           <Plus className="h-4 w-4" />
-          New Tale
+          <span style={{ fontFamily: "var(--font-display)", letterSpacing: "0.08em" }}>New Tale</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-card border-border">
-        <DialogHeader>
-          <DialogTitle className="font-heading text-2xl text-primary">Create a New Tale</DialogTitle>
+      <DialogContent className="bg-card border-border/80" style={{ borderRadius: "2px", maxWidth: "480px" }}>
+        <DialogHeader className="pb-2">
+          <DialogTitle className="text-xl text-primary" style={{ fontFamily: "var(--font-heading)" }}>
+            New Tale
+          </DialogTitle>
         </DialogHeader>
-        <div className="space-y-4 py-4">
+
+        <div className="space-y-5 py-4">
           <div className="space-y-2">
             <label className="text-sm text-muted-foreground">Title</label>
             <Input
@@ -49,7 +52,8 @@ export default function NewTaleDialog({ onCreate }: NewTaleDialogProps) {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleCreate()}
-              className="bg-background border-border"
+              className="bg-background border-border/60 text-base"
+              style={{ borderRadius: "2px" }}
             />
           </div>
           <div className="space-y-2">
@@ -58,14 +62,29 @@ export default function NewTaleDialog({ onCreate }: NewTaleDialogProps) {
               placeholder="A tale of adventure and mystery..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="bg-background border-border resize-none"
+              className="bg-background border-border/60 resize-none text-base"
+              style={{ borderRadius: "2px" }}
               rows={3}
             />
           </div>
         </div>
-        <DialogFooter>
-          <Button variant="outline" onClick={() => setOpen(false)}>Cancel</Button>
-          <Button onClick={handleCreate} disabled={!title.trim()}>Create Tale</Button>
+
+        <DialogFooter className="gap-2">
+          <Button
+            variant="ghost"
+            onClick={() => setOpen(false)}
+            className="text-muted-foreground hover:text-foreground"
+            style={{ borderRadius: "2px" }}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleCreate}
+            disabled={!title.trim()}
+            style={{ borderRadius: "2px" }}
+          >
+            Create
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

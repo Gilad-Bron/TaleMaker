@@ -18,6 +18,8 @@ export default function PlayView({ tale, onBackToEditor }: PlayViewProps) {
     isComplete,
     advance,
     history,
+    skillDice,
+    recordSkillSuccess,
   } = usePlayState(tale);
 
   if (isComplete || !currentDialog) {
@@ -33,6 +35,8 @@ export default function PlayView({ tale, onBackToEditor }: PlayViewProps) {
       episodeTitle={episodeTitle}
       onOptionSelect={advance}
       history={history}
+      skillDice={skillDice}
+      onSkillSuccess={recordSkillSuccess}
     />
   );
 }

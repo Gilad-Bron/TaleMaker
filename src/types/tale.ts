@@ -1,6 +1,13 @@
+export interface SkillCheck {
+  skill: string;
+  dc: number;
+}
+
 export interface DialogOption {
   id: string;
   label: string;
+  targetDialogId?: string;
+  skillCheck?: SkillCheck;
 }
 
 export interface Dialog {

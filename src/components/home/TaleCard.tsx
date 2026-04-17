@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -27,45 +26,50 @@ export default function TaleCard({ id, title, description, updatedAt, onDelete }
   });
 
   return (
-    <Card
-      className="bg-card border-border hover:border-primary/50 transition-colors cursor-pointer group"
+    <div
+      className="tale-card group relative bg-card border border-border/60 cursor-pointer flex flex-col"
+      style={{ borderRadius: "2px" }}
       onClick={() => navigate(`/tale/${id}`)}
     >
-      <CardHeader className="pb-2">
-        <div className="flex items-start justify-between">
-          <CardTitle className="font-heading text-xl text-primary">{title}</CardTitle>
+      <div className="flex-1 p-4 pb-3">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h2
+            className="text-base text-primary leading-tight"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            {title}
+          </h2>
           <DropdownMenu>
             <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-              <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
-                <MoreVertical className="h-4 w-4" />
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-6 w-6 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground hover:bg-white/5"
+              >
+                <MoreVertical className="h-3.5 w-3.5" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="bg-card border-border">
-              <DropdownMenuItem onClick={(e) => { e.stopPropagation(); navigate(`/tale/${id}`); }}>
-                <Pencil className="h-4 w-4 mr-2" />
-                Edit
+            <DropdownMenuContent align="end" className="bg-card border-border/80 text-sm" style={{ borderRadius: "2px" }}>
+              <DropdownMenuItem className="gap-2 cursor-pointer" onClick={(e) => { e.stopPropagation(); navigate(`/tale/${id}`); }}>
+                <Pencil className="h-3.5 w-3.5 text-muted-foreground" /> Edit
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={(e) => { e.stopPropagation(); navigate(`/tale/${id}/play`); }}>
-                <Play className="h-4 w-4 mr-2" />
-                Play
+              <DropdownMenuItem className="gap-2 cursor-pointer" onClick={(e) => { e.stopPropagation(); navigate(`/tale/${id}/play`); }}>
+                <Play className="h-3.5 w-3.5 text-muted-foreground" /> Play
               </DropdownMenuItem>
-              <DropdownMenuItem
-                className="text-destructive focus:text-destructive"
-                onClick={(e) => { e.stopPropagation(); onDelete(id); }}
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Delete
+              <DropdownMenuItem className="gap-2 text-destructive focus:text-destructive cursor-pointer" onClick={(e) => { e.stopPropagation(); onDelete(id); }}>
+                <Trash2 className="h-3.5 w-3.5" /> Delete
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <CardDescription className="text-muted-foreground line-clamp-2">
-          {description || "No description"}
-        </CardDescription>
-      </CardHeader>
-      <CardFooter className="pt-2">
-        <span className="text-xs text-muted-foreground">Last edited {formattedDate}</span>
-      </CardFooter>
-    </Card>
+        <p className="text-sm text-muted-foreground italic leading-relaxed line-clamp-2">
+          {description || "No description."}
+        </p>
+      </div>
+
+      <div className="px-4 py-2 border-t border-border/30">
+        <span className="text-xs text-muted-foreground/40">{formattedDate}</span>
+      </div>
+    </div>
   );
 }

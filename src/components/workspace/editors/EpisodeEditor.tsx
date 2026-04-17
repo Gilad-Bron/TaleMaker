@@ -91,7 +91,7 @@ export default function EpisodeEditor({ tale, chapterIndex, episodeIndex, update
   return (
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-heading text-primary">Episode</h2>
+        <h2 className="text-lg font-heading text-primary">Episode</h2>
         <Button variant="destructive" size="sm" className="gap-1.5" onClick={deleteEpisode}>
           <Trash2 className="h-3.5 w-3.5" />
           Delete Episode
@@ -134,7 +134,7 @@ export default function EpisodeEditor({ tale, chapterIndex, episodeIndex, update
           {episode.interactions.map((interaction, ii) => (
             <div
               key={interaction.id}
-              className="flex items-center gap-2 p-3 rounded bg-muted/30 border border-border hover:border-primary/30 transition-colors cursor-pointer"
+              className="flex items-center gap-2 p-3 bg-muted/30 border border-border hover:border-primary/30 transition-colors cursor-pointer"
               onClick={() => onSelect({ type: "interaction", chapterIndex, episodeIndex, interactionIndex: ii })}
             >
               {interaction.type === "character" ? (

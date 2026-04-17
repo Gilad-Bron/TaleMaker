@@ -24,18 +24,22 @@ export default function PlayPage() {
     <AppShell fullScreen>
       <div className="flex flex-col h-full">
         {/* Minimal top bar */}
-        <div className="flex items-center justify-between px-6 py-3 border-b border-border/30">
+        <div className="flex items-center justify-between px-6 py-3 border-b border-border/40">
           <Button
             variant="ghost"
             size="sm"
-            className="gap-1.5 text-muted-foreground hover:text-foreground"
+            className="gap-1.5 text-muted-foreground/60 hover:text-foreground"
             onClick={() => navigate(`/tale/${id}`)}
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            Back to Editor
+            <span className="text-xs">Workshop</span>
           </Button>
-          <h1 className="font-heading text-primary text-lg">{tale.title}</h1>
-          <div className="w-[120px]" /> {/* Spacer for centering */}
+          <h1
+            className="text-primary text-base absolute left-1/2 -translate-x-1/2"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            {tale.title}
+          </h1>
         </div>
 
         {/* Play area */}

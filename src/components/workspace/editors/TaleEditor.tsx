@@ -14,7 +14,7 @@ export default function TaleEditor({ tale, updateTale }: TaleEditorProps) {
   return (
     <div className="max-w-2xl space-y-6">
       <div>
-        <h2 className="text-3xl font-heading text-primary mb-4">Tale Settings</h2>
+        <h2 className="text-lg font-heading text-primary mb-4">Tale Settings</h2>
       </div>
       <div className="space-y-2">
         <label className="text-sm text-muted-foreground">Title</label>

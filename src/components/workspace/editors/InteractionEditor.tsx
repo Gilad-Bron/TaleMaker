@@ -121,7 +121,7 @@ export default function InteractionEditor({
   return (
     <div className="max-w-3xl space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-heading text-primary">Interaction</h2>
+        <h2 className="text-lg font-heading text-primary">Interaction</h2>
         <Button variant="destructive" size="sm" className="gap-1.5" onClick={deleteInteraction}>
           <Trash2 className="h-3.5 w-3.5" />
           Delete

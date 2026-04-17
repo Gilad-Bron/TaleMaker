@@ -20,7 +20,7 @@ interface PlayState {
   chapterTitle: string;
   episodeTitle: string;
   isComplete: boolean;
-  advance: (choiceLabel: string) => void;
+  advance: (choiceLabel: string, targetDialogId?: string) => void;
   history: HistoryEntry[];
   position: PlayPosition;
 }
@@ -34,6 +34,7 @@ export function usePlayState(tale: Tale | null): PlayState {
   });
   const [isComplete, setIsComplete] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  const [skillDice, setSkillDice] = useState<Record<string, number>>({});
 
   const currentRef = useRef<{ dialog: Dialog | null }>({ dialog: null });
 
@@ -59,12 +60,31 @@ export function usePlayState(tale: Tale | null): PlayState {
 
   currentRef.current = current;
 
-  const advance = useCallback((choiceLabel: string) => {
+  const advance = useCallback((choiceLabel: string, targetDialogId?: string) => {
     if (!tale || isComplete) return;
 
     setHistory((h) => [...h, { text: currentRef.current.dialog?.text ?? "", choiceLabel }]);
 
     setPosition((pos) => {
+      // If option targets a specific dialog, jump directly to it
+      if (targetDialogId) {
+        for (let ci = 0; ci < tale.chapters.length; ci++) {
+          const ch = tale.chapters[ci];
+          for (let ei = 0; ei < ch.episodes.length; ei++) {
+            const ep = ch.episodes[ei];
+            for (let ii = 0; ii < ep.interactions.length; ii++) {
+              const int = ep.interactions[ii];
+              for (let di = 0; di < int.dialogs.length; di++) {
+                if (int.dialogs[di].id === targetDialogId) {
+                  return { chapterIndex: ci, episodeIndex: ei, interactionIndex: ii, dialogIndex: di };
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Linear advancement fallback
       const chapter = tale.chapters[pos.chapterIndex];
       if (!chapter) { setIsComplete(true); return pos; }
       const episode = chapter.episodes[pos.episodeIndex];
@@ -72,27 +92,26 @@ export function usePlayState(tale: Tale | null): PlayState {
       const interaction = episode.interactions[pos.interactionIndex];
       if (!interaction) { setIsComplete(true); return pos; }
 
-      // Try next dialog
       if (pos.dialogIndex < interaction.dialogs.length - 1) {
         return { ...pos, dialogIndex: pos.dialogIndex + 1 };
       }
-      // Try next interaction
       if (pos.interactionIndex < episode.interactions.length - 1) {
         return { ...pos, interactionIndex: pos.interactionIndex + 1, dialogIndex: 0 };
       }
-      // Try next episode
       if (pos.episodeIndex < chapter.episodes.length - 1) {
         return { ...pos, episodeIndex: pos.episodeIndex + 1, interactionIndex: 0, dialogIndex: 0 };
       }
-      // Try next chapter
       if (pos.chapterIndex < tale.chapters.length - 1) {
         return { ...pos, chapterIndex: pos.chapterIndex + 1, episodeIndex: 0, interactionIndex: 0, dialogIndex: 0 };
       }
-      // Done
       setIsComplete(true);
       return pos;
     });
   }, [tale, isComplete]);
+
+  const recordSkillSuccess = useCallback((skill: string) => {
+    setSkillDice((prev) => ({ ...prev, [skill]: Math.max(1, (prev[skill] ?? 20) - 1) }));
+  }, []);
 
   return {
     currentDialog: current.dialog,
@@ -104,5 +123,7 @@ export function usePlayState(tale: Tale | null): PlayState {
     advance,
     history,
     position,
+    skillDice,
+    recordSkillSuccess,
   };
 }

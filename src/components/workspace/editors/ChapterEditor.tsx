@@ -65,7 +65,7 @@ export default function ChapterEditor({ tale, chapterIndex, updateTale, onSelect
   return (
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-heading text-primary">Chapter</h2>
+        <h2 className="text-lg font-heading text-primary">Chapter</h2>
         <Button variant="destructive" size="sm" className="gap-1.5" onClick={deleteChapter}>
           <Trash2 className="h-3.5 w-3.5" />
           Delete Chapter
@@ -102,7 +102,7 @@ export default function ChapterEditor({ tale, chapterIndex, updateTale, onSelect
           {chapter.episodes.map((episode, ei) => (
             <div
               key={episode.id}
-              className="flex items-center gap-2 p-3 rounded bg-muted/30 border border-border hover:border-primary/30 transition-colors cursor-pointer"
+              className="flex items-center gap-2 p-3 bg-muted/30 border border-border hover:border-primary/30 transition-colors cursor-pointer"
               onClick={() => onSelect({ type: "episode", chapterIndex, episodeIndex: ei })}
             >
               <span className="text-xs text-muted-foreground w-6">{ei + 1}.</span>

@@ -15,12 +15,16 @@ export default function HomePage() {
 
   return (
     <AppShell>
-      <div className="p-6 max-w-7xl mx-auto">
+      <div className="px-6 py-8 max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-4xl font-heading text-primary">Your Tales</h1>
-            <p className="text-muted-foreground mt-1">Create and manage your text-based RPG adventures.</p>
-          </div>
+          <h1 className="text-2xl text-foreground/80" style={{ fontFamily: "var(--font-heading)" }}>
+            Tales
+            {tales.length > 0 && (
+              <span className="ml-2 text-sm text-muted-foreground/50 font-body" style={{ fontFamily: "var(--font-body)" }}>
+                {tales.length}
+              </span>
+            )}
+          </h1>
           <NewTaleDialog onCreate={handleCreate} />
         </div>
         <TaleGrid tales={tales} onDelete={deleteTale} />

@@ -1,5 +1,4 @@
 import type { Tale, SelectedNode } from "@/types/tale";
-import { ChevronRight } from "lucide-react";
 
 interface BreadcrumbProps {
   tale: Tale;
@@ -55,14 +54,16 @@ export default function WorkspaceBreadcrumb({ tale, selectedNode, onSelect }: Br
   }
 
   return (
-    <div className="flex items-center gap-1 text-sm text-muted-foreground px-4 py-2 overflow-x-auto">
+    <div className="flex items-center gap-0.5 text-xs text-muted-foreground px-6 py-3 overflow-x-auto" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.05em" }}>
       {crumbs.map((crumb, i) => (
-        <span key={i} className="flex items-center gap-1 shrink-0">
-          {i > 0 && <ChevronRight className="h-3 w-3" />}
+        <span key={i} className="flex items-center gap-0.5 shrink-0">
+          {i > 0 && (
+            <span className="mx-2 text-border/80 select-none">›</span>
+          )}
           <button
             onClick={() => onSelect(crumb.node)}
-            className={`hover:text-primary transition-colors ${
-              i === crumbs.length - 1 ? "text-foreground font-medium" : ""
+            className={`hover:text-primary transition-colors px-0.5 ${
+              i === crumbs.length - 1 ? "text-foreground/80" : "text-muted-foreground/70"
             }`}
           >
             {crumb.label}
