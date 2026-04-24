@@ -1,0 +1,213 @@
+<style>
+@keyframes dieSettle { 0%{transform:rotate(45deg) scale(1.08)} 60%{transform:rotate(45deg) scale(0.95)} 100%{transform:rotate(45deg) scale(1)} }
+@keyframes rollBtnPulse { 0%,100%{box-shadow:0 0 6px 1px #c8963e33} 50%{box-shadow:0 0 18px 6px #c8963e88} }
+@keyframes scanline { 0%{top:-4px} 100%{top:calc(100% + 4px)} }
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+</style>
+
+<h2>Roll Alternatives — More</h2>
+<p class="subtitle">Click Roll to preview each</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+
+  <!-- D: Slot reel -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0e0e16;padding:24px;text-align:center;">
+    <div class="label" style="margin-bottom:16px;">D — Slot Reel</div>
+    <div style="color:#666;font-size:11px;margin-bottom:20px;line-height:1.6;">Number spins vertically like a slot machine reel, decelerating to the result.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+        <div id="d-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+        <div style="position:relative;z-index:1;height:100%;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+          <span id="d-num" style="font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;display:block;transition:color 0.3s;">d20</span>
+        </div>
+      </div>
+      <div id="d-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;height:16px;"></div>
+    </div>
+    <button onclick="runD()" id="d-btn" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:6px 20px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;animation:rollBtnPulse 1.2s ease-in-out infinite;">Roll</button>
+  </div>
+
+  <!-- E: Dark flash -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0e0e16;padding:24px;text-align:center;">
+    <div class="label" style="margin-bottom:16px;">E — Dark & Flash</div>
+    <div style="color:#666;font-size:11px;margin-bottom:20px;line-height:1.6;">Die goes dark and silent, then a bright flash cuts to the result — like fate deciding.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+        <div id="e-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.6s,box-shadow 0.6s,opacity 0.4s;"></div>
+        <span id="e-num" style="position:relative;z-index:1;font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;line-height:1;transition:color 0.3s,opacity 0.4s;">d20</span>
+      </div>
+      <div id="e-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;height:16px;"></div>
+    </div>
+    <button onclick="runE()" id="e-btn" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:6px 20px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;animation:rollBtnPulse 1.2s ease-in-out infinite;">Roll</button>
+  </div>
+
+  <!-- F: Countdown -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0e0e16;padding:24px;text-align:center;">
+    <div class="label" style="margin-bottom:16px;">F — Countdown</div>
+    <div style="color:#666;font-size:11px;margin-bottom:20px;line-height:1.6;">Counts down from 20 to the result. Every number is legible — slow, deliberate.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+        <div id="f-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+        <span id="f-num" style="position:relative;z-index:1;font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;line-height:1;transition:color 0.3s;">d20</span>
+      </div>
+      <div id="f-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;height:16px;"></div>
+    </div>
+    <button onclick="runF()" id="f-btn" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:6px 20px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;animation:rollBtnPulse 1.2s ease-in-out infinite;">Roll</button>
+  </div>
+
+</div>
+
+<script>
+function settle(face, num, lbl, btnId, roll) {
+  const success = roll >= 12;
+  const color = success ? '#4a9a5a' : '#8a2222';
+  face.className = 'die-settle';
+  setTimeout(() => {
+    face.style.borderColor = color;
+    face.style.boxShadow = `0 0 18px 4px ${color}55`;
+    face.className = '';
+    face.style.transform = 'rotate(45deg)';
+    num.style.color = color;
+    lbl.textContent = success ? 'Success' : 'Failure';
+    lbl.style.color = color;
+    lbl.style.visibility = 'visible';
+    const btn = document.getElementById(btnId);
+    btn.textContent = 'Again';
+    btn.style.animation = 'none';
+  }, 350);
+}
+
+// D: Slot reel — vertical translateY spin
+function runD() {
+  const face = document.getElementById('d-face');
+  const num  = document.getElementById('d-num');
+  const lbl  = document.getElementById('d-label');
+  face.style.borderColor='#c8963e44'; face.style.boxShadow='none';
+  num.style.color='#c8963e'; num.style.fontSize='28px'; num.textContent='d20';
+  lbl.style.visibility='hidden'; lbl.textContent='';
+  document.getElementById('d-btn').style.animation='rollBtnPulse 1.2s ease-in-out infinite';
+
+  const roll = Math.floor(Math.random()*20)+1;
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow = '0 0 10px 2px #c8963e44';
+  num.style.fontSize = '28px';
+  num.style.color = '#c8963e';
+
+  // Steps: fast then slow
+  const steps = [...Array(8).fill(80), ...Array(5).fill(150), ...Array(3).fill(280), ...Array(2).fill(450)];
+  let step = 0;
+
+  function spinTick() {
+    if (step < steps.length) {
+      const delay = steps[step++];
+      num.style.transition = `transform ${delay/2}ms ease-in`;
+      num.style.transform = 'translateY(-120%)';
+      setTimeout(() => {
+        num.style.transition = 'none';
+        num.style.transform = 'translateY(120%)';
+        num.textContent = Math.floor(Math.random()*20)+1;
+        setTimeout(() => {
+          num.style.transition = `transform ${delay/2}ms ease-out`;
+          num.style.transform = 'translateY(0)';
+          setTimeout(spinTick, delay/2);
+        }, 20);
+      }, delay/2);
+    } else {
+      // Land on result
+      num.style.transition = 'transform 0.2s ease-in';
+      num.style.transform = 'translateY(-120%)';
+      setTimeout(() => {
+        num.style.transition = 'none';
+        num.style.transform = 'translateY(120%)';
+        num.textContent = roll;
+        setTimeout(() => {
+          num.style.transition = 'transform 0.2s ease-out';
+          num.style.transform = 'translateY(0)';
+          setTimeout(() => settle(face, num, lbl, 'd-btn', roll), 300);
+        }, 20);
+      }, 100);
+    }
+  }
+  spinTick();
+}
+
+// E: Dark flash
+function runE() {
+  const face = document.getElementById('e-face');
+  const num  = document.getElementById('e-num');
+  const lbl  = document.getElementById('e-label');
+  face.style.borderColor='#c8963e44'; face.style.boxShadow='none'; face.style.opacity='1';
+  num.style.color='#c8963e44'; num.style.fontSize='16px'; num.textContent='d20'; num.style.opacity='1';
+  lbl.style.visibility='hidden'; lbl.textContent='';
+  document.getElementById('e-btn').style.animation='rollBtnPulse 1.2s ease-in-out infinite';
+
+  const roll = Math.floor(Math.random()*20)+1;
+
+  // Fade to dark
+  setTimeout(() => {
+    face.style.borderColor = '#111';
+    face.style.boxShadow = 'none';
+    num.style.opacity = '0';
+    num.style.fontSize = '28px';
+
+    // Hold in darkness
+    setTimeout(() => {
+      // Flash white-gold
+      face.style.transition = 'border-color 0.05s, box-shadow 0.05s';
+      face.style.borderColor = '#ffe4a0';
+      face.style.boxShadow = '0 0 32px 12px #c8963eaa';
+      num.textContent = roll;
+      num.style.color = '#fff';
+      num.style.opacity = '1';
+      num.style.transition = 'opacity 0.05s, color 0.4s';
+
+      // Settle to gold
+      setTimeout(() => {
+        face.style.transition = 'border-color 0.4s, box-shadow 0.4s';
+        face.style.borderColor = '#c8963e';
+        face.style.boxShadow = '0 0 10px 2px #c8963e44';
+        num.style.color = '#c8963e';
+        setTimeout(() => settle(face, num, lbl, 'e-btn', roll), 500);
+      }, 120);
+    }, 900);
+  }, 200);
+}
+
+// F: Countdown
+function runF() {
+  const face = document.getElementById('f-face');
+  const num  = document.getElementById('f-num');
+  const lbl  = document.getElementById('f-label');
+  face.style.borderColor='#c8963e44'; face.style.boxShadow='none';
+  num.style.color='#c8963e'; num.style.fontSize='28px'; num.textContent='20';
+  lbl.style.visibility='hidden'; lbl.textContent='';
+  document.getElementById('f-btn').style.animation='rollBtnPulse 1.2s ease-in-out infinite';
+
+  const roll = Math.floor(Math.random()*20)+1;
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow = '0 0 10px 2px #c8963e44';
+  num.style.fontSize = '28px';
+  num.style.color = '#c8963e';
+  num.textContent = '20';
+
+  let current = 20;
+  const STEP = 180;
+
+  function countDown() {
+    if (current > roll) {
+      current--;
+      // Fade out, change, fade in
+      num.style.transition = 'opacity 0.07s';
+      num.style.opacity = '0.2';
+      setTimeout(() => {
+        num.textContent = current;
+        num.style.opacity = '1';
+        setTimeout(countDown, STEP);
+      }, 70);
+    } else {
+      setTimeout(() => settle(face, num, lbl, 'f-btn', roll), 200);
+    }
+  }
+
+  setTimeout(countDown, 300);
+}
+</script>

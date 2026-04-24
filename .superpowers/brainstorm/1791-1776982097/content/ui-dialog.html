@@ -1,0 +1,115 @@
+<h2>Dialog Interaction</h2>
+<p class="subtitle">Core play screen — narration text + branching choices</p>
+
+<div style="display:grid;grid-template-columns:1fr 320px;gap:16px;">
+
+  <!-- Main dialog panel -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0a0a0a;overflow:hidden;">
+
+    <!-- Top bar: breadcrumb + save/log -->
+    <div style="background:#111;border-bottom:1px solid #1a1a1a;padding:8px 20px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:11px;color:#444;display:flex;gap:6px;align-items:center;">
+        <span>Act I</span><span style="color:#2a2a2a;">›</span><span>Chapter 2: The Road</span>
+      </div>
+      <div style="display:flex;gap:10px;font-size:11px;">
+        <span style="color:#444;cursor:pointer;">📜 Log</span>
+        <span style="color:#444;cursor:pointer;">💾 Save</span>
+      </div>
+    </div>
+
+    <div style="padding:28px 32px;">
+
+      <!-- Interaction name -->
+      <div style="display:flex;align-items:center;gap-8px;margin-bottom:20px;">
+        <span style="font-size:12px;color:#555;margin-right:8px;">📍</span>
+        <span style="color:#c8963e;font-size:16px;font-weight:600;letter-spacing:0.02em;">The Cracked Road</span>
+      </div>
+
+      <!-- Dialog text -->
+      <p style="font-size:14px;line-height:1.9;color:#ccc;font-style:italic;margin-bottom:28px;">"The road ends here." The figure doesn't move. Doesn't blink. The sword at their hip is old but clean — the kind of clean that means it's been used recently.<br><br>You count your options. The road stretches behind you. The figure fills what's ahead.</p>
+
+      <div style="height:1px;background:#1a1a1a;margin-bottom:20px;"></div>
+
+      <!-- Options -->
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
+
+        <div style="border:1px solid #2a2a2a;padding:10px 14px;color:#999;border-radius:2px;background:#0f0f0f;cursor:pointer;">
+          Step forward slowly, hands visible
+        </div>
+
+        <div style="border:1px solid #2a2a2a;padding:10px 14px;color:#999;border-radius:2px;background:#0f0f0f;cursor:pointer;">
+          Ask who they are
+        </div>
+
+        <!-- Skill check option -->
+        <div style="border:1px solid #6366f130;padding:10px 14px;border-radius:2px 2px 0 0;background:#0f0f18;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+          <span style="display:flex;align-items:center;gap:8px;color:#ccc;">
+            <span style="color:#6366f1;font-size:11px;">⚄</span>
+            Try to slip past into the ravine
+          </span>
+          <span style="color:#555;font-size:11px;font-family:monospace;">AGI DC 12</span>
+        </div>
+        <!-- Inline skill check -->
+        <div style="border:1px solid #6366f120;border-top:none;border-radius:0 0 2px 2px;background:#0a0a14;padding:12px 16px;display:flex;align-items:center;gap:20px;">
+          <div style="position:relative;width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;inset:0;border:2px solid #4a9a5a;border-radius:2px;transform:rotate(45deg);box-shadow:0 0 14px 4px #4a9a5a55;"></div>
+            <span style="position:relative;z-index:1;font-size:20px;font-weight:700;color:#4a9a5a;font-family:monospace;">14</span>
+          </div>
+          <div>
+            <div style="color:#333;font-size:9px;text-transform:uppercase;letter-spacing:2px;font-family:monospace;">agility check</div>
+            <div style="color:#333;font-size:10px;margin-top:3px;font-family:monospace;">d20 · vs DC 12</div>
+            <div style="color:#4a9a5a;font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-top:6px;">Success — Continue →</div>
+          </div>
+        </div>
+
+        <!-- Combat trigger option -->
+        <div style="border:1px solid #ef444430;padding:10px 14px;color:#888;border-radius:2px;background:#0f0a0a;display:flex;justify-content:space-between;align-items:center;cursor:pointer;">
+          <span>Draw a weapon</span>
+          <span style="font-size:11px;color:#ef4444;background:#ef444415;padding:2px 8px;border-radius:3px;">→ Combat</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Annotations -->
+  <div style="display:flex;flex-direction:column;gap:10px;font-size:12px;">
+
+    <div style="border:1px solid #333;border-radius:8px;padding:12px;background:#141414;">
+      <div class="label" style="margin-bottom:8px;">Elements</div>
+      <ul style="margin:0;padding-left:14px;color:#aaa;line-height:2.1;">
+        <li>Breadcrumb: Act › Chapter</li>
+        <li>Log + Save in top bar</li>
+        <li>Interaction name + type icon</li>
+        <li>Italic narration text</li>
+        <li>Divider before options</li>
+        <li>Plain option (no check)</li>
+        <li>Skill check option + inline roll</li>
+        <li>Combat trigger option</li>
+      </ul>
+    </div>
+
+    <div style="border:1px solid #333;border-radius:8px;padding:12px;background:#141414;">
+      <div class="label" style="margin-bottom:8px;">Option colour coding</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:2px;border:1px solid #2a2a2a;background:#0f0f0f;"></div><span style="color:#aaa;">Normal choice</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:2px;border:1px solid #6366f130;background:#0f0f18;"></div><span style="color:#aaa;">Skill check</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:2px;border:1px solid #ef444430;background:#0f0a0a;"></div><span style="color:#aaa;">Combat trigger</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:2px;border:1px solid #f59e0b30;background:#0f0e0a;"></div><span style="color:#aaa;">Trade / Shop trigger</span></div>
+        <div style="display:flex;align-items:center;gap:8px;"><div style="width:10px;height:10px;border-radius:2px;border:1px solid #2a1a1a;background:#0a0808;"></div><span style="color:#555;">Failed skill check</span></div>
+      </div>
+    </div>
+
+    <div style="border:1px solid #333;border-radius:8px;padding:12px;background:#141414;">
+      <div class="label" style="margin-bottom:8px;">From TaleMaker</div>
+      <ul style="margin:0;padding-left:14px;color:#aaa;line-height:2;">
+        <li style="color:#10b981;">Italic text + fade-up ✓</li>
+        <li style="color:#10b981;">Inline skill check roll ✓</li>
+        <li style="color:#10b981;">Failed option greyed ✓</li>
+        <li style="color:#10b981;">Dim others while rolling ✓</li>
+        <li style="color:#10b981;">History log panel ✓</li>
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<h2>Data Model</h2>
+<p class="subtitle">MongoDB collections and key fields</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+  <div style="border:2px solid #6366f1;border-radius:10px;padding:14px;">
+    <div class="label" style="color:#6366f1;">Collection</div>
+    <h3 style="margin:6px 0 10px;">User</h3>
+    <pre style="font-size:12px;color:#ccc;margin:0;line-height:1.7;">{
+  _id, email, passwordHash,
+  username, avatarUrl,
+  roles: ["author","player"]
+}</pre>
+  </div>
+
+  <div style="border:2px solid #ec4899;border-radius:10px;padding:14px;">
+    <div class="label" style="color:#ec4899;">Collection</div>
+    <h3 style="margin:6px 0 10px;">Character</h3>
+    <pre style="font-size:12px;color:#ccc;margin:0;line-height:1.7;">{
+  _id, ownerId (User | null),
+  name, portrait, backstory,
+  stats: { str, int, cha, ... },
+  inventory: [{ itemId, qty }],
+  health: { current, max },
+  resources: { gold, mana },
+  isGlobalPremade: bool,
+  taleId (null = global premade)
+}</pre>
+  </div>
+
+  <div style="border:2px solid #10b981;border-radius:10px;padding:14px;grid-column:1/-1;">
+    <div class="label" style="color:#10b981;">Collection</div>
+    <h3 style="margin:6px 0 10px;">Tale <span style="font-weight:400;font-size:13px;color:#aaa;">— full content stored as document</span></h3>
+    <pre style="font-size:12px;color:#ccc;margin:0;line-height:1.7;">{
+  _id, authorId, title, description,
+  visibility: "public" | "private" | "invite",
+  allowExternalCharacters: bool,
+  invitedUserIds: [],
+  premadeCharacterIds: [],
+  publishedAt,
+  chapters: [{
+    _id, title, episodes: [{
+      _id, title, interactions: [{
+        _id, type: "dialog"|"trade"|"combat"|"area",
+        name,
+        ...typeSpecificFields   ← see Interaction Types below
+      }]
+    }]
+  }]
+}</pre>
+  </div>
+
+  <div style="border:2px solid #f59e0b;border-radius:10px;padding:14px;">
+    <div class="label" style="color:#f59e0b;">Interaction Types (embedded)</div>
+    <h3 style="margin:6px 0 10px;">dialog / trade / combat / area</h3>
+    <pre style="font-size:12px;color:#ccc;margin:0;line-height:1.7;">dialog: {
+  dialogs: [{ text, options: [{
+    label, targetDialogId,
+    skillCheck, effects
+  }]}]
+}
+trade: {
+  npcName, offers: [Item],
+  wants: [Item], conditions
+}
+combat: {
+  enemy: { name, hp, stats },
+  rounds, outcomes: { win, lose }
+}
+area: {
+  description,
+  objects: [{ name, desc,
+    interactionId }]
+}</pre>
+  </div>
+
+  <div style="border:2px solid #8b5cf6;border-radius:10px;padding:14px;">
+    <div class="label" style="color:#8b5cf6;">Collection</div>
+    <h3 style="margin:6px 0 10px;">PlaySession</h3>
+    <pre style="font-size:12px;color:#ccc;margin:0;line-height:1.7;">{
+  _id, userId, taleId,
+  characterSnapshot: { ...Character },
+  currentNodeId,
+  status: "active"|"complete",
+  saveStates: [{
+    label, characterSnapshot,
+    currentNodeId, savedAt
+  }],
+  startedAt, completedAt
+}</pre>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top:16px;">
+  <h3>Key Relationships</h3>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;">
+    <span style="background:#1e1e2e;border:1px solid #333;padding:6px 12px;border-radius:6px;">User → owns → Characters</span>
+    <span style="color:#666;">•</span>
+    <span style="background:#1e1e2e;border:1px solid #333;padding:6px 12px;border-radius:6px;">User → authors → Tales</span>
+    <span style="color:#666;">•</span>
+    <span style="background:#1e1e2e;border:1px solid #333;padding:6px 12px;border-radius:6px;">User → plays → PlaySessions</span>
+    <span style="color:#666;">•</span>
+    <span style="background:#1e1e2e;border:1px solid #333;padding:6px 12px;border-radius:6px;">Tale embeds full content tree</span>
+    <span style="color:#666;">•</span>
+    <span style="background:#1e1e2e;border:1px solid #333;padding:6px 12px;border-radius:6px;">Character snapshot stored in session</span>
+  </div>
+</div>

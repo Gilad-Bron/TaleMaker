@@ -1,0 +1,107 @@
+<div style="display:flex;flex-direction:column;gap:20px;padding:8px;">
+  <div>
+    <h2 style="margin:0 0 4px;">Option Type Data Model</h2>
+    <p class="subtitle" style="margin:0;">Each option in a dialog interaction has a required <code style="background:#1a1a1a;padding:2px 6px;border-radius:3px;font-size:12px;">type</code> field</p>
+  </div>
+
+  <!-- Base shape -->
+  <div style="background:#0e0e16;border:1px solid #333;border-radius:8px;padding:20px;">
+    <div class="label" style="margin-bottom:12px;">Base Option Shape</div>
+    <pre style="margin:0;font-size:12px;line-height:1.8;color:#aaa;font-family:monospace;">{
+  type:  <span style="color:#6366f1;">"speak" | "action" | "skill_check" | "combat" | "rest" | "shop" | "loot" | "examine"</span>
+  label: <span style="color:#10b981;">string</span>   <span style="color:#444;">// quoted = speech, plain = italic action</span>
+  next?: <span style="color:#10b981;">string</span>   <span style="color:#444;">// dialog node key to navigate to</span>
+}</pre>
+  </div>
+
+  <!-- Per-type extensions -->
+  <div class="label">Per-Type Extensions</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+
+    <div style="background:#0e0e16;border:1px solid #64748b30;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#64748b;background:#64748b18;border:1px solid #64748b35;padding:2px 8px;border-radius:3px;font-family:monospace;">Speak</span>
+        <span style="color:#555;font-size:11px;">no extra fields</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#555;font-family:monospace;">{ type: "speak", label: '"Who are you?"', next: "ask" }</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #a1620730;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#a16207;background:#a1620718;border:1px solid #a1620735;padding:2px 8px;border-radius:3px;font-family:monospace;">Action</span>
+        <span style="color:#555;font-size:11px;">no extra fields</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#555;font-family:monospace;">{ type: "action", label: "Step forward slowly", next: "forward" }</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #6366f130;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#6366f1;background:#6366f118;border:1px solid #6366f135;padding:2px 8px;border-radius:3px;font-family:monospace;">Skill Check</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#aaa;font-family:monospace;">{
+  type: <span style="color:#6366f1;">"skill_check"</span>,
+  label: <span style="color:#10b981;">"Slip past..."</span>,
+  skill: { stat: <span style="color:#10b981;">"AGI"</span>, dc: <span style="color:#f59e0b;">12</span> },
+  successNext: <span style="color:#10b981;">"slipped"</span>,
+  failText:    <span style="color:#10b981;">"string"</span>
+}</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #ef444430;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#ef4444;background:#ef444418;border:1px solid #ef444435;padding:2px 8px;border-radius:3px;font-family:monospace;">Combat</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#aaa;font-family:monospace;">{
+  type:  <span style="color:#ef4444;">"combat"</span>,
+  label: <span style="color:#10b981;">"Draw a weapon"</span>,
+  enemy: <span style="color:#10b981;">"stranger"</span>
+}</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #f59e0b30;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#f59e0b;background:#f59e0b18;border:1px solid #f59e0b35;padding:2px 8px;border-radius:3px;font-family:monospace;">Shop</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#aaa;font-family:monospace;">{
+  type:   <span style="color:#f59e0b;">"shop"</span>,
+  label:  <span style="color:#10b981;">"Browse wares"</span>,
+  shopId: <span style="color:#10b981;">"merchant_01"</span>
+}</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #10b98130;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#10b981;background:#10b98118;border:1px solid #10b98135;padding:2px 8px;border-radius:3px;font-family:monospace;">Loot</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#aaa;font-family:monospace;">{
+  type:   <span style="color:#10b981;">"loot"</span>,
+  label:  <span style="color:#10b981;">"Search the body"</span>,
+  lootId: <span style="color:#10b981;">"body_01"</span>
+}</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #8b5cf630;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#8b5cf6;background:#8b5cf618;border:1px solid #8b5cf635;padding:2px 8px;border-radius:3px;font-family:monospace;">Rest</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#aaa;font-family:monospace;">{
+  type:  <span style="color:#8b5cf6;">"rest"</span>,
+  label: <span style="color:#10b981;">"Camp for the night"</span>,
+  next:  <span style="color:#10b981;">"morning"</span>
+}</pre>
+    </div>
+
+    <div style="background:#0e0e16;border:1px solid #84cc1630;border-radius:8px;padding:16px;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+        <span style="font-size:11px;color:#84cc16;background:#84cc1618;border:1px solid #84cc1635;padding:2px 8px;border-radius:3px;font-family:monospace;">Examine Surroundings</span>
+      </div>
+      <pre style="margin:0;font-size:11px;line-height:1.7;color:#aaa;font-family:monospace;">{
+  type:   <span style="color:#84cc16;">"examine"</span>,
+  label:  <span style="color:#10b981;">"Examine the gate"</span>,
+  areaId: <span style="color:#10b981;">"gate_ruins"</span>
+}</pre>
+    </div>
+
+  </div>
+</div>

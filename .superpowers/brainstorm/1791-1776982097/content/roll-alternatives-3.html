@@ -1,0 +1,137 @@
+<style>
+@keyframes dieSettle { 0%{transform:rotate(45deg) scale(1.08)} 60%{transform:rotate(45deg) scale(0.95)} 100%{transform:rotate(45deg) scale(1)} }
+@keyframes rollBtnPulse { 0%,100%{box-shadow:0 0 6px 1px #c8963e33} 50%{box-shadow:0 0 18px 6px #c8963e88} }
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+</style>
+
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:20px;">
+
+  <div style="text-align:center;">
+    <h2 style="margin:0 0 6px;">Agility Check</h2>
+    <p class="subtitle" style="margin:0;">Try to slip past into the ravine — DC 12</p>
+  </div>
+
+  <div style="background:#0e0e16;border:1px solid #6366f140;border-radius:12px;width:400px;height:340px;display:flex;flex-direction:column;padding:28px 36px;box-sizing:border-box;">
+
+    <div style="flex-shrink:0;text-align:center;margin-bottom:20px;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:2px;font-family:monospace;margin-bottom:4px;">AGI check · DC 12</div>
+      <div style="color:#666;font-size:12px;font-style:italic;">"Try to slip past into the ravine"</div>
+    </div>
+
+    <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;height:110px;margin-bottom:16px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+        <div id="die-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+        <span id="die-num" style="position:relative;z-index:1;font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;line-height:1;min-width:2ch;text-align:center;transition:opacity 0.3s ease;">d20</span>
+      </div>
+      <div style="height:28px;display:flex;align-items:center;margin-top:10px;">
+        <div id="roll-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;"></div>
+      </div>
+    </div>
+
+    <div style="flex:1;display:flex;align-items:center;">
+      <div id="result-text" style="visibility:hidden;font-size:12px;color:#aaa;font-style:italic;line-height:1.8;border-left:2px solid #333;padding-left:14px;"></div>
+    </div>
+
+    <div id="action" style="flex-shrink:0;height:44px;display:flex;align-items:center;justify-content:center;">
+      <button onclick="startRoll()" id="roll-btn" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:8px 28px;border-radius:4px;font-size:13px;font-family:monospace;cursor:pointer;letter-spacing:1px;animation:rollBtnPulse 1.2s ease-in-out infinite;">Roll</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function startRoll() {
+  const face   = document.getElementById('die-face');
+  const num    = document.getElementById('die-num');
+  const lbl    = document.getElementById('roll-label');
+  const txt    = document.getElementById('result-text');
+  const action = document.getElementById('action');
+
+  // Reset
+  lbl.style.visibility = 'hidden';
+  txt.style.visibility = 'hidden';
+  action.innerHTML = '';
+
+  const roll    = Math.floor(Math.random() * 20) + 1;
+  const success = roll >= 12;
+
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow   = '0 0 10px 2px #c8963e44';
+  num.style.fontSize     = '28px';
+  num.style.color        = '#c8963e';
+
+  // Fade durations: start slow, stay slow — just gentle fades
+  const fadeDuration = 300; // ms per fade in+out
+  const count = 10;
+  let step = 0;
+
+  function fadeNext() {
+    if (step >= count) {
+      // Final: fade in the real roll and hold
+      num.style.opacity = '0';
+      setTimeout(() => {
+        num.textContent = roll;
+        num.style.opacity = '1';
+        // Settle
+        face.className = 'die-settle';
+        setTimeout(() => {
+          const color = success ? '#4a9a5a' : '#8a2222';
+          face.style.borderColor = color;
+          face.style.boxShadow   = `0 0 18px 4px ${color}55`;
+          face.className         = '';
+          face.style.transform   = 'rotate(45deg)';
+          num.style.color        = color;
+          lbl.textContent        = success ? 'Success' : 'Failure';
+          lbl.style.color        = color;
+          lbl.style.visibility   = 'visible';
+
+          setTimeout(() => {
+            txt.textContent          = success
+              ? 'You time it perfectly — a quick sidestep as the figure lunges, one foot finding solid ground at the ravine\'s edge.'
+              : 'Your foot clips loose gravel. The figure turns, hand already on the sword hilt. The ravine was never an option.';
+            txt.style.borderLeftColor = color;
+            txt.style.visibility      = 'visible';
+
+            setTimeout(() => {
+              const btn = success
+                ? `<button style="background:#4a9a5a20;border:1px solid #4a9a5a50;color:#4a9a5a;padding:8px 24px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;letter-spacing:1px;">Continue →</button>`
+                : `<button onclick="resetDemo()" style="background:#1e1e1e;border:1px solid #333;color:#666;padding:8px 24px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;letter-spacing:1px;">Back</button>`;
+              action.innerHTML = btn;
+            }, 400);
+          }, 300);
+        }, 350);
+      }, fadeDuration / 2);
+      return;
+    }
+
+    // Fade out current
+    num.style.opacity = '0';
+    setTimeout(() => {
+      num.textContent = Math.floor(Math.random() * 20) + 1;
+      // Fade in
+      num.style.opacity = '1';
+      step++;
+      setTimeout(fadeNext, fadeDuration);
+    }, fadeDuration / 2);
+  }
+
+  fadeNext();
+}
+
+function resetDemo() {
+  const face   = document.getElementById('die-face');
+  const num    = document.getElementById('die-num');
+  const lbl    = document.getElementById('roll-label');
+  const txt    = document.getElementById('result-text');
+  const action = document.getElementById('action');
+  face.style.borderColor = '#c8963e44';
+  face.style.boxShadow   = 'none';
+  face.style.transform   = 'rotate(45deg)';
+  num.style.fontSize     = '16px';
+  num.style.color        = '#c8963e44';
+  num.style.opacity      = '1';
+  num.textContent        = 'd20';
+  lbl.style.visibility   = 'hidden';
+  txt.style.visibility   = 'hidden';
+  action.innerHTML = `<button onclick="startRoll()" id="roll-btn" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:8px 28px;border-radius:4px;font-size:13px;font-family:monospace;cursor:pointer;letter-spacing:1px;animation:rollBtnPulse 1.2s ease-in-out infinite;">Roll</button>`;
+}
+</script>

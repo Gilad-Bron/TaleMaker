@@ -1,0 +1,126 @@
+<h2>AI Writing — 3 Prompt Modes</h2>
+<p class="subtitle">Author chooses how to generate the prompt for each AI request</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:16px;">
+
+  <div style="border:2px solid #6366f1;border-radius:10px;padding:14px;background:#141414;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <div style="background:#6366f1;color:white;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">1</div>
+      <div style="color:#6366f1;font-weight:600;font-size:13px;">Free Text</div>
+    </div>
+    <div style="font-size:12px;color:#aaa;line-height:1.6;margin-bottom:12px;">Author types a custom prompt directly. Full control, no constraints.</div>
+    <div style="background:#0f0f0f;border:1px solid #6366f140;border-radius:6px;padding:8px;">
+      <textarea style="background:transparent;border:none;width:100%;color:#ccc;font-size:11px;resize:none;outline:none;font-family:inherit;line-height:1.6;" rows="4" placeholder="Write a tense encounter with a stranger. The character has lost their memory and should react with cautious curiosity..."></textarea>
+    </div>
+    <div style="background:#6366f1;color:white;padding:6px;border-radius:6px;font-size:11px;text-align:center;margin-top:8px;">🤖 Generate</div>
+  </div>
+
+  <div style="border:2px solid #10b981;border-radius:10px;padding:14px;background:#141414;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <div style="background:#10b981;color:#111;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">2</div>
+      <div style="color:#10b981;font-weight:600;font-size:13px;">Interaction Mechanics</div>
+    </div>
+    <div style="font-size:12px;color:#aaa;line-height:1.6;margin-bottom:10px;">Selections based on the current interaction type. Example: Combat node.</div>
+    <div style="font-size:11px;display:flex;flex-direction:column;gap:6px;">
+      <div>
+        <div style="color:#888;margin-bottom:3px;">Generate</div>
+        <select style="background:#1e1e1e;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;width:100%;font-size:11px;">
+          <option>Enemy opening taunt</option>
+          <option>Combat flavor text</option>
+          <option>Victory narration</option>
+          <option>Defeat narration</option>
+          <option>Enemy ability description</option>
+        </select>
+      </div>
+      <div>
+        <div style="color:#888;margin-bottom:3px;">Tone</div>
+        <select style="background:#1e1e1e;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;width:100%;font-size:11px;">
+          <option>Gritty / Brutal</option>
+          <option>Heroic</option>
+          <option>Desperate</option>
+          <option>Darkly comic</option>
+        </select>
+      </div>
+      <div>
+        <div style="color:#888;margin-bottom:3px;">Length</div>
+        <select style="background:#1e1e1e;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;width:100%;font-size:11px;">
+          <option>Short (1-2 sentences)</option>
+          <option>Medium (paragraph)</option>
+          <option>Long (scene)</option>
+        </select>
+      </div>
+    </div>
+    <div style="background:#10b981;color:#111;padding:6px;border-radius:6px;font-size:11px;text-align:center;margin-top:10px;font-weight:600;">🤖 Generate</div>
+  </div>
+
+  <div style="border:2px solid #f59e0b;border-radius:10px;padding:14px;background:#141414;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <div style="background:#f59e0b;color:#111;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">3</div>
+      <div style="color:#f59e0b;font-weight:600;font-size:13px;">Tale Context</div>
+    </div>
+    <div style="font-size:12px;color:#aaa;line-height:1.6;margin-bottom:10px;">Pull from the author's world-bible. Example: Dialog node.</div>
+    <div style="font-size:11px;display:flex;flex-direction:column;gap:6px;">
+      <div>
+        <div style="color:#888;margin-bottom:3px;">NPC / Character</div>
+        <select style="background:#1e1e1e;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;width:100%;font-size:11px;">
+          <option>The Stranger (road encounter)</option>
+          <option>Elder Maren</option>
+          <option>The Warden</option>
+        </select>
+      </div>
+      <div>
+        <div style="color:#888;margin-bottom:3px;">Location</div>
+        <select style="background:#1e1e1e;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;width:100%;font-size:11px;">
+          <option>The Cracked Road</option>
+          <option>The Wastelands</option>
+          <option>The Ruined City</option>
+        </select>
+      </div>
+      <div>
+        <div style="color:#888;margin-bottom:3px;">Theme / Mood</div>
+        <select style="background:#1e1e1e;border:1px solid #333;color:#ccc;padding:4px 8px;border-radius:4px;width:100%;font-size:11px;">
+          <option>Paranoia and distrust</option>
+          <option>Hope amid ruin</option>
+          <option>Ancient dread</option>
+        </select>
+      </div>
+    </div>
+    <div style="background:#f59e0b;color:#111;padding:6px;border-radius:6px;font-size:11px;text-align:center;margin-top:10px;font-weight:600;">🤖 Generate</div>
+  </div>
+
+</div>
+
+<div style="border:1px solid #f59e0b40;border-radius:10px;padding:14px;background:#f59e0b08;">
+  <div class="label" style="color:#f59e0b;">Tale Context — data model addition (Mode 3 source)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:10px;font-size:12px;">
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#ec4899;font-weight:600;margin-bottom:6px;">NPCs</div>
+      <pre style="font-size:11px;color:#aaa;margin:0;line-height:1.6;">{ name, role,
+  personality,
+  speechStyle,
+  backstory }</pre>
+    </div>
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#6366f1;font-weight:600;margin-bottom:6px;">Locations</div>
+      <pre style="font-size:11px;color:#aaa;margin:0;line-height:1.6;">{ name,
+  description,
+  atmosphere,
+  notes }</pre>
+    </div>
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#10b981;font-weight:600;margin-bottom:6px;">Factions</div>
+      <pre style="font-size:11px;color:#aaa;margin:0;line-height:1.6;">{ name, goal,
+  tone,
+  rivals: [],
+  allies: [] }</pre>
+    </div>
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#f59e0b;font-weight:600;margin-bottom:6px;">Themes</div>
+      <pre style="font-size:11px;color:#aaa;margin:0;line-height:1.6;">{ label,
+  description,
+  examples: []
+}</pre>
+    </div>
+  </div>
+  <div style="margin-top:10px;font-size:12px;color:#888;">Stored under <code style="background:#1e1e2e;padding:2px 6px;border-radius:3px;color:#f59e0b;">tale.context</code> — authored in a dedicated "World Bible" section of the workspace. Injected into Claude's system prompt when Mode 3 is used.</div>
+</div>

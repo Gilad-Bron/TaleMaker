@@ -1,0 +1,169 @@
+<style>
+@keyframes dieSettle { 0%{transform:rotate(45deg) scale(1.08)} 60%{transform:rotate(45deg) scale(0.95)} 100%{transform:rotate(45deg) scale(1)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+@keyframes rollBtnPulse { 0%,100%{box-shadow:0 0 6px 1px #c8963e33} 50%{box-shadow:0 0 18px 6px #c8963e88} }
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+.fade-up    { animation: fadeUp 0.4s ease forwards; }
+</style>
+
+<h2>Roll Animation Alternatives</h2>
+<p class="subtitle">Click each option to see the animation, then tell me which to use</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+
+  <!-- Option A: Blur reveal -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0e0e16;padding:24px;text-align:center;">
+    <div class="label" style="margin-bottom:16px;">A — Blur Reveal</div>
+    <div style="color:#666;font-size:11px;margin-bottom:20px;line-height:1.6;">Die is sharp, number blurs out then sharpens to reveal result. No flickering.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+        <div id="a-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+        <span id="a-num" style="position:relative;z-index:1;font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;line-height:1;transition:filter 0.3s,color 0.4s;">d20</span>
+      </div>
+      <div id="a-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;height:16px;"></div>
+    </div>
+    <button onclick="runA()" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:6px 20px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;animation:rollBtnPulse 1.2s ease-in-out infinite;" id="a-btn">Roll</button>
+  </div>
+
+  <!-- Option B: Tension bar -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0e0e16;padding:24px;text-align:center;">
+    <div class="label" style="margin-bottom:16px;">B — Tension Build</div>
+    <div style="color:#666;font-size:11px;margin-bottom:20px;line-height:1.6;">A bar fills slowly, building suspense, then the number snaps into view.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+        <div id="b-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+        <span id="b-num" style="position:relative;z-index:1;font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;line-height:1;transition:color 0.3s;">d20</span>
+      </div>
+      <div style="width:64px;height:3px;background:#1e1e1e;border-radius:2px;overflow:hidden;">
+        <div id="b-bar" style="height:100%;width:0%;background:#c8963e;border-radius:2px;transition:width 0s;"></div>
+      </div>
+      <div id="b-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;height:16px;"></div>
+    </div>
+    <button onclick="runB()" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:6px 20px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;animation:rollBtnPulse 1.2s ease-in-out infinite;" id="b-btn">Roll</button>
+  </div>
+
+  <!-- Option C: Single flip -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0e0e16;padding:24px;text-align:center;">
+    <div class="label" style="margin-bottom:16px;">C — Single Flip</div>
+    <div style="color:#666;font-size:11px;margin-bottom:20px;line-height:1.6;">Die face flips once — scaleX collapses and opens — revealing the number cleanly.</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-bottom:20px;">
+      <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+        <div id="c-face" style="position:absolute;inset:0;border:2px solid #c8963e44;border-radius:3px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+        <div id="c-inner" style="position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+          <span id="c-num" style="font-size:16px;font-weight:700;color:#c8963e44;font-family:monospace;line-height:1;transition:color 0.3s;">d20</span>
+        </div>
+      </div>
+      <div id="c-label" style="visibility:hidden;font-size:11px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;height:16px;"></div>
+    </div>
+    <button onclick="runC()" style="background:#c8963e18;border:1px solid #c8963e60;color:#c8963e;padding:6px 20px;border-radius:4px;font-size:12px;font-family:monospace;cursor:pointer;animation:rollBtnPulse 1.2s ease-in-out infinite;" id="c-btn">Roll</button>
+  </div>
+
+</div>
+
+<script>
+function reveal(face, num, label, btnId, roll) {
+  const success = roll >= 12;
+  const color = success ? '#4a9a5a' : '#8a2222';
+  face.className = 'die-settle';
+  setTimeout(() => {
+    face.style.borderColor = color;
+    face.style.boxShadow = `0 0 18px 4px ${color}55`;
+    face.className = '';
+    face.style.transform = 'rotate(45deg)';
+    num.style.color = color;
+    label.textContent = success ? 'Success' : 'Failure';
+    label.style.color = color;
+    label.style.visibility = 'visible';
+    document.getElementById(btnId).textContent = 'Again';
+    document.getElementById(btnId).style.animation = 'none';
+  }, 350);
+}
+
+function reset(face, num, label, btnId) {
+  face.style.borderColor = '#c8963e44';
+  face.style.boxShadow = 'none';
+  face.className = '';
+  face.style.transform = 'rotate(45deg)';
+  num.style.color = '#c8963e44';
+  num.style.filter = '';
+  num.style.fontSize = '16px';
+  num.textContent = 'd20';
+  label.style.visibility = 'hidden';
+  label.textContent = '';
+  document.getElementById(btnId).style.animation = 'rollBtnPulse 1.2s ease-in-out infinite';
+}
+
+// A: Blur reveal
+function runA() {
+  const face = document.getElementById('a-face');
+  const num  = document.getElementById('a-num');
+  const lbl  = document.getElementById('a-label');
+  reset(face, num, lbl, 'a-btn');
+  const roll = Math.floor(Math.random()*20)+1;
+  // Brighten die
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow = '0 0 10px 2px #c8963e44';
+  num.style.fontSize = '28px';
+  num.style.color = '#c8963e';
+  // Blur out
+  setTimeout(() => {
+    num.style.transition = 'filter 0.6s ease, font-size 0s';
+    num.style.filter = 'blur(8px)';
+    setTimeout(() => {
+      num.textContent = roll;
+      num.style.filter = 'blur(0px)';
+      setTimeout(() => reveal(face, num, lbl, 'a-btn', roll), 700);
+    }, 600);
+  }, 300);
+}
+
+// B: Tension bar
+function runB() {
+  const face = document.getElementById('b-face');
+  const num  = document.getElementById('b-num');
+  const lbl  = document.getElementById('b-label');
+  const bar  = document.getElementById('b-bar');
+  reset(face, num, lbl, 'b-btn');
+  bar.style.width = '0%';
+  bar.style.transition = 'width 0s';
+  const roll = Math.floor(Math.random()*20)+1;
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow = '0 0 10px 2px #c8963e44';
+  setTimeout(() => {
+    bar.style.transition = 'width 1.8s cubic-bezier(0.4,0,0.2,1)';
+    bar.style.width = '100%';
+    setTimeout(() => {
+      bar.style.transition = 'width 0s';
+      bar.style.width = '0%';
+      num.style.fontSize = '28px';
+      num.style.color = '#c8963e';
+      num.textContent = roll;
+      reveal(face, num, lbl, 'b-btn', roll);
+    }, 1900);
+  }, 100);
+}
+
+// C: Single flip
+function runC() {
+  const face  = document.getElementById('c-face');
+  const inner = document.getElementById('c-inner');
+  const num   = document.getElementById('c-num');
+  const lbl   = document.getElementById('c-label');
+  reset(face, num, lbl, 'c-btn');
+  const roll = Math.floor(Math.random()*20)+1;
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow = '0 0 10px 2px #c8963e44';
+  setTimeout(() => {
+    inner.style.transition = 'transform 0.25s ease-in';
+    inner.style.transform = 'scaleX(0)';
+    setTimeout(() => {
+      num.textContent = roll;
+      num.style.fontSize = '28px';
+      num.style.color = '#c8963e';
+      inner.style.transition = 'transform 0.25s ease-out';
+      inner.style.transform = 'scaleX(1)';
+      setTimeout(() => reveal(face, num, lbl, 'c-btn', roll), 350);
+    }, 250);
+  }, 400);
+}
+</script>

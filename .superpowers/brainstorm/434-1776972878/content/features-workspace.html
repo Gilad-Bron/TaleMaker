@@ -1,0 +1,103 @@
+<h2>Workspace — Node Graph Editor</h2>
+<p class="subtitle">Replacing the linear dialog list with a visual canvas (React Flow)</p>
+
+<div style="display:grid;grid-template-columns:220px 1fr 260px;gap:12px;height:420px;">
+
+  <!-- Left sidebar -->
+  <div style="border:1px solid #333;border-radius:8px;padding:12px;background:#141414;overflow:hidden;">
+    <div class="label">Tale Structure</div>
+    <div style="margin-top:10px;font-size:12px;color:#ccc;line-height:2;">
+      <div style="color:#6366f1;font-weight:600;">▼ Chapter 1: Awakening</div>
+      <div style="padding-left:12px;color:#aaa;">▼ Episode 1</div>
+      <div style="padding-left:24px;background:#6366f120;border-radius:4px;padding:3px 8px 3px 24px;color:white;">📍 The Wastelands</div>
+      <div style="padding-left:24px;color:#aaa;padding:2px 0 2px 24px;">⚔ Bandit Ambush</div>
+      <div style="padding-left:24px;color:#aaa;padding:2px 0 2px 24px;">🏕 Campsite</div>
+      <div style="padding-left:12px;color:#aaa;">▶ Episode 2</div>
+      <div style="color:#6366f1;font-weight:600;margin-top:6px;">▶ Chapter 2: The City</div>
+    </div>
+    <div style="margin-top:12px;border-top:1px solid #2a2a2a;padding-top:10px;">
+      <div class="label">Add Interaction</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;font-size:11px;">
+        <div style="background:#6366f120;border:1px solid #6366f140;border-radius:4px;padding:4px 6px;color:#6366f1;text-align:center;">💬 Dialog</div>
+        <div style="background:#ef444420;border:1px solid #ef444440;border-radius:4px;padding:4px 6px;color:#ef4444;text-align:center;">⚔ Combat</div>
+        <div style="background:#f59e0b20;border:1px solid #f59e0b40;border-radius:4px;padding:4px 6px;color:#f59e0b;text-align:center;">🗺 Area</div>
+        <div style="background:#10b98120;border:1px solid #10b98140;border-radius:4px;padding:4px 6px;color:#10b981;text-align:center;">💰 Trade</div>
+        <div style="background:#8b5cf620;border:1px solid #8b5cf640;border-radius:4px;padding:4px 6px;color:#8b5cf6;text-align:center;">🧩 Puzzle</div>
+        <div style="background:#ec489920;border:1px solid #ec489940;border-radius:4px;padding:4px 6px;color:#ec4899;text-align:center;">⭐ Event</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Graph canvas -->
+  <div style="border:1px solid #333;border-radius:8px;background:#0f0f0f;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:8px;right:8px;display:flex;gap:6px;font-size:11px;z-index:2;">
+      <div style="background:#1e1e2e;border:1px solid #333;padding:4px 8px;border-radius:4px;color:#aaa;">Fit</div>
+      <div style="background:#1e1e2e;border:1px solid #333;padding:4px 8px;border-radius:4px;color:#aaa;">+ 🤖 AI</div>
+    </div>
+    <!-- Simulated graph nodes -->
+    <svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+      <!-- Edges -->
+      <path d="M 140 90 C 180 90 180 150 220 150" stroke="#6366f160" stroke-width="2" fill="none"/>
+      <path d="M 140 90 C 180 90 180 230 220 230" stroke="#6366f160" stroke-width="2" fill="none"/>
+      <path d="M 340 150 C 380 150 380 190 400 190" stroke="#6366f160" stroke-width="2" fill="none"/>
+      <path d="M 340 230 C 380 230 380 190 400 190" stroke="#6366f160" stroke-width="2" fill="none"/>
+      <path d="M 510 190 C 550 190 550 190 570 190" stroke="#6366f160" stroke-width="2" fill="none"/>
+    </svg>
+    <!-- Nodes -->
+    <div style="position:absolute;top:65px;left:40px;background:#1a1a2e;border:2px solid #6366f1;border-radius:8px;padding:8px 12px;font-size:11px;min-width:90px;">
+      <div style="color:#6366f1;font-size:10px;font-weight:600;">💬 DIALOG</div>
+      <div style="color:#ccc;margin-top:2px;">The Awakening</div>
+      <div style="display:flex;gap:4px;margin-top:6px;">
+        <div style="width:8px;height:8px;background:#6366f1;border-radius:50%;"></div>
+        <div style="width:8px;height:8px;background:#6366f1;border-radius:50%;"></div>
+        <div style="width:8px;height:8px;background:#6366f1;border-radius:50%;"></div>
+      </div>
+    </div>
+    <div style="position:absolute;top:125px;left:220px;background:#1a1a1a;border:2px solid #f59e0b;border-radius:8px;padding:8px 12px;font-size:11px;min-width:90px;">
+      <div style="color:#f59e0b;font-size:10px;font-weight:600;">🗺 AREA</div>
+      <div style="color:#ccc;margin-top:2px;">Wastelands</div>
+    </div>
+    <div style="position:absolute;top:205px;left:220px;background:#1a1a1a;border:2px solid #8b5cf6;border-radius:8px;padding:8px 12px;font-size:11px;min-width:90px;">
+      <div style="color:#8b5cf6;font-size:10px;font-weight:600;">🧩 PUZZLE</div>
+      <div style="color:#ccc;margin-top:2px;">Ancient Lock</div>
+    </div>
+    <div style="position:absolute;top:165px;left:400px;background:#1a1a1a;border:2px solid #ef4444;border-radius:8px;padding:8px 12px;font-size:11px;min-width:90px;">
+      <div style="color:#ef4444;font-size:10px;font-weight:600;">⚔ COMBAT</div>
+      <div style="color:#ccc;margin-top:2px;">Bandit Ambush</div>
+    </div>
+    <div style="position:absolute;top:165px;left:570px;background:#1a1a1a;border:2px solid #10b981;border-radius:8px;padding:8px 12px;font-size:11px;min-width:90px;">
+      <div style="color:#10b981;font-size:10px;font-weight:600;">🏕 REST</div>
+      <div style="color:#ccc;margin-top:2px;">Camp at Ruins</div>
+    </div>
+    <!-- Dotted add node -->
+    <div style="position:absolute;top:165px;left:710px;background:transparent;border:2px dashed #333;border-radius:8px;padding:8px 12px;font-size:18px;color:#444;min-width:90px;text-align:center;">+</div>
+  </div>
+
+  <!-- Right panel -->
+  <div style="border:1px solid #333;border-radius:8px;padding:12px;background:#141414;overflow:hidden;">
+    <div class="label">Selected: Bandit Ambush</div>
+    <div style="margin-top:10px;font-size:12px;">
+      <div style="color:#ef4444;font-weight:600;margin-bottom:8px;">⚔ Combat Interaction</div>
+      <div style="color:#888;margin-bottom:3px;">Enemy</div>
+      <div style="background:#1e1e1e;border:1px solid #333;border-radius:4px;padding:6px 8px;color:#ccc;margin-bottom:10px;">Bandit Leader <span style="color:#ef4444;float:right;">HP: 80</span></div>
+      <div style="color:#888;margin-bottom:3px;">Stat Overrides</div>
+      <div style="background:#1e1e1e;border:1px solid #333;border-radius:4px;padding:6px 8px;color:#666;font-style:italic;margin-bottom:10px;">None — using base stats</div>
+      <div style="color:#888;margin-bottom:3px;">Win → next node</div>
+      <div style="background:#1e1e1e;border:1px solid #333;border-radius:4px;padding:6px 8px;color:#ccc;margin-bottom:6px;">Camp at Ruins</div>
+      <div style="color:#888;margin-bottom:3px;">Lose → next node</div>
+      <div style="background:#1e1e1e;border:1px solid #333;border-radius:4px;padding:6px 8px;color:#ccc;margin-bottom:12px;">Return to Wastelands</div>
+      <div style="background:#ef444420;border:1px solid #ef444440;border-radius:4px;padding:6px 8px;color:#ef4444;text-align:center;font-size:11px;cursor:pointer;">🤖 Generate with AI</div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:12px;display:flex;gap:16px;font-size:12px;color:#888;">
+  <span>React Flow handles the canvas, zoom, pan, drag-to-connect</span>
+  <span>•</span>
+  <span>Color-coded by interaction type</span>
+  <span>•</span>
+  <span>Right panel edits the selected node</span>
+  <span>•</span>
+  <span>AI button available on every node</span>
+</div>

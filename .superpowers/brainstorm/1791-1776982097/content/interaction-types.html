@@ -1,0 +1,70 @@
+<h2>Additional Interaction Types</h2>
+<p class="subtitle">Select all that should be included. Current types: dialog, trade, combat, area.</p>
+
+<div class="options" data-multiselect>
+
+  <div class="option" data-choice="puzzle" onclick="toggleSelect(this)">
+    <div class="letter">P</div>
+    <div class="content">
+      <h3>Puzzle</h3>
+      <p>Author defines a riddle, code, or logic challenge. Player must solve it to progress. Can have hints, attempt limits, and failure outcomes.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="event" onclick="toggleSelect(this)">
+    <div class="letter">E</div>
+    <div class="content">
+      <h3>Event / Cutscene</h3>
+      <p>A scripted narrative moment — no player choices, just story beats that play out automatically with optional effects (stat changes, item grants, character reveals).</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="skill_check" onclick="toggleSelect(this)">
+    <div class="letter">S</div>
+    <div class="content">
+      <h3>Skill Check</h3>
+      <p>Standalone stat challenge not tied to dialog — pick a lock, climb a wall, sneak past a guard. Branching outcomes based on pass/fail. Dice roll visible to player.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="rest" onclick="toggleSelect(this)">
+    <div class="letter">R</div>
+    <div class="content">
+      <h3>Rest / Camp</h3>
+      <p>Player recovers health and resources. Author can attach events that trigger during rest (ambush, dream sequence, NPC conversation).</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="crafting" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Crafting</h3>
+      <p>Combine items from the player's inventory to create new ones. Author defines recipes. Requires having the right components.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="loot" onclick="toggleSelect(this)">
+    <div class="letter">L</div>
+    <div class="content">
+      <h3>Loot</h3>
+      <p>Search a container, body, or hidden cache. Author defines item pools with drop chances. Can require a skill check to find or unlock.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="shop" onclick="toggleSelect(this)">
+    <div class="letter">$</div>
+    <div class="content">
+      <h3>Shop</h3>
+      <p>A persistent merchant with a fixed inventory and prices. Distinct from trade — no bartering, just buy/sell with gold. Author defines stock and restock rules.</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="reputation" onclick="toggleSelect(this)">
+    <div class="letter">F</div>
+    <div class="content">
+      <h3>Faction / Reputation</h3>
+      <p>Choices affect standing with named factions. High/low reputation unlocks or blocks future interactions. Author defines factions per tale.</p>
+    </div>
+  </div>
+
+</div>

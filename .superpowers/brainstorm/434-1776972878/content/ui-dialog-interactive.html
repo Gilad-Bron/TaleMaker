@@ -1,0 +1,334 @@
+<style>
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes dieGlow {
+  0%,100% { box-shadow: 0 0 6px 1px #c8963e22; }
+  50%      { box-shadow: 0 0 18px 6px #c8963e88; }
+}
+@keyframes dieSettle {
+  0%   { transform:rotate(45deg) scale(1.08); }
+  60%  { transform:rotate(45deg) scale(0.95); }
+  100% { transform:rotate(45deg) scale(1); }
+}
+@keyframes fadeIn { from{opacity:0}to{opacity:1} }
+.fade-up  { animation: fadeUp 0.4s ease forwards; }
+.fade-in  { animation: fadeIn 0.3s ease forwards; }
+.die-glow { animation: dieGlow 0.5s ease-in-out infinite; }
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+</style>
+
+<div style="display:grid;grid-template-columns:1fr 300px;gap:16px;min-height:520px;">
+
+  <!-- Main dialog panel -->
+  <div style="border:1px solid #333;border-radius:10px;background:#0a0a0a;overflow:hidden;display:flex;flex-direction:column;">
+    <div style="background:#111;border-bottom:1px solid #1a1a1a;padding:8px 20px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+      <div id="breadcrumb" style="font-size:11px;color:#444;">Act I › Chapter 2: The Road</div>
+      <div style="display:flex;gap:10px;font-size:11px;color:#444;">📜 Log &nbsp; 💾 Save</div>
+    </div>
+    <div id="dialog-area" style="padding:28px 32px;flex:1;"></div>
+  </div>
+
+  <!-- Character panel -->
+  <div style="border:1px solid #333;border-radius:10px;background:#141414;padding:14px;font-size:12px;">
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;">
+      <div style="width:38px;height:38px;background:#1a1a2e;border:2px solid #6366f1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;">🧙</div>
+      <div><div style="color:white;font-weight:600;">The Wanderer</div><div style="color:#555;font-size:10px;">No memory. No name.</div></div>
+    </div>
+    <div style="margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;color:#666;margin-bottom:3px;"><span>HP</span><span id="hp-val" style="color:#ef4444;">72 / 100</span></div>
+      <div style="background:#1e1e1e;border-radius:3px;height:5px;"><div id="hp-bar" style="background:#ef4444;width:72%;height:100%;border-radius:3px;transition:width 0.4s;"></div></div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;color:#666;margin-bottom:3px;"><span>Mana</span><span style="color:#6366f1;">45 / 60</span></div>
+      <div style="background:#1e1e1e;border-radius:3px;height:5px;"><div style="background:#6366f1;width:75%;height:100%;border-radius:3px;"></div></div>
+      <div style="display:flex;justify-content:space-between;color:#666;margin-top:6px;"><span>Gold</span><span style="color:#f59e0b;">🪙 34</span></div>
+    </div>
+    <div style="border-top:1px solid #222;padding-top:10px;margin-bottom:10px;">
+      <div class="label" style="margin-bottom:6px;">Stats</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;text-align:center;">
+        <div style="background:#1e1e1e;border-radius:3px;padding:4px;"><div style="color:#f59e0b;font-weight:700;">8</div><div style="color:#555;font-size:9px;">STR</div></div>
+        <div style="background:#1e1e1e;border-radius:3px;padding:4px;"><div style="color:#6366f1;font-weight:700;">14</div><div style="color:#555;font-size:9px;">INT</div></div>
+        <div style="background:#1e1e1e;border-radius:3px;padding:4px;"><div style="color:#10b981;font-weight:700;">11</div><div style="color:#555;font-size:9px;">CHA</div></div>
+        <div style="background:#1e1e1e;border-radius:3px;padding:4px;"><div style="color:#ec4899;font-weight:700;">12</div><div style="color:#555;font-size:9px;">AGI</div></div>
+        <div style="background:#1e1e1e;border-radius:3px;padding:4px;"><div style="color:#8b5cf6;font-weight:700;">9</div><div style="color:#555;font-size:9px;">WIS</div></div>
+        <div style="background:#1e1e1e;border-radius:3px;padding:4px;"><div style="color:#ef4444;font-weight:700;">10</div><div style="color:#555;font-size:9px;">CON</div></div>
+      </div>
+    </div>
+    <div style="border-top:1px solid #222;padding-top:10px;">
+      <div class="label" style="margin-bottom:6px;">Inventory</div>
+      <div style="display:flex;flex-direction:column;gap:3px;font-size:11px;">
+        <div style="display:flex;justify-content:space-between;color:#aaa;"><span>🗡 Worn Blade</span><span style="color:#555;">×1</span></div>
+        <div style="display:flex;justify-content:space-between;color:#aaa;"><span>🧪 Health Potion</span><span id="potion-count" style="color:#555;">×2</span></div>
+        <div style="display:flex;justify-content:space-between;color:#aaa;"><span>📜 Torn Map</span><span style="color:#555;">×1</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const DIALOGS = {
+  start: {
+    location: '📍 The Cracked Road',
+    text: '"The road ends here." The figure doesn\'t move. Doesn\'t blink. The sword at their hip is old but clean — the kind of clean that means it\'s been used recently.\n\nYou count your options. The road stretches behind you. The figure fills what\'s ahead.',
+    options: [
+      { label: 'Step forward slowly, hands visible', next: 'forward' },
+      { label: 'Ask who they are', next: 'ask' },
+      { label: 'Try to slip past into the ravine', skill: { stat:'AGI', dc:12 }, successNext:'slipped', failText:'Your foot clips loose gravel. The figure turns, hand on the sword hilt. The ravine was never an option.' },
+      { label: 'Draw a weapon', combat: true },
+    ]
+  },
+  forward: {
+    location: '📍 The Cracked Road',
+    text: 'You raise your hands and take one slow step. The figure watches you the way hawks watch mice — not with hunger, exactly. With patience.\n\n"Smart," they say at last. "Most people reach for steel."\n\nThey don\'t move. But the hand leaves the hilt.',
+    options: [
+      { label: '"Who are you?"', next: 'ask' },
+      { label: '"What do you want?"', next: 'want' },
+      { label: 'Stay silent and wait', next: 'wait' },
+    ]
+  },
+  ask: {
+    location: '📍 The Cracked Road',
+    text: 'A long pause. The wind moves between you, carrying dust.\n\n"Nobody," they say. "Same as you."\n\nSomething in their voice suggests they mean it literally — not as deflection, but as fact. They study your face the way someone reads a sign in a language they half-remember.',
+    options: [
+      { label: '"How do you know I\'m nobody?"', next: 'know' },
+      { label: '"What do you want from me?"', next: 'want' },
+    ]
+  },
+  want: {
+    location: '📍 The Cracked Road',
+    text: '"To warn you," they say. "The road ahead is watched. Not by people like me — by something older. If you keep walking, you\'ll find it before nightfall."\n\nThey step aside. Just enough to let you pass.\n\n"Your choice."',
+    options: [
+      { label: 'Thank them and continue', next: 'continue' },
+      { label: '"What is watching the road?"', next: 'whatwatches' },
+      { label: 'Pass without a word', next: 'continue' },
+    ]
+  },
+  slipped: {
+    location: '📍 The Ravine Edge',
+    text: 'You time it perfectly. One quick step left, weight low, and you\'re past them before they register the movement.\n\nBehind you, a sharp exhale — not anger. Surprise.\n\n"Hm."\n\nYou don\'t look back.',
+    options: [
+      { label: 'Keep moving', next: 'continue' },
+    ]
+  },
+  know: {
+    location: '📍 The Cracked Road',
+    text: 'They tilt their head. "You came from the Wastelands. Alone. No pack, no water, no dust on your hands from digging." A pause. "People with a past carry it in how they walk. You don\'t."\n\nThey look almost sorry about it.',
+    options: [
+      { label: '"What does that mean?"', next: 'want' },
+      { label: 'Say nothing', next: 'want' },
+    ]
+  },
+  whatwatches: {
+    location: '📍 The Cracked Road',
+    text: 'They look at you a moment too long.\n\n"I don\'t have a name for it. Names are how you invite things closer." They pull their coat tighter. "Just — don\'t stop walking. Whatever you hear, don\'t stop."\n\nThey\'re already turning away.',
+    options: [
+      { label: 'Continue down the road', next: 'continue' },
+    ]
+  },
+  wait: {
+    location: '📍 The Cracked Road',
+    text: 'You say nothing. Hold the silence back at them.\n\nThe figure blinks. Then, unexpectedly, almost smiles.\n\n"Good instincts." They step aside. "Most people talk when they\'re scared. Makes them easier to read."\n\nThe road is open.',
+    options: [
+      { label: 'Continue', next: 'continue' },
+    ]
+  },
+  continue: {
+    location: '📍 The Road North',
+    text: 'The figure shrinks behind you.\n\nThe road stretches on, cracked and pale. The horizon offers nothing but more of the same — flat land, sick sky, and the distant smell of something burnt a long time ago.\n\nBut ahead, barely visible, a shape breaks the line of the world. Walls, maybe. Or ruins of them.',
+    options: [
+      { label: 'Press on toward the shape', next: 'end' },
+      { label: 'Rest before continuing', next: 'end' },
+    ]
+  },
+  end: { end: true }
+};
+
+let failedOptions = new Set();
+let rollingOptionIdx = null;
+
+function renderDialog(key) {
+  failedOptions = new Set();
+  rollingOptionIdx = null;
+  const d = DIALOGS[key];
+  if (d.end) { renderEnd(); return; }
+  const area = document.getElementById('dialog-area');
+  area.innerHTML = `
+    <div class="fade-up">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;">
+        <span style="font-size:13px;color:#c8963e;font-weight:600;">${d.location}</span>
+      </div>
+      <p style="font-size:14px;line-height:1.9;color:#ccc;font-style:italic;margin-bottom:24px;white-space:pre-wrap;">${d.text}</p>
+      <div style="height:1px;background:#1a1a1a;margin-bottom:18px;"></div>
+      <div id="options" style="display:flex;flex-direction:column;gap:6px;font-size:13px;"></div>
+    </div>`;
+  renderOptions(d, key);
+}
+
+function renderOptions(d, key) {
+  const container = document.getElementById('options');
+  container.innerHTML = '';
+  d.options.forEach((opt, i) => {
+    const failed  = failedOptions.has(i);
+    const rolling = rollingOptionIdx === i;
+    const dimmed  = rollingOptionIdx !== null && !rolling;
+    const isCombat = !!opt.combat;
+    const isSkill  = !!opt.skill;
+
+    let borderColor = '#2a2a2a', bg = '#0f0f0f';
+    if (isSkill)  { borderColor = '#6366f130'; bg = '#0f0f18'; }
+    if (isCombat) { borderColor = '#ef444430'; bg = '#0f0a0a'; }
+    if (failed)   { borderColor = '#2a1a1a';   bg = '#0a0808'; }
+
+    const opacity = dimmed ? '0.25' : '1';
+    const cursor  = (failed || dimmed) ? 'default' : 'pointer';
+    const radius  = rolling ? '2px 2px 0 0' : '2px';
+
+    const badge = isCombat
+      ? `<span style="font-size:11px;color:#ef4444;background:#ef444415;padding:2px 8px;border-radius:3px;">→ Combat</span>`
+      : isSkill && !failed
+      ? `<span style="font-size:11px;color:#6366f1;background:#6366f118;border:1px solid #6366f135;padding:2px 8px;border-radius:3px;font-family:monospace;white-space:nowrap;">⚄ ${opt.skill.stat} DC ${opt.skill.dc}</span>`
+      : failed
+      ? `<span style="font-size:11px;color:#8a2222;background:#8a222218;border:1px solid #8a222235;padding:2px 8px;border-radius:3px;font-family:monospace;">✗ failed</span>`
+      : '';
+
+    const diceIcon = '';
+
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <button data-idx="${i}" style="width:100%;display:flex;justify-content:space-between;align-items:center;border:1px solid ${borderColor};padding:10px 14px;background:${bg};border-radius:${radius};opacity:${opacity};cursor:${cursor};text-align:left;font-size:13px;color:${failed?'#444':'#aaa'};">
+        <span>${diceIcon}${opt.label}</span>${badge}
+      </button>`;
+
+    if (rolling && isSkill) {
+      wrap.innerHTML += `
+        <div id="roll-panel-${i}" style="border:1px solid #6366f120;border-top:none;border-radius:0 0 2px 2px;background:#0a0a14;padding:12px 16px;display:flex;align-items:center;gap:20px;">
+          <div style="position:relative;width:48px;height:48px;display:flex;align-items:center;justify-content:center;">
+            <div id="die-face-${i}" class="die-glow" style="position:absolute;inset:0;border:2px solid #c8963e;border-radius:2px;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+            <span id="die-num-${i}" style="position:relative;z-index:1;font-size:20px;font-weight:700;color:#c8963e;font-family:monospace;line-height:1;">1</span>
+          </div>
+          <div>
+            <div style="color:#333;font-size:9px;text-transform:uppercase;letter-spacing:2px;font-family:monospace;">${opt.skill.stat} check</div>
+            <div style="color:#333;font-size:10px;margin-top:3px;font-family:monospace;">d20 · vs DC ${opt.skill.dc}</div>
+            <div id="roll-label-${i}" style="opacity:0;font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-top:6px;font-family:monospace;"></div>
+          </div>
+        </div>`;
+    }
+
+    container.appendChild(wrap);
+
+    if (!failed && !dimmed) {
+      wrap.querySelector('button').addEventListener('click', () => handleOption(d, key, i, opt));
+    }
+  });
+}
+
+function handleOption(d, key, i, opt) {
+  if (opt.combat) { renderCombat(); return; }
+  if (opt.skill) {
+    rollingOptionIdx = i;
+    renderOptions(d, key);
+    runSkillCheck(d, key, i, opt);
+    return;
+  }
+  setTimeout(() => renderDialog(opt.next), 80);
+}
+
+function runSkillCheck(d, key, i, opt) {
+  const roll = Math.floor(Math.random() * 20) + 1;
+  const success = roll >= opt.skill.dc;
+  const face = document.getElementById(`die-face-${i}`);
+  const num  = document.getElementById(`die-num-${i}`);
+  const lbl  = document.getElementById(`roll-label-${i}`);
+  const FLICKER = 500;
+  face.style.setProperty('--pulse-speed', `${FLICKER}ms`);
+
+  const steps = [...Array(6).fill(FLICKER)];
+  let step = 0;
+
+  function tick() {
+    if (step < steps.length) {
+      num.textContent = Math.floor(Math.random()*20)+1;
+      setTimeout(tick, steps[step++]);
+    } else {
+      num.textContent = roll;
+      face.className = 'die-settle';
+      setTimeout(() => {
+        const color = success ? '#4a9a5a' : '#8a2222';
+        face.style.borderColor = color;
+        face.style.boxShadow = `0 0 18px 4px ${color}55`;
+        face.className = '';
+        face.style.transform = 'rotate(45deg)';
+        num.style.color = color;
+        lbl.textContent = success ? 'Success' : 'Failure';
+        lbl.style.color = color;
+        lbl.style.opacity = '1';
+
+        if (success) {
+          lbl.textContent = 'Success — Continue →';
+          lbl.style.cursor = 'pointer';
+          lbl.onclick = () => renderDialog(opt.successNext);
+        } else {
+          // Show failure narration then re-render with option greyed
+          setTimeout(() => {
+            rollingOptionIdx = null;
+            failedOptions.add(i);
+            // Insert failure text
+            const p = document.createElement('p');
+            p.className = 'fade-in';
+            p.style.cssText = 'font-size:13px;color:#8a2222;font-style:italic;margin:12px 0 4px;line-height:1.8;';
+            p.textContent = opt.failText;
+            document.getElementById('options').before(p);
+            renderOptions(d, key);
+          }, 1600);
+        }
+      }, 350);
+    }
+  }
+  tick();
+}
+
+function renderCombat() {
+  document.getElementById('dialog-area').innerHTML = `
+    <div class="fade-up" style="display:flex;flex-direction:column;gap:16px;">
+      <div style="color:#ef4444;font-size:11px;text-transform:uppercase;letter-spacing:2px;font-family:monospace;">⚔ Combat initiated</div>
+      <div style="background:#1a0a0a;border:1px solid #ef444430;border-radius:8px;padding:16px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:20px;">💀</span>
+            <div><div style="color:white;font-size:13px;font-weight:600;">The Stranger</div><div style="color:#666;font-size:10px;">Aggressive</div></div>
+          </div>
+          <span style="color:#ef4444;font-size:12px;font-weight:700;">80 / 80 HP</span>
+        </div>
+        <div style="background:#2a2a2a;border-radius:3px;height:6px;"><div style="background:#ef4444;width:100%;height:100%;border-radius:3px;"></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;">
+        <div style="background:#ef444420;border:1px solid #ef444440;border-radius:4px;padding:8px;color:#ef4444;text-align:center;cursor:pointer;">⚔ Attack</div>
+        <div style="background:#6366f120;border:1px solid #6366f140;border-radius:4px;padding:8px;color:#6366f1;text-align:center;cursor:pointer;">✨ Spell</div>
+        <div style="background:#f59e0b20;border:1px solid #f59e0b40;border-radius:4px;padding:8px;color:#f59e0b;text-align:center;cursor:pointer;">🧪 Use Item</div>
+        <div style="background:#1e1e1e;border:1px solid #333;border-radius:4px;padding:8px;color:#888;text-align:center;cursor:pointer;">🛡 Defend</div>
+      </div>
+      <div style="font-size:11px;color:#555;font-style:italic;">Combat UI — full design coming next</div>
+    </div>`;
+}
+
+function renderEnd() {
+  document.getElementById('dialog-area').innerHTML = `
+    <div class="fade-up" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px;gap:12px;text-align:center;">
+      <div style="font-size:32px;color:#c8963e;font-weight:700;letter-spacing:0.05em;">The End</div>
+      <div style="color:#555;font-size:13px;font-style:italic;">The Lost Kingdom</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0;font-size:12px;">
+        <div style="background:#1a1a1a;border-radius:4px;padding:8px;"><div style="color:#f59e0b;">🪙 34</div><div style="color:#555;font-size:10px;">gold</div></div>
+        <div style="background:#1a1a1a;border-radius:4px;padding:8px;"><div style="color:#ef4444;">72 HP</div><div style="color:#555;font-size:10px;">remaining</div></div>
+        <div style="background:#1a1a1a;border-radius:4px;padding:8px;"><div style="color:#10b981;">8</div><div style="color:#555;font-size:10px;">choices made</div></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <div onclick="renderDialog('start')" style="background:#1e1e2e;border:1px solid #6366f140;color:#6366f1;padding:6px 16px;border-radius:4px;font-size:12px;cursor:pointer;">Play again</div>
+      </div>
+    </div>`;
+}
+
+renderDialog('start');
+</script>

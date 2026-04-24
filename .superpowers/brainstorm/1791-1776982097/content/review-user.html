@@ -1,0 +1,32 @@
+<style>
+pre { margin:0; font-family:monospace; font-size:12px; line-height:1.9; }
+.k { color:#6366f1; }
+.s { color:#10b981; }
+.n { color:#f59e0b; }
+.t { color:#64748b; }
+.c { color:#333; }
+</style>
+
+<h2 style="margin:0 0 4px;">Entity 1 of 8 — User</h2>
+<p class="subtitle" style="margin:0 0 24px;">The person using the platform. Can be an author, a player, or both.</p>
+
+<div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:24px 28px;max-width:560px;">
+<pre>
+{
+  <span class="k">id</span>:        <span class="s">string</span>
+  <span class="k">email</span>:     <span class="s">string</span>
+  <span class="k">name</span>:      <span class="s">string</span>
+  <span class="k">roles</span>:     <span class="s">"author" | "player" | "both"</span>
+  <span class="k">createdAt</span>: <span class="s">Date</span>
+}
+</pre>
+</div>
+
+<div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;max-width:560px;">
+  <div style="background:#111;border:1px solid #1e1e1e;border-radius:6px;padding:12px 16px;font-size:12px;color:#555;">
+    <span style="color:#444;font-family:monospace;font-size:10px;text-transform:uppercase;letter-spacing:1px;">Notes</span><br><br>
+    — <code style="background:#1a1a1a;padding:1px 5px;border-radius:2px;">roles</code> determines what the user can do: authors see the workspace, players see the play view<br>
+    — a user with <code style="background:#1a1a1a;padding:1px 5px;border-radius:2px;">both</code> can switch between author and player modes<br>
+    — no avatar or profile fields yet — minimal to start
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<h2>AI Writing Assistance</h2>
+<p class="subtitle">Claude integration available at every level of authoring</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+  <div style="border:1px solid #333;border-radius:10px;padding:14px;background:#141414;">
+    <div class="label" style="color:#6366f1;">Where AI is available</div>
+    <div style="margin-top:10px;font-size:12px;display:flex;flex-direction:column;gap:8px;">
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="background:#10b981;color:#111;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:1px;">TALE</div>
+        <div style="color:#ccc;">Generate title, description, tone summary</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="background:#6366f1;color:white;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:1px;">ACT</div>
+        <div style="color:#ccc;">Summarize act arc, suggest chapter breakdown</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="background:#8b5cf6;color:white;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:1px;">CHAPTER</div>
+        <div style="color:#ccc;">Generate chapter description, suggest interactions</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="background:#f59e0b;color:#111;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:1px;">DIALOG</div>
+        <div style="color:#ccc;">Write dialog text, suggest branching options, generate NPC voice</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="background:#ef4444;color:white;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:1px;">COMBAT</div>
+        <div style="color:#ccc;">Generate enemy stats, abilities, flavor text</div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;">
+        <div style="background:#ec4899;color:white;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;margin-top:1px;">AREA</div>
+        <div style="color:#ccc;">Describe environment, generate objects and their interactions</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="border:1px solid #333;border-radius:10px;padding:14px;background:#141414;">
+    <div class="label" style="color:#6366f1;">AI Panel — Dialog example</div>
+    <div style="margin-top:10px;font-size:12px;">
+      <div style="background:#0f0f0f;border:1px solid #2a2a2a;border-radius:6px;padding:10px;margin-bottom:10px;">
+        <div style="color:#888;font-size:11px;margin-bottom:6px;">Context sent to Claude:</div>
+        <div style="color:#aaa;font-size:11px;line-height:1.6;">Tale: "The Lost Kingdom" — dark fantasy<br>Act I, Chapter 2: The Road<br>Previous interaction: player escaped the Wastelands<br>Character: no name, no memory, INT 14</div>
+      </div>
+      <div style="color:#888;font-size:11px;margin-bottom:4px;">Prompt:</div>
+      <div style="background:#1e1e2e;border:1px solid #6366f140;border-radius:6px;padding:8px;color:#ccc;font-size:11px;margin-bottom:8px;">Write a tense opening line for a stranger blocking the road, with 3 response options that match the character's INT stat</div>
+      <div style="background:#6366f1;color:white;padding:6px;border-radius:6px;font-size:11px;text-align:center;margin-bottom:10px;">🤖 Generate</div>
+      <div style="border-top:1px solid #2a2a2a;padding-top:8px;">
+        <div style="color:#888;font-size:11px;margin-bottom:4px;">Result — click to insert:</div>
+        <div style="background:#0f0f0f;border:1px solid #333;border-radius:6px;padding:8px;color:#ccc;font-size:11px;line-height:1.6;cursor:pointer;">"The road ends here." The figure doesn't move. Doesn't blink. The sword at their hip is old but clean — the kind of clean that means it's been used recently.<br><br><span style="color:#6366f1;">▶ Insert text + options</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:16px;border:1px solid #333;border-radius:10px;padding:14px;background:#141414;">
+  <div class="label" style="color:#6366f1;">How context works</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:10px;font-size:12px;">
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#10b981;font-weight:600;margin-bottom:4px;">Always included</div>
+      <div style="color:#aaa;line-height:1.7;">Tale title + description<br>Genre / tone<br>Current act + chapter<br>Selected interaction type</div>
+    </div>
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#f59e0b;font-weight:600;margin-bottom:4px;">Optionally included</div>
+      <div style="color:#aaa;line-height:1.7;">Previous interaction text<br>Character stats<br>Author's style notes<br>Existing dialog in node</div>
+    </div>
+    <div style="background:#0f0f0f;border-radius:6px;padding:10px;">
+      <div style="color:#6366f1;font-weight:600;margin-bottom:4px;">Author controls</div>
+      <div style="color:#aaa;line-height:1.7;">Accepts / edits / rejects output<br>Regenerate with tweaked prompt<br>AI never auto-saves — always a preview first</div>
+    </div>
+  </div>
+</div>

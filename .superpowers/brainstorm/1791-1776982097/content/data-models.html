@@ -1,0 +1,170 @@
+<style>
+pre { margin:0; font-family:monospace; font-size:11px; line-height:1.8; }
+.card { background:#0e0e16; border:1px solid #252535; border-radius:8px; padding:18px 20px; }
+.entity { font-size:10px; text-transform:uppercase; letter-spacing:2px; color:#555; font-family:monospace; margin-bottom:10px; }
+.k { color:#6366f1; }
+.s { color:#10b981; }
+.n { color:#f59e0b; }
+.t { color:#64748b; }
+.c { color:#333; }
+</style>
+
+<h2 style="margin:0 0 4px;">Data Models</h2>
+<p class="subtitle" style="margin:0 0 24px;">Full platform schema — Tale → Act → Chapter → Interaction → Option</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+  <!-- User -->
+  <div class="card">
+    <div class="entity">User</div>
+    <pre>
+{
+  <span class="k">id</span>:       <span class="s">string</span>
+  <span class="k">email</span>:    <span class="s">string</span>
+  <span class="k">name</span>:     <span class="s">string</span>
+  <span class="k">roles</span>:    <span class="s">"author" | "player" | "both"</span>
+  <span class="k">createdAt</span>: <span class="s">Date</span>
+}</pre>
+  </div>
+
+  <!-- Character -->
+  <div class="card">
+    <div class="entity">Character</div>
+    <pre>
+{
+  <span class="k">id</span>:        <span class="s">string</span>
+  <span class="k">userId</span>:    <span class="s">string</span>        <span class="c">// owner</span>
+  <span class="k">name</span>:      <span class="s">string</span>
+  <span class="k">backstory</span>: <span class="s">string</span>
+  <span class="k">stats</span>: {
+    <span class="k">STR</span> <span class="k">INT</span> <span class="k">CHA</span> <span class="k">AGI</span> <span class="k">WIS</span> <span class="k">CON</span>: <span class="n">number</span>
+  }
+  <span class="k">hp</span>:        <span class="n">number</span>
+  <span class="k">maxHp</span>:     <span class="n">number</span>
+  <span class="k">mana</span>:      <span class="n">number</span>
+  <span class="k">maxMana</span>:   <span class="n">number</span>
+  <span class="k">gold</span>:      <span class="n">number</span>
+  <span class="k">inventory</span>: <span class="t">InventoryItem[]</span>
+}</pre>
+  </div>
+
+  <!-- InventoryItem -->
+  <div class="card">
+    <div class="entity">InventoryItem</div>
+    <pre>
+{
+  <span class="k">id</span>:       <span class="s">string</span>
+  <span class="k">name</span>:     <span class="s">string</span>
+  <span class="k">type</span>:     <span class="s">"weapon" | "armor" | "consumable" | "key" | "misc"</span>
+  <span class="k">quantity</span>: <span class="n">number</span>
+}</pre>
+  </div>
+
+  <!-- GameSession -->
+  <div class="card">
+    <div class="entity">Game Session</div>
+    <pre>
+{
+  <span class="k">id</span>:                   <span class="s">string</span>
+  <span class="k">userId</span>:               <span class="s">string</span>
+  <span class="k">taleId</span>:               <span class="s">string</span>
+  <span class="k">characterId</span>:          <span class="s">string</span>
+  <span class="k">currentInteractionId</span>: <span class="s">string</span>
+  <span class="k">failedOptions</span>:        <span class="s">string[]</span>  <span class="c">// option refs</span>
+  <span class="k">flags</span>:                <span class="t">Record&lt;string, boolean&gt;</span>
+  <span class="k">savedAt</span>:              <span class="s">Date</span>
+}</pre>
+  </div>
+
+  <!-- Tale -->
+  <div class="card" style="grid-column:span 2;">
+    <div class="entity">Tale</div>
+    <pre>
+{
+  <span class="k">id</span>:           <span class="s">string</span>
+  <span class="k">authorId</span>:     <span class="s">string</span>
+  <span class="k">title</span>:        <span class="s">string</span>
+  <span class="k">description</span>:  <span class="s">string</span>
+  <span class="k">visibility</span>:   <span class="s">"public" | "private" | "invite"</span>
+  <span class="k">inviteList</span>:   <span class="s">string[]</span>           <span class="c">// userIds</span>
+  <span class="k">characterMode</span>: <span class="s">"new" | "premade" | "global_premade" | "existing"</span>
+  <span class="k">premadeCharacters</span>: <span class="t">Character[]</span>   <span class="c">// if premade</span>
+  <span class="k">context</span>: {                         <span class="c">// used for AI prompt generation</span>
+    <span class="k">genre</span>:       <span class="s">string</span>
+    <span class="k">tone</span>:        <span class="s">string</span>
+    <span class="k">setting</span>:     <span class="s">string</span>
+    <span class="k">worldDetails</span>: <span class="s">string</span>
+    <span class="k">themes</span>:      <span class="s">string[]</span>
+  }
+  <span class="k">acts</span>: <span class="t">Act[]</span>
+  <span class="k">createdAt</span>: <span class="s">Date</span>
+}</pre>
+  </div>
+
+  <!-- Act -->
+  <div class="card">
+    <div class="entity">Act</div>
+    <pre>
+{
+  <span class="k">id</span>:       <span class="s">string</span>
+  <span class="k">taleId</span>:   <span class="s">string</span>
+  <span class="k">title</span>:    <span class="s">string</span>
+  <span class="k">order</span>:    <span class="n">number</span>
+  <span class="k">chapters</span>: <span class="t">Chapter[]</span>
+}</pre>
+  </div>
+
+  <!-- Chapter -->
+  <div class="card">
+    <div class="entity">Chapter</div>
+    <pre>
+{
+  <span class="k">id</span>:           <span class="s">string</span>
+  <span class="k">actId</span>:        <span class="s">string</span>
+  <span class="k">title</span>:        <span class="s">string</span>
+  <span class="k">order</span>:        <span class="n">number</span>
+  <span class="k">interactions</span>: <span class="t">Interaction[]</span>
+}</pre>
+  </div>
+
+  <!-- Interaction -->
+  <div class="card" style="grid-column:span 2;">
+    <div class="entity">Interaction</div>
+    <pre>
+{
+  <span class="k">id</span>:        <span class="s">string</span>
+  <span class="k">chapterId</span>: <span class="s">string</span>
+  <span class="k">title</span>:     <span class="s">string</span>
+  <span class="k">location</span>:  <span class="s">string</span>
+  <span class="k">text</span>:      <span class="s">string</span>              <span class="c">// narrator prose</span>
+  <span class="k">prompt</span>: {                      <span class="c">// AI generation config</span>
+    <span class="k">mode</span>: <span class="s">"free_text" | "mechanics" | "context"</span>
+    <span class="k">value</span>: <span class="s">string</span>               <span class="c">// free text, or serialised selections</span>
+  }
+  <span class="k">options</span>: <span class="t">Option[]</span>
+}</pre>
+  </div>
+
+  <!-- Option -->
+  <div class="card" style="grid-column:span 2;">
+    <div class="entity">Option</div>
+    <pre>
+{
+  <span class="k">type</span>:  <span class="s">"speak" | "action" | "skill_check" | "combat" | "rest" | "shop" | "loot" | "examine"</span>
+  <span class="k">label</span>: <span class="s">string</span>                   <span class="c">// quoted = speech, plain = action (italic)</span>
+  <span class="k">next</span>?: <span class="s">string</span>                   <span class="c">// interaction id to navigate to</span>
+
+  <span class="c">// skill_check only</span>
+  <span class="k">skill</span>?:       { <span class="k">stat</span>: <span class="s">"STR"|"INT"|"CHA"|"AGI"|"WIS"|"CON"</span>, <span class="k">dc</span>: <span class="n">number</span> }
+  <span class="k">successNext</span>?: <span class="s">string</span>
+  <span class="k">failText</span>?:    <span class="s">string</span>
+
+  <span class="c">// combat only</span>
+  <span class="k">enemy</span>?:   <span class="s">string</span>               <span class="c">// enemy ref id</span>
+
+  <span class="c">// shop / loot / examine only</span>
+  <span class="k">refId</span>?:   <span class="s">string</span>               <span class="c">// shopId | lootId | areaId</span>
+}</pre>
+  </div>
+
+</div>

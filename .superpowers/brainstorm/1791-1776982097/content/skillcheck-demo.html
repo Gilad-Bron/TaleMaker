@@ -1,0 +1,122 @@
+<style>
+@keyframes dieWobble {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  20%       { transform: rotate(48deg) scale(1.05); }
+  50%       { transform: rotate(42deg) scale(0.96); }
+  75%       { transform: rotate(47deg) scale(1.03); }
+}
+@keyframes dieSettle {
+  0%   { transform: rotate(45deg) scale(1.08); }
+  60%  { transform: rotate(45deg) scale(0.95); }
+  100% { transform: rotate(45deg) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.die-wobble { animation: dieWobble 0.28s ease-in-out infinite; }
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+.fade-up    { animation: fadeUp 0.5s ease forwards; }
+</style>
+
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:32px;">
+
+  <div style="text-align:center;">
+    <h2 style="margin:0 0 6px;">Agility Check</h2>
+    <p class="subtitle" style="margin:0;">Try to slip past into the ravine — DC 12</p>
+  </div>
+
+  <!-- Die + result -->
+  <div id="roll-area" style="display:flex;align-items:center;gap:24px;min-height:80px;">
+    <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+      <div id="die-face" style="position:absolute;inset:0;border:2px solid #c8963e;border-radius:3px;transform:rotate(45deg);box-shadow:0 0 6px 1px #c8963e22;transition:border-color 0.4s ease,box-shadow 0.4s ease;"></div>
+      <span id="die-number" style="position:relative;z-index:1;font-size:26px;font-weight:700;color:#c8963e;font-family:monospace;transition:color 0.4s ease;line-height:1;">1</span>
+    </div>
+    <div style="text-align:left;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:2px;font-family:monospace;">agility check</div>
+      <div style="color:#444;font-size:11px;margin-top:4px;font-family:monospace;">d20 · vs DC 12</div>
+      <div id="result-label" style="opacity:0;margin-top:8px;font-size:12px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;"></div>
+    </div>
+  </div>
+
+  <!-- Narrative consequence -->
+  <div id="narrative" style="opacity:0;max-width:420px;text-align:center;font-size:13px;color:#aaa;font-style:italic;line-height:1.8;border-left:3px solid #555;padding-left:16px;transition:opacity 0.5s ease;"></div>
+
+  <!-- Roll button -->
+  <button id="roll-btn" onclick="startRoll()" style="background:#1e1e2e;border:1px solid #6366f1;color:#6366f1;padding:10px 28px;border-radius:6px;font-size:13px;cursor:pointer;font-family:monospace;letter-spacing:1px;">🎲 Roll</button>
+
+</div>
+
+<script>
+const WIN_NARRATIVE = "You time it perfectly — a quick sidestep as the figure lunges, one foot finding solid ground at the ravine's edge. By the time they turn, you're already on the other side.";
+const FAIL_NARRATIVE = "You misjudge the edge. Your foot slips on loose gravel and the figure turns, hand already on the sword hilt. The ravine was never an option.";
+
+function startRoll() {
+  const btn = document.getElementById('roll-btn');
+  btn.disabled = true;
+  btn.style.opacity = '0.4';
+
+  const dieFace = document.getElementById('die-face');
+  const dieNum  = document.getElementById('die-number');
+  const label   = document.getElementById('result-label');
+  const narr    = document.getElementById('narrative');
+  const DC = 12;
+
+  // reset
+  label.style.opacity = '0';
+  narr.style.opacity  = '0';
+  dieFace.style.borderColor  = '#c8963e';
+  dieFace.style.boxShadow    = '0 0 6px 1px #c8963e22';
+  dieNum.style.color         = '#c8963e';
+  dieFace.className          = 'die-wobble';
+
+  const actualRoll = Math.floor(Math.random() * 20) + 1;
+  const success    = actualRoll >= DC;
+
+  const steps = [
+    ...Array(8).fill(35),
+    ...Array(5).fill(70),
+    ...Array(4).fill(130),
+    ...Array(2).fill(220),
+  ];
+  let step = 0;
+
+  function tick() {
+    if (step < steps.length) {
+      dieNum.textContent = Math.floor(Math.random() * 20) + 1;
+      setTimeout(tick, steps[step++]);
+    } else {
+      // Settling
+      dieNum.textContent = actualRoll;
+      dieFace.className  = 'die-settle';
+      setTimeout(() => {
+        // Revealed
+        const color = success ? '#4a9a5a' : '#8a2222';
+        dieFace.style.borderColor = color;
+        dieFace.style.boxShadow   = `0 0 18px 4px ${color}55`;
+        dieNum.style.color        = color;
+        dieFace.className         = '';
+        dieFace.style.transform   = 'rotate(45deg)';
+
+        label.textContent   = success ? 'Success' : 'Failure';
+        label.style.color   = color;
+        label.style.opacity = '1';
+        label.className     = 'fade-up';
+
+        narr.textContent    = success ? WIN_NARRATIVE : FAIL_NARRATIVE;
+        narr.style.borderLeftColor = color;
+
+        setTimeout(() => {
+          narr.style.opacity = '1';
+          setTimeout(() => {
+            btn.disabled     = false;
+            btn.style.opacity = '1';
+            btn.textContent  = '🎲 Roll again';
+          }, success ? 800 : 1600);
+        }, 300);
+      }, 350);
+    }
+  }
+  tick();
+}
+</script>

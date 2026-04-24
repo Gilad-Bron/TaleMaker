@@ -1,0 +1,126 @@
+<h2>TaleMaker Play UI — Current Elements</h2>
+<p class="subtitle">What exists today, what carries over, what needs building</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+
+  <!-- DialogDisplay mockup -->
+  <div style="border:1px solid #333;border-radius:10px;overflow:hidden;background:#0a0a0a;">
+    <div style="background:#141414;border-bottom:1px solid #222;padding:6px 12px;font-size:10px;color:#6366f1;text-transform:uppercase;letter-spacing:1px;">DialogDisplay.tsx — reuse with extensions</div>
+    <div style="padding:20px 24px;max-width:420px;margin:0 auto;">
+
+      <!-- Context -->
+      <div style="display:flex;gap:6px;margin-bottom:16px;font-size:11px;color:#444;">
+        <span>Chapter 1: Awakening</span><span>·</span><span>A new beginning</span>
+      </div>
+
+      <!-- Speaker + log toggle -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="color:#555;font-size:12px;">📍</span>
+          <span style="color:#c8963e;font-size:15px;font-weight:600;">The Cracked Road</span>
+        </div>
+        <span style="font-size:11px;color:#444;">📜 Log</span>
+      </div>
+
+      <!-- Dialog text -->
+      <div style="margin-bottom:20px;">
+        <p style="font-size:13px;line-height:1.9;color:#ccc;font-style:italic;">"The road ends here." The figure doesn't move. Doesn't blink. The sword at their hip is old but clean — the kind of clean that means it's been used recently.</p>
+      </div>
+
+      <div style="height:1px;background:#222;margin-bottom:16px;"></div>
+
+      <!-- Options -->
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
+        <div style="border:1px solid #333;padding:8px 12px;color:#aaa;border-radius:2px;background:#111;">Step forward slowly, hands visible</div>
+        <div style="border:1px solid #333;padding:8px 12px;color:#aaa;border-radius:2px;background:#111;">Ask who they are</div>
+        <div style="border:1px solid #444;padding:8px 12px;border-radius:2px 2px 0 0;background:#161622;display:flex;justify-content:space-between;align-items:center;">
+          <span style="display:flex;align-items:center;gap:6px;color:#ccc;"><span style="color:#6366f1;font-size:10px;">⚄</span> Try to slip past</span>
+          <span style="color:#555;font-size:10px;font-family:monospace;">AGI DC 12</span>
+        </div>
+        <!-- Skill check inline -->
+        <div style="border:1px solid #6366f130;border-top:none;border-radius:0 0 2px 2px;background:#0f0f1a;padding:10px 14px;display:flex;align-items:center;gap:16px;">
+          <div style="position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;inset:0;border:2px solid #4a9a5a;border-radius:2px;transform:rotate(45deg);box-shadow:0 0 12px 3px #4a9a5a55;"></div>
+            <span style="position:relative;z-index:1;font-size:18px;font-weight:700;color:#4a9a5a;font-family:monospace;">14</span>
+          </div>
+          <div>
+            <div style="color:#333;font-size:9px;text-transform:uppercase;letter-spacing:2px;">agility check</div>
+            <div style="color:#333;font-size:10px;margin-top:3px;font-family:monospace;">d20 · vs DC 12</div>
+            <div style="color:#4a9a5a;font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-top:5px;">Success</div>
+          </div>
+        </div>
+        <div style="border:1px solid #2a1a1a;padding:8px 12px;color:#444;border-radius:2px;display:flex;justify-content:space-between;align-items:center;">
+          <span>Draw a weapon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Breakdown panel -->
+  <div style="display:flex;flex-direction:column;gap:10px;">
+
+    <div style="border:1px solid #22332a;border-radius:8px;padding:12px;background:#0a1a10;">
+      <div style="color:#10b981;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">✓ Reuse as-is</div>
+      <ul style="font-size:12px;color:#aaa;margin:0;padding-left:16px;line-height:2;">
+        <li>Chapter · episode context bar</li>
+        <li>Speaker name + area/character icon</li>
+        <li>Dialog text (italic, fade-up animation)</li>
+        <li>History log panel (paginated)</li>
+        <li>Skill check inline below option</li>
+        <li>Failed options greyed + roll shown</li>
+        <li>Other options dimmed while rolling</li>
+        <li><strong style="color:#ccc;">SkillCheckRoll component</strong> (unchanged)</li>
+      </ul>
+    </div>
+
+    <div style="border:1px solid #332a00;border-radius:8px;padding:12px;background:#1a1500;">
+      <div style="color:#f59e0b;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">~ Extend / update</div>
+      <ul style="font-size:12px;color:#aaa;margin:0;padding-left:16px;line-height:2;">
+        <li>Context bar → <strong style="color:#ccc;">Act › Chapter</strong> (new hierarchy)</li>
+        <li>Interaction type icon → <strong style="color:#ccc;">12 types</strong> (not just area/character)</li>
+        <li>Option buttons → <strong style="color:#ccc;">combat / shop triggers</strong></li>
+        <li>PlayComplete → <strong style="color:#ccc;">add stats summary + replay</strong></li>
+      </ul>
+    </div>
+
+    <div style="border:1px solid #2a1a33;border-radius:8px;padding:12px;background:#150a1a;">
+      <div style="color:#8b5cf6;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">+ Build new</div>
+      <ul style="font-size:12px;color:#aaa;margin:0;padding-left:16px;line-height:2;">
+        <li>Character panel (stats, HP, inventory, reputation)</li>
+        <li>Combat interaction screen</li>
+        <li>Shop / Trade interaction screen</li>
+        <li>Save / Load UI</li>
+        <li>Character selection at tale start</li>
+        <li>Loot, Crafting, Rest, Puzzle, Event screens</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- PlayComplete -->
+<div style="border:1px solid #333;border-radius:10px;overflow:hidden;background:#0a0a0a;">
+  <div style="background:#141414;border-bottom:1px solid #222;padding:6px 12px;font-size:10px;color:#f59e0b;text-transform:uppercase;letter-spacing:1px;">PlayComplete.tsx — extend with stats summary</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+    <div style="padding:32px;text-align:center;border-right:1px solid #1a1a1a;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;">Current</div>
+      <div style="font-size:28px;color:#c8963e;font-weight:700;margin:16px 0 8px;">"The End"</div>
+      <div style="color:#555;font-size:12px;font-style:italic;">The Lost Kingdom</div>
+      <div style="color:#444;font-size:11px;margin-top:12px;">← Back to editor</div>
+    </div>
+    <div style="padding:32px;text-align:center;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;">Extended</div>
+      <div style="font-size:22px;color:#c8963e;font-weight:700;margin-bottom:6px;">"The End"</div>
+      <div style="color:#555;font-size:12px;font-style:italic;margin-bottom:16px;">The Lost Kingdom</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px;margin-bottom:14px;">
+        <div style="background:#1a1a1a;border-radius:4px;padding:6px;"><div style="color:#f59e0b;">🪙 128</div><div style="color:#555;font-size:10px;">gold</div></div>
+        <div style="background:#1a1a1a;border-radius:4px;padding:6px;"><div style="color:#ef4444;">72 HP</div><div style="color:#555;font-size:10px;">remaining</div></div>
+        <div style="background:#1a1a1a;border-radius:4px;padding:6px;"><div style="color:#10b981;">14</div><div style="color:#555;font-size:10px;">choices</div></div>
+      </div>
+      <div style="display:flex;gap:6px;justify-content:center;font-size:11px;">
+        <div style="background:#1e1e2e;border:1px solid #6366f140;color:#6366f1;padding:5px 12px;border-radius:4px;">Play again</div>
+        <div style="background:#1e1e1e;border:1px solid #333;color:#888;padding:5px 12px;border-radius:4px;">Browse tales</div>
+      </div>
+    </div>
+  </div>
+</div>

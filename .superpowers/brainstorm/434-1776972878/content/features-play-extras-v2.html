@@ -1,0 +1,167 @@
+<h2>Play UI — Combat, Shop & Skill Check</h2>
+<p class="subtitle">Additional interaction screens</p>
+
+<style>
+@keyframes dieWobble {
+  0%, 100% { transform: rotate(45deg) scale(1); }
+  20%       { transform: rotate(48deg) scale(1.05); }
+  50%       { transform: rotate(42deg) scale(0.96); }
+  75%       { transform: rotate(47deg) scale(1.03); }
+}
+@keyframes dieSettle {
+  0%   { transform: rotate(45deg) scale(1.08); }
+  60%  { transform: rotate(45deg) scale(0.95); }
+  100% { transform: rotate(45deg) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0%   { content: "9"; }
+  100% { content: "9"; }
+}
+.die-wobble { animation: dieWobble 0.28s ease-in-out infinite; }
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+.fade-up    { animation: fadeUp 0.5s ease forwards; }
+</style>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+
+  <!-- COMBAT UI -->
+  <div style="border:2px solid #ef4444;border-radius:10px;background:#0f0f0f;overflow:hidden;">
+    <div style="background:#ef444420;border-bottom:1px solid #ef444440;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="color:#ef4444;font-weight:700;font-size:13px;">⚔ Combat — Bandit Leader</div>
+      <div style="color:#888;font-size:11px;">Round 3</div>
+    </div>
+    <div style="padding:14px;">
+      <div style="background:#1a1a1a;border-radius:8px;padding:10px;margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:32px;height:32px;background:#2a1a1a;border:1px solid #ef4444;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">💀</div>
+            <div><div style="color:white;font-size:12px;font-weight:600;">Bandit Leader</div><div style="color:#888;font-size:10px;">Aggressive · Weakened</div></div>
+          </div>
+          <div style="color:#ef4444;font-size:12px;font-weight:700;">38 / 80 HP</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:3px;height:8px;"><div style="background:linear-gradient(90deg,#ef4444,#f87171);width:47%;height:100%;border-radius:3px;"></div></div>
+        <div style="margin-top:8px;font-size:11px;color:#666;font-style:italic;">"You'll regret that..."</div>
+      </div>
+      <div style="background:#1a1a2e;border-radius:8px;padding:10px;margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:32px;height:32px;background:#1a1a3e;border:1px solid #6366f1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;">🧙</div>
+            <div><div style="color:white;font-size:12px;font-weight:600;">The Wanderer</div><div style="color:#888;font-size:10px;">Defending</div></div>
+          </div>
+          <div style="color:#10b981;font-size:12px;font-weight:700;">72 / 100 HP</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:3px;height:8px;"><div style="background:linear-gradient(90deg,#10b981,#34d399);width:72%;height:100%;border-radius:3px;"></div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;">
+        <div style="background:#ef444420;border:1px solid #ef444440;border-radius:6px;padding:8px;color:#ef4444;text-align:center;cursor:pointer;">⚔ Attack<div style="color:#666;font-size:10px;margin-top:2px;">STR vs DEF</div></div>
+        <div style="background:#6366f120;border:1px solid #6366f140;border-radius:6px;padding:8px;color:#6366f1;text-align:center;cursor:pointer;">✨ Spell<div style="color:#666;font-size:10px;margin-top:2px;">Costs 10 mana</div></div>
+        <div style="background:#f59e0b20;border:1px solid #f59e0b40;border-radius:6px;padding:8px;color:#f59e0b;text-align:center;cursor:pointer;">🧪 Use Item<div style="color:#666;font-size:10px;margin-top:2px;">2 potions left</div></div>
+        <div style="background:#1e1e1e;border:1px solid #333;border-radius:6px;padding:8px;color:#888;text-align:center;cursor:pointer;">🛡 Defend<div style="color:#666;font-size:10px;margin-top:2px;">Reduce next hit</div></div>
+      </div>
+      <div style="margin-top:10px;background:#1a1a1a;border-radius:6px;padding:8px;font-size:11px;color:#666;border-left:2px solid #ef4444;">
+        You struck for <span style="color:#ef4444;">14 dmg</span>. Bandit Leader counters for <span style="color:#f87171;">8 dmg</span>.
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOP UI -->
+  <div style="border:2px solid #f59e0b;border-radius:10px;background:#0f0f0f;overflow:hidden;">
+    <div style="background:#f59e0b20;border-bottom:1px solid #f59e0b40;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
+      <div style="color:#f59e0b;font-weight:700;font-size:13px;">🛒 Maren's Goods</div>
+      <div style="color:#f59e0b;font-size:12px;font-weight:600;">🪙 34 gold</div>
+    </div>
+    <div style="padding:14px;">
+      <div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;">
+        <div style="background:#f59e0b;color:#111;padding:3px 10px;border-radius:4px;font-weight:600;">Buy</div>
+        <div style="background:#1e1e1e;color:#888;padding:3px 10px;border-radius:4px;">Sell</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#1a1a1a;border-radius:6px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">🧪</span><div><div style="color:#ccc;">Health Potion</div><div style="color:#666;font-size:10px;">Restores 30 HP</div></div></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="color:#f59e0b;">🪙 12</span><div style="background:#f59e0b20;border:1px solid #f59e0b40;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;cursor:pointer;">Buy</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#1a1a1a;border-radius:6px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">🗡</span><div><div style="color:#ccc;">Iron Blade</div><div style="color:#666;font-size:10px;">+4 STR in combat</div></div></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="color:#f59e0b;">🪙 40</span><div style="background:#2a2a2a;border:1px solid #333;color:#555;padding:3px 8px;border-radius:4px;font-size:11px;">Can't afford</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;background:#1a1a1a;border-radius:6px;padding:8px 10px;">
+          <div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">🕯</span><div><div style="color:#ccc;">Lantern</div><div style="color:#666;font-size:10px;">Reveals hidden objects in areas</div></div></div>
+          <div style="display:flex;align-items:center;gap:8px;"><span style="color:#f59e0b;">🪙 20</span><div style="background:#f59e0b20;border:1px solid #f59e0b40;color:#f59e0b;padding:3px 8px;border-radius:4px;font-size:11px;cursor:pointer;">Buy</div></div>
+        </div>
+      </div>
+      <div style="margin-top:10px;background:#1a1a1a;border-radius:6px;padding:8px;font-size:11px;color:#aaa;font-style:italic;border-left:2px solid #f59e0b;">
+        "Everything's got a price out here. You look like you know that already."
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SKILL CHECK — TaleMaker animation style -->
+<div style="border:2px solid #8b5cf6;border-radius:10px;background:#0f0f0f;overflow:hidden;">
+  <div style="background:#8b5cf620;border-bottom:1px solid #8b5cf640;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;">
+    <div style="color:#8b5cf6;font-weight:700;font-size:13px;">🎲 Skill Check</div>
+    <div style="color:#555;font-size:11px;">Reuses SkillCheckRoll component from TaleMaker</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:1px solid #1a1a1a;">
+
+    <!-- Phase 1: Rolling -->
+    <div style="padding:20px;border-right:1px solid #1a1a1a;text-align:center;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Phase 1 — Rolling</div>
+      <div style="display:flex;align-items:center;gap:16px;justify-content:center;">
+        <div style="position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;">
+          <div class="die-wobble" style="position:absolute;inset:0;border:2px solid #c8963e;border-radius:3px;box-shadow:0 0 6px 1px #c8963e22;"></div>
+          <span style="position:relative;z-index:1;font-size:22px;font-weight:700;color:#c8963e;font-family:monospace;">?</span>
+        </div>
+        <div style="text-align:left;">
+          <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;">agility check</div>
+          <div style="color:#444;font-size:10px;margin-top:4px;">d20 · vs DC 12</div>
+        </div>
+      </div>
+      <div style="color:#555;font-size:11px;margin-top:12px;">Numbers flicker rapidly<br/>die wobbles continuously</div>
+    </div>
+
+    <!-- Phase 2: Settling -->
+    <div style="padding:20px;border-right:1px solid #1a1a1a;text-align:center;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Phase 2 — Settling</div>
+      <div style="display:flex;align-items:center;gap:16px;justify-content:center;">
+        <div style="position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;">
+          <div class="die-settle" style="position:absolute;inset:0;border:2px solid #c8963e;border-radius:3px;box-shadow:0 0 6px 1px #c8963e22;"></div>
+          <span style="position:relative;z-index:1;font-size:22px;font-weight:700;color:#c8963e;font-family:monospace;">9</span>
+        </div>
+        <div style="text-align:left;">
+          <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;">agility check</div>
+          <div style="color:#444;font-size:10px;margin-top:4px;">d20 · vs DC 12</div>
+        </div>
+      </div>
+      <div style="color:#555;font-size:11px;margin-top:12px;">Final number appears<br/>die bounces to rest</div>
+    </div>
+
+    <!-- Phase 3: Revealed (failure) -->
+    <div style="padding:20px;text-align:center;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Phase 3 — Revealed</div>
+      <div style="display:flex;align-items:center;gap:16px;justify-content:center;" class="fade-up">
+        <div style="position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;">
+          <div style="position:absolute;inset:0;border:2px solid #8a2222;border-radius:3px;box-shadow:0 0 18px 4px #8a222255;transform:rotate(45deg);transition:border-color 0.4s,box-shadow 0.4s;"></div>
+          <span style="position:relative;z-index:1;font-size:22px;font-weight:700;color:#8a2222;font-family:monospace;">9</span>
+        </div>
+        <div style="text-align:left;">
+          <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:1px;">agility check</div>
+          <div style="color:#444;font-size:10px;margin-top:4px;">d20 · vs DC 12</div>
+          <div style="color:#8a2222;font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-top:6px;">Failure</div>
+        </div>
+      </div>
+      <div style="color:#555;font-size:11px;margin-top:12px;">Red glow · "Failure" label<br/>auto-dismisses after 1.6s</div>
+    </div>
+
+  </div>
+
+  <!-- Narrative consequence -->
+  <div style="padding:14px 16px;font-size:12px;color:#aaa;border-left:3px solid #8a2222;margin:12px 14px;background:#1a1a1a;border-radius:0 6px 6px 0;">
+    You misjudge the edge. Your foot slips on loose gravel and the figure turns, hand already on the sword hilt.
+  </div>
+</div>

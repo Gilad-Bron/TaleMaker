@@ -1,0 +1,115 @@
+<style>
+pre { margin:0; font-family:monospace; font-size:12px; line-height:1.9; }
+.k { color:#6366f1; }
+.s { color:#10b981; }
+.n { color:#f59e0b; }
+.t { color:#64748b; }
+.c { color:#444; }
+.o { color:#c8963e; }
+</style>
+
+<h2 style="margin:0 0 4px;">Entity 2 of 8 — Character</h2>
+<p class="subtitle" style="margin:0 0 24px;">A player's character. Can be global or tied to a specific tale.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+
+  <div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:20px;">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#555;font-family:monospace;margin-bottom:12px;">Identity</div>
+    <pre>
+{
+  <span class="k">id</span>:         <span class="s">string</span>
+  <span class="k">userId</span>:     <span class="s">string</span>
+  <span class="k">taleId</span>?:    <span class="s">string</span>    <span class="c">// null = global</span>
+  <span class="k">avatarUrl</span>?: <span class="s">string</span>
+  <span class="k">name</span>:       <span class="s">string</span>
+  <span class="k">bio</span>:        <span class="s">string</span>
+  <span class="k">level</span>:      <span class="n">number</span>
+  <span class="k">experience</span>: <span class="n">number</span>
+  <span class="k">isAlive</span>:    <span class="t">boolean</span>
+  <span class="k">gold</span>:       <span class="n">number</span>
+  <span class="k">createdAt</span>:  <span class="s">Date</span>
+}</pre>
+  </div>
+
+  <div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:20px;">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#555;font-family:monospace;margin-bottom:12px;">Resources</div>
+    <pre>
+{
+  <span class="k">health</span>: {
+    <span class="k">current</span>: <span class="n">number</span>
+    <span class="k">max</span>:     <span class="n">number</span>
+  }
+  <span class="k">mana</span>: {
+    <span class="k">current</span>: <span class="n">number</span>
+    <span class="k">max</span>:     <span class="n">number</span>
+  }
+}</pre>
+  </div>
+
+  <div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:20px;">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#555;font-family:monospace;margin-bottom:12px;">Ability Scores</div>
+    <pre>
+{
+  <span class="k">abilityScores</span>: {
+    <span class="k">STR</span>: <span class="n">number</span>
+    <span class="k">INT</span>: <span class="n">number</span>
+    <span class="k">CHA</span>: <span class="n">number</span>
+    <span class="k">DEX</span>: <span class="n">number</span>
+    <span class="k">WIS</span>: <span class="n">number</span>
+    <span class="k">CON</span>: <span class="n">number</span>
+  }
+}</pre>
+  </div>
+
+  <div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:20px;">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#555;font-family:monospace;margin-bottom:12px;">Saving Throws</div>
+    <pre>
+{
+  <span class="k">savingThrows</span>: {
+    <span class="k">fortitude</span>: <span class="n">number</span>  <span class="c">// STR or CON</span>
+    <span class="k">reflex</span>:    <span class="n">number</span>  <span class="c">// DEX or INT</span>
+    <span class="k">will</span>:      <span class="n">number</span>  <span class="c">// WIS or CHA</span>
+  }
+}</pre>
+  </div>
+
+  <div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:20px;grid-column:span 2;">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#555;font-family:monospace;margin-bottom:12px;">Skills</div>
+    <pre>
+{
+  <span class="k">skills</span>: {
+    <span class="k">athletics</span>:     <span class="n">number</span>  <span class="c">// STR</span>
+    <span class="k">acrobatics</span>:    <span class="n">number</span>  <span class="c">// DEX</span>
+    <span class="k">stealth</span>:       <span class="n">number</span>  <span class="c">// DEX</span>
+    <span class="k">persuasion</span>:    <span class="n">number</span>  <span class="c">// CHA</span>
+    <span class="k">deception</span>:     <span class="n">number</span>  <span class="c">// CHA</span>
+    <span class="k">intimidation</span>:  <span class="n">number</span>  <span class="c">// CHA</span>
+    <span class="k">insight</span>:       <span class="n">number</span>  <span class="c">// WIS</span>
+    <span class="k">perception</span>:    <span class="n">number</span>  <span class="c">// WIS</span>
+    <span class="k">investigation</span>: <span class="n">number</span>  <span class="c">// INT</span>
+    <span class="k">arcana</span>:        <span class="n">number</span>  <span class="c">// INT</span>
+    <span class="k">lore</span>:          <span class="n">number</span>  <span class="c">// INT</span>
+  }
+}</pre>
+  </div>
+
+  <div style="background:#0e0e16;border:1px solid #252535;border-radius:8px;padding:20px;grid-column:span 2;">
+    <div style="font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#555;font-family:monospace;margin-bottom:12px;">Feats</div>
+    <pre>
+{
+  <span class="k">feats</span>: [
+    {
+      <span class="k">id</span>:          <span class="s">string</span>
+      <span class="k">name</span>:        <span class="s">string</span>
+      <span class="k">description</span>: <span class="s">string</span>
+      <span class="k">effect</span>: {
+        <span class="k">type</span>:  <span class="s">string</span>   <span class="c">// e.g. "hp_bonus"</span>
+        <span class="k">value</span>: <span class="n">number</span>   <span class="c">// e.g. 10</span>
+      }
+    }
+  ]
+  <span class="k">inventory</span>: <span class="t">InventoryItem[]</span>
+}</pre>
+  </div>
+
+</div>

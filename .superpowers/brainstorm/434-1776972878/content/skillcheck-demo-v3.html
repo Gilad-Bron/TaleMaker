@@ -1,0 +1,148 @@
+<style>
+@keyframes dieSettle {
+  0%   { transform: rotate(45deg) scale(1.08); }
+  60%  { transform: rotate(45deg) scale(0.95); }
+  100% { transform: rotate(45deg) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.die-settle { animation: dieSettle 0.35s ease-out forwards; }
+.fade-up    { animation: fadeUp 0.5s ease forwards; }
+</style>
+
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:32px;">
+
+  <div style="text-align:center;">
+    <h2 style="margin:0 0 6px;">Agility Check</h2>
+    <p class="subtitle" style="margin:0;">Try to slip past into the ravine — DC 12</p>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:24px;min-height:80px;">
+    <div style="position:relative;width:64px;height:64px;display:flex;align-items:center;justify-content:center;">
+      <div id="die-face" style="position:absolute;inset:0;border:2px solid #c8963e;border-radius:3px;transform:rotate(45deg);box-shadow:0 0 6px 1px #c8963e22;transition:border-color 0.4s ease,box-shadow 0.4s ease;"></div>
+      <div id="die-inner" style="position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+        <span id="die-number" style="font-size:26px;font-weight:700;color:#c8963e;font-family:monospace;transition:color 0.4s ease;line-height:1;display:block;">1</span>
+      </div>
+    </div>
+    <div style="text-align:left;">
+      <div style="color:#555;font-size:10px;text-transform:uppercase;letter-spacing:2px;font-family:monospace;">agility check</div>
+      <div style="color:#444;font-size:11px;margin-top:4px;font-family:monospace;">d20 · vs DC 12</div>
+      <div id="result-label" style="opacity:0;margin-top:8px;font-size:12px;text-transform:uppercase;letter-spacing:3px;font-family:monospace;"></div>
+    </div>
+  </div>
+
+  <div id="narrative" style="opacity:0;max-width:420px;text-align:center;font-size:13px;color:#aaa;font-style:italic;line-height:1.8;border-left:3px solid #555;padding-left:16px;transition:opacity 0.5s ease;"></div>
+
+  <button id="roll-btn" onclick="startRoll()" style="background:#1e1e2e;border:1px solid #6366f1;color:#6366f1;padding:10px 28px;border-radius:6px;font-size:13px;cursor:pointer;font-family:monospace;letter-spacing:1px;">🎲 Roll</button>
+
+</div>
+
+<script>
+const WIN_NARRATIVE  = "You time it perfectly — a quick sidestep as the figure lunges, one foot finding solid ground at the ravine's edge. By the time they turn, you're already on the other side.";
+const FAIL_NARRATIVE = "You misjudge the edge. Your foot slips on loose gravel and the figure turns, hand already on the sword hilt. The ravine was never an option.";
+
+let strobeId = null;
+
+function stopStrobe() {
+  if (strobeId) { clearInterval(strobeId); strobeId = null; }
+  document.getElementById('die-inner').style.opacity = '1';
+}
+
+function startStrobe(intervalMs) {
+  stopStrobe();
+  let bright = true;
+  strobeId = setInterval(() => {
+    document.getElementById('die-inner').style.opacity = bright ? '1' : '0.15';
+    bright = !bright;
+  }, intervalMs / 2);
+}
+
+function flipTo(newNum, flipMs) {
+  return new Promise(resolve => {
+    const inner = document.getElementById('die-inner');
+    const numEl = document.getElementById('die-number');
+    const half  = flipMs / 2;
+    inner.style.transition = `transform ${half}ms ease-in`;
+    inner.style.transform  = 'scaleX(0)';
+    setTimeout(() => {
+      numEl.textContent = newNum;
+      inner.style.transition = `transform ${half}ms ease-out`;
+      inner.style.transform  = 'scaleX(1)';
+      setTimeout(resolve, half);
+    }, half);
+  });
+}
+
+async function startRoll() {
+  const btn   = document.getElementById('roll-btn');
+  const face  = document.getElementById('die-face');
+  const numEl = document.getElementById('die-number');
+  const label = document.getElementById('result-label');
+  const narr  = document.getElementById('narrative');
+
+  btn.disabled = true;
+  btn.style.opacity = '0.4';
+
+  // reset
+  label.style.opacity = '0';
+  narr.style.opacity  = '0';
+  face.style.borderColor = '#c8963e';
+  face.style.boxShadow   = '0 0 6px 1px #c8963e22';
+  numEl.style.color      = '#c8963e';
+  face.className         = '';
+  face.style.transform   = 'rotate(45deg)';
+
+  const actualRoll = Math.floor(Math.random() * 20) + 1;
+  const success    = actualRoll >= 12;
+
+  // Fast
+  startStrobe(140);
+  for (let i = 0; i < 6; i++)  await flipTo(Math.floor(Math.random()*20)+1, 140);
+
+  // Slowing
+  startStrobe(260);
+  for (let i = 0; i < 5; i++)  await flipTo(Math.floor(Math.random()*20)+1, 260);
+
+  // Slowing more
+  startStrobe(420);
+  for (let i = 0; i < 4; i++)  await flipTo(Math.floor(Math.random()*20)+1, 420);
+
+  // Almost stopped
+  startStrobe(650);
+  for (let i = 0; i < 2; i++)  await flipTo(Math.floor(Math.random()*20)+1, 650);
+
+  // Land
+  stopStrobe();
+  await flipTo(actualRoll, 300);
+
+  // Settle bounce
+  face.className = 'die-settle';
+  await new Promise(r => setTimeout(r, 350));
+
+  // Reveal
+  const color = success ? '#4a9a5a' : '#8a2222';
+  face.style.borderColor = color;
+  face.style.boxShadow   = `0 0 18px 4px ${color}55`;
+  numEl.style.color      = color;
+  face.className         = '';
+  face.style.transform   = 'rotate(45deg)';
+
+  label.textContent   = success ? 'Success' : 'Failure';
+  label.style.color   = color;
+  label.style.opacity = '1';
+  label.className     = 'fade-up';
+
+  narr.textContent           = success ? WIN_NARRATIVE : FAIL_NARRATIVE;
+  narr.style.borderLeftColor = color;
+
+  await new Promise(r => setTimeout(r, 300));
+  narr.style.opacity = '1';
+
+  await new Promise(r => setTimeout(r, success ? 800 : 1600));
+  btn.disabled      = false;
+  btn.style.opacity = '1';
+  btn.textContent   = '🎲 Roll again';
+}
+</script>

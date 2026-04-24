@@ -1,0 +1,82 @@
+<h2>System Architecture</h2>
+<p class="subtitle">Monorepo — Hono API + React SPA + MongoDB</p>
+
+<div class="section">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px;">
+
+    <div style="border:2px solid #6366f1;border-radius:12px;padding:16px;background:rgba(99,102,241,0.08);">
+      <div class="label" style="color:#6366f1;">Browser</div>
+      <h3 style="margin:8px 0 4px;">web/</h3>
+      <p style="font-size:13px;color:#aaa;margin:0 0 12px;">React 19 + Vite + TypeScript</p>
+      <ul style="font-size:13px;color:#ccc;margin:0;padding-left:16px;line-height:1.8;">
+        <li>Auth pages (login/register)</li>
+        <li>Home — tale library + discovery</li>
+        <li>Workspace — node graph editor</li>
+        <li>Play view — rich player UI</li>
+        <li>Tailwind CSS + Radix UI</li>
+      </ul>
+    </div>
+
+    <div style="border:2px solid #10b981;border-radius:12px;padding:16px;background:rgba(16,185,129,0.08);">
+      <div class="label" style="color:#10b981;">Server</div>
+      <h3 style="margin:8px 0 4px;">api/</h3>
+      <p style="font-size:13px;color:#aaa;margin:0 0 12px;">Hono + Zod OpenAPI + TypeScript</p>
+      <ul style="font-size:13px;color:#ccc;margin:0;padding-left:16px;line-height:1.8;">
+        <li>Auth routes (JWT)</li>
+        <li>Tales CRUD + publishing</li>
+        <li>Play sessions + save states</li>
+        <li>AI writing endpoints</li>
+        <li>Swagger UI at /doc</li>
+      </ul>
+    </div>
+
+    <div style="border:2px solid #f59e0b;border-radius:12px;padding:16px;background:rgba(245,158,11,0.08);">
+      <div class="label" style="color:#f59e0b;">Data & Services</div>
+      <h3 style="margin:8px 0 4px;">External</h3>
+      <p style="font-size:13px;color:#aaa;margin:0 0 12px;">MongoDB Atlas + Claude API</p>
+      <ul style="font-size:13px;color:#ccc;margin:0;padding-left:16px;line-height:1.8;">
+        <li>MongoDB (Mongoose ODM)</li>
+        <li>Claude API (AI writing)</li>
+        <li>JWT secret in env</li>
+        <li>API key stored server-side</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="border:1px solid #333;border-radius:8px;padding:16px;background:#1a1a1a;">
+    <div class="label">Monorepo Layout</div>
+    <pre style="margin:8px 0 0;font-size:13px;color:#ccc;line-height:1.7;">storyforge/
+├── api/          ← Hono server (Node.js)
+│   ├── src/
+│   │   ├── routes/   (auth, tales, play, ai)
+│   │   ├── models/   (Mongoose schemas)
+│   │   └── lib/      (claude client, jwt utils)
+│   └── package.json
+├── web/          ← React SPA (Vite)
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── lib/      (api client)
+│   └── package.json
+└── shared/       ← TypeScript types (shared)
+    └── types.ts</pre>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Data Flow</h3>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;">
+    <div style="background:#6366f1;color:white;padding:6px 12px;border-radius:6px;">Browser</div>
+    <span style="color:#666;">── REST + JWT ──▶</span>
+    <div style="background:#10b981;color:white;padding:6px 12px;border-radius:6px;">Hono API</div>
+    <span style="color:#666;">── Mongoose ──▶</span>
+    <div style="background:#f59e0b;color:#111;padding:6px 12px;border-radius:6px;">MongoDB</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;margin-top:10px;">
+    <div style="background:#6366f1;color:white;padding:6px 12px;border-radius:6px;">Browser</div>
+    <span style="color:#666;">── AI request ──▶</span>
+    <div style="background:#10b981;color:white;padding:6px 12px;border-radius:6px;">Hono API</div>
+    <span style="color:#666;">── SDK ──▶</span>
+    <div style="background:#8b5cf6;color:white;padding:6px 12px;border-radius:6px;">Claude API</div>
+  </div>
+</div>
